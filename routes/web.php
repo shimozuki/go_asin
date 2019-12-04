@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/','FrontendController@cardkos');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('kamar','KamarController');
+
+//////// FRONTEND \\\\\\\
+Route::get('/','FrontendController@cardkos'); // Homepage
+Route::get('detail-kamar-kos/{id}','FrontendController@detailkos'); // Detail Kos

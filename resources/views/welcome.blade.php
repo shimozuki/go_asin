@@ -63,7 +63,7 @@
                     </div>
                         <h6 class="">{{$item->nama_kamar}}</h6>
                         <p class="m-b-0 text-muted">Update 3 hari yang lalu</p>
-                        <a href="" class="btn btn-primary btn-block btn-sm">Detail</a>
+                        <a href="{{url('detail-kamar-kos', $item->id)}}" target="_blank" class="btn btn-primary btn-block btn-sm">Detail</a>
                     </div>
                 <div class="job-badge">
                     @if ($item->jenis_kamar == "Putra")
