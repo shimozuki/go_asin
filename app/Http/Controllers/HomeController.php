@@ -26,6 +26,8 @@ class HomeController extends Controller
     {
         if (auth::user()->role == "Owner") {
             return view('owner.index');
+        }elseif(auth::user()->role == "User") {
+            return view('user.index');
         }
     }
 }
