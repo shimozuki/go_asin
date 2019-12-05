@@ -43,43 +43,54 @@
     <div class="col-sm-9">
         <div class="card">
             <div class="card-body">
-                <label class="label badge-success">Khusus {{$detail->jenis_kamar}}</label>
-                <h5 class="mt-2 mb-1 font-weight-bold" style="color:red">{{$detail->nama_kamar}}</h5>  
+                @foreach ($detail as $item)
+                <label class="label badge-success">Khusus {{$item->jenis_kamar}}</label>
+                <h5 class="mt-2 mb-1 font-weight-bold" style="color:red">{{$item->nama_kamar}}</h5>  
                 <button type="submit" class="btn btn-default">Simpan</button>
                 <button type="submit" class="btn btn-default">Bagikan</button>
                 {{-- Start Luas Kamar --}}
                 <h6 class="mt-5 font-weight-bold">Luas Kamar</h6>
-                <span>{{$detail->luas_kamar}}</span>
+                <span>- {{$item->luas_kamar}}</span>
 
 
                 {{-- Start Fasilitas Kamar --}}
                 <h6 class="mt-5 font-weight-bold">Fasilitas Kamar</h6>
-                <span>
-                    {{$detail->fkamar_name}}
+                <span> -
+                    @foreach ($item->fkamars as $a)
+                        {{$a->fkamar_name}},
+                    @endforeach
                 </span>
 
                 {{-- Start Fasilitas Kamar Mandi--}}
                 <h6 class="mt-5 font-weight-bold">Fasilitas Kamar Mandi</h6>
-                <span>
-                    {{$detail->fkamar_mandi}}
+                <span> -
+                    @foreach ($item->fkamar_mandis as $km)
+                        {{$km->fkamar_mandi}},
+                    @endforeach
                 </span>
 
                 {{-- Start Fasilitas Bersama--}}
                 <h6 class="mt-5 font-weight-bold">Fasilitas Bersama</h6>
-                <span>
-                    {{$detail->fbersama_name}}
+                <span>-
+                    @foreach ($item->fbersamas as $bersama)
+                        {{$bersama->fbersama_name}},
+                    @endforeach
                 </span>
 
                 {{-- Start Fasilitas Parkir--}}
                 <h6 class="mt-5 font-weight-bold">Fasilitas Parkir</h6>
-                <span>
-                    {{$detail->fparkir_name}}
+                <span>-
+                    @foreach ($item->fparkirs as $parkir)
+                        {{$parkir->fparkir_name}},
+                    @endforeach
                 </span>
 
                 {{-- Start Fasilitas Area Lingkungan--}}
                 <h6 class="mt-5 font-weight-bold">Fasilitas Area Lingkungan</h6>
-                <span>
-                    {{$detail->area_name}}
+                <span>-
+                    @foreach ($item->areas as $area)
+                        {{$area->area_name}},
+                    @endforeach
                 </span>
             </div>
         </div>
@@ -93,8 +104,8 @@
     <div class="col-sm-3">
         <div class="card">
             <div class="card-body">
-                <label class="label badge-info label-lg">Tersisa {{$detail->stok_kamar}} Kamar</label>
-                <div class="job-meta-data mt-2">Update {{$detail->updated_at->format('d-m-y')}}</div>
+                {{-- <label class="label badge-info label-lg">Tersisa {{$detail->stok_kamar}} Kamar</label> --}}
+                {{-- <div class="job-meta-data mt-2">Update {{$detail->updated_at->format('d-m-y')}}</div> --}}
                 <div class="job-meta-data mt-2"><span style="color:red">Data bisa berubah sewaktu-waktu </span></div>
                 <h6 class="font-weight-bold mt-5">Rp. 800.000 / Bulan</h6>
                 <p style="font-size:8pt">
@@ -106,6 +117,7 @@
             </div>
         </div>
     </div>
+    @endforeach
 </div>
 {{-- End Detail Kamar --}}
 @endsection

@@ -15,29 +15,29 @@ class kamar extends Model
     {
         return $this->belongsTo(user::class);
     }
-    
+
     public function fkamars()
     {
-        return $this->hasMany(fkamar::class);
+        return $this->hasMany('App\fkamar','id_kamar');
     }
 
     public function fkamar_mandis()
     {
-        return $this->hasMany(fkamar_mandi::class);
+        return $this->hasMany('App\fkamar_mandi','idkamar_mandi');
     }
 
     public function fbersamas()
     {
-        return $this->hasMany(fbersama::class);
+        return $this->hasMany('App\fbersama','idfbersama');
     }
 
-    public function parkirs()
+    public function fparkirs()
     {
-        return $this->hasMany(parkir::class);
+        return $this->hasMany('App\fparkir','idfparkir');
     }
 
     public function areas()
     {
-        return $this->hasMany(area::class);
+        return $this->hasMany('App\area','idarea');
     }
 }

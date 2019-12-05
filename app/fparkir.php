@@ -12,6 +12,6 @@ class fparkir extends Model
 
     public function kamars()
     {
-        return $this->hasMany(kamar::class);
+        return $this->hasMany('App\kamar','id_kamar');
     }
 }
