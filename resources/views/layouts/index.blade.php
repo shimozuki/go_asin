@@ -88,7 +88,7 @@
                     <a class="mobile-menu" id="mobile-collapse" href="#!">
                         <i class="feather icon-menu"></i>
                     </a>
-                    <a href="index-1.htm">
+                    <a href="{{url('/')}}">
                         <img class="img-fluid" src="..\files\assets\images\logo.png" alt="Theme-Logo">
                     </a>
                     <a class="mobile-options">
@@ -170,17 +170,12 @@
                             <div class="dropdown-primary dropdown">
                                 <div class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="{{asset('files\assets\images\avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <span>{{auth::user()->name}}</span>
                                     <i class="feather icon-chevron-down"></i>
                                 </div>
                                 <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                     <li>
-                                        <a href="#!">
-                                            <i class="feather icon-settings"></i> Settings
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="user-profile.htm">
+                                        <a href="{{route('owner.index')}}">
                                             <i class="feather icon-user"></i> Profile
                                         </a>
                                     </li>

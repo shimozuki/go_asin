@@ -100,14 +100,22 @@
                                         </div>
                                         <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                             <li>
-                                                <a href="#!">
-                                                    <i class="feather icon-settings"></i> Settings
-                                                </a>
+                                                @if (auth::user()->role == "Owner")
+                                                    <a href="{{url('home')}}">
+                                                        <i class="feather icon-home"></i> Dashboard
+                                                    </a>
+                                                @endif
                                             </li>
                                             <li>
-                                                <a href="{{url('home')}}">
-                                                    <i class="feather icon-user"></i> Profile
-                                                </a>
+                                                @if (auth::user()->role == "Owner")
+                                                    <a href="{{route('owner.index')}}">
+                                                        <i class="feather icon-user"></i> Profile
+                                                    </a>
+                                                @else
+                                                    <a href="{{url('home')}}">
+                                                        <i class="feather icon-user"></i> Profile
+                                                    </a>
+                                                @endif
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -2034,7 +2042,7 @@
     <script type="text/javascript" src="{{asset('files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('files\bower_components\jquery-i18next\js\jquery-i18next.min.js')}}"></script>
-    
+
     <!-- swiper js -->
     <script type="text/javascript" src="{{asset('files\bower_components\swiper\js\swiper.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('files\assets\js\swiper-custom.js')}}"></script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Sewa;
 use Auth;
 
 class HomeController extends Controller
@@ -27,7 +28,11 @@ class HomeController extends Controller
         if (auth::user()->role == "Owner") {
             return view('owner.index');
         }elseif(auth::user()->role == "User") {
-            return view('user.index');
+            $sewa = sewa::selectRaw('sewas.*,a.nama_kamar,a.jenis_kamar')
+            ->leftJoin('kamars as a','a.id','=','sewas.kamar_id')
+            ->where('sewas.user_id',auth::user()->id)->get();
+
+            return view('user.index', compact('sewa'));
         }
     }
 }

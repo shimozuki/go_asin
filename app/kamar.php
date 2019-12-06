@@ -11,9 +11,16 @@ class kamar extends Model
         'id_user','nama_kamar','jenis_kamar','luas_kamar','stok_kamar','harga_kamar'
     ];
 
+    protected $with = ['fkamars','fbersamas'];
+
     public function users()
     {
         return $this->belongsTo(user::class);
+    }
+
+    public function sewas()
+    {
+        return $this->hasMany(sewa::class);
     }
 
     public function fkamars()
@@ -40,4 +47,5 @@ class kamar extends Model
     {
         return $this->hasMany('App\area','idarea');
     }
+
 }

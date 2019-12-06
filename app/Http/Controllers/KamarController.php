@@ -9,6 +9,7 @@ use App\fkamar_mandi;
 use App\fbersama;
 use App\fparkir;
 use App\area;
+use App\sewa;
 use Auth;
 
 class KamarController extends Controller

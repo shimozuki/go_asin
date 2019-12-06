@@ -104,15 +104,19 @@
     <div class="col-sm-3">
         <div class="card">
             <div class="card-body">
-                {{-- <label class="label badge-info label-lg">Tersisa {{$detail->stok_kamar}} Kamar</label> --}}
-                {{-- <div class="job-meta-data mt-2">Update {{$detail->updated_at->format('d-m-y')}}</div> --}}
+                <label class="label badge-info label-lg">Tersisa {{$item->stok_kamar}} Kamar</label>
+                <div class="job-meta-data mt-2">Update {{$item->updated_at->format('d F Y')}}</div>
                 <div class="job-meta-data mt-2"><span style="color:red">Data bisa berubah sewaktu-waktu </span></div>
                 <h6 class="font-weight-bold mt-5">Rp. 800.000 / Bulan</h6>
                 <p style="font-size:8pt">
                     Tidak Termasuk Listrik <br>
                     Tidak Ada Minimal Pembayaran
                 </p>
-                <a href="" class="btn btn-primary">Sewa Kos</a>
+                @if ($item->user_id == "")
+                    <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-primary">Sewa Kos</a>
+                @else
+                    <a href="{{url('home')}}" class="btn btn-primary">Aktif</a>
+                @endif
                 <a href="" class="btn btn-danger">Booking</a>
             </div>
         </div>
