@@ -15,12 +15,12 @@ class kamar extends Model
 
     public function users()
     {
-        return $this->belongsTo(user::class);
+        return $this->hasMany('App\user','id');
     }
 
     public function sewas()
     {
-        return $this->hasMany(sewa::class);
+        return $this->hasMany('App\sewa','kamar_id','id');
     }
 
     public function fkamars()

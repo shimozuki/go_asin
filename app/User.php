@@ -42,4 +42,9 @@ class User extends Authenticatable
         return $this->hasMany('App\kamar','id_user');
     }
 
+    public function sewas()
+    {
+        return $this->hasMany('App\sewa','user_id');
+    }
+
 }

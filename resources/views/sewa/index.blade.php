@@ -7,10 +7,8 @@
     <div class="col-6">
         <div class="card">
             <div class="body-card" style="height:300px">
-                
-                    <h4 class="mt-2 pl-2">{{$item->nama_kamar}}</h4>
-                    <span class="pl-2">Kos Khusus </span><span>{{$item->jenis_kamar}}</span>
-                
+                <h4 class="mt-2 pl-2">{{$item->nama_kamar}}</h4>
+                <span class="pl-2">Kos Khusus </span><span>{{$item->jenis_kamar}}</span>
             </div>
         </div>
     </div>
@@ -30,7 +28,9 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                    <input type="text" class="form-control" value="{{$item->nama_bank}}  {{$item->no_rek}}" readonly>
+                                                @foreach ($item->users as $items)
+                                                    <input type="text" class="form-control" value="{{$items->nama_bank}}  {{$items->no_rek}}" readonly>
+                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -52,8 +52,11 @@
                                         <textarea name="notes" class="form-control" rows="3" placeholder="Pesan (optional)"></textarea>
                                     </div>
                                     <div class="text-center">
+                                        @if ($item->user_id == auth::user()->id)
+                                        @else
                                         <button type="submit" class="btn btn-primary waves-effect waves-light">Kirim</button>
                                         <a href="" class="btn btn-warning waves-effect waves-light">Batal</a>
+                                        @endif
                                     </div>
                                 </form>
                             </div>

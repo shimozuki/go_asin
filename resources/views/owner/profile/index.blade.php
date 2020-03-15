@@ -7,18 +7,16 @@
             <div class="card">
                 <div class="card-header contact-user">
                     <img class="img-radius img-40 mb-3" src="..\files\assets\images\avatar-4.jpg" alt="contact-user">
-                    <h5 class="m-l-10">
-                        @foreach ($item->profils as $a)
-                            @if ($a->user_id == "")
-                                <a href="{{route('owner.edit', $item->id)}}">{{$item->name}}
-                                    <span class="text-danger" style="font-size:10px">Lengkapi Profil</span>
-                                </a>
-                            @else
-                                <a href="">{{$item->name}}
-                                    <span class="text-danger" style="font-size:10px">Edit Profil</span>
-                                </a>
-                            @endif
-                        @endforeach    
+                    <h5 class="m-l-10">  
+                        @if ($item->nama_bank == "" or $item->no_rek == "" or $item->no_telp == "" or $item->no_ktp == "" or $item->no_npwp == "" or $item->foto == "")
+                            <a href="{{route('owner.edit', $item->id)}}">{{$item->name}}
+                                <span class="text-danger" style="font-size:10px">Lengkapi Profil</span>
+                            </a>
+                        @else
+                            <a href="{{route('owner.edit', $item->id)}}">{{$item->name}}
+                                <span class="text-danger" style="font-size:10px">Edit Profil</span>
+                            </a> 
+                        @endif  
                     </h5>
                 </div>
             </div>
@@ -32,7 +30,7 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">Nama Pemilik</th>
-                                        <td>{{$item->name}}</td>
+                                        <td><a href="{{route('owner.edit', $item->id)}}">{{$item->name}}</a></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Email</th>
@@ -41,25 +39,19 @@
                                     <tr>
                                         <th scope="row">No. Telepon</th>
                                         <td>
-                                            @foreach ($item->profils as $a)
-                                                {{$a->no_telp}}
-                                            @endforeach
+                                                {{$item->no_telp}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">No. KTP</th>
                                         <td>
-                                            @foreach ($item->profils as $a)
-                                                {{$a->no_ktp}}
-                                            @endforeach
+                                                {{$item->no_ktp}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">No. NPWP</th>
                                         <td>
-                                            @foreach ($item->profils as $a)
-                                                {{$a->no_npwp}}
-                                            @endforeach
+                                                {{$item->no_npwp}}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -74,17 +66,13 @@
                                     <tr>
                                         <th scope="row">Nama Bank</th>
                                         <td>
-                                            @foreach ($item->profils as $a)
-                                                {{$a->nama_bank}}
-                                            @endforeach
+                                                {{$item->nama_bank}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">No. Rekening</th>
                                         <td>
-                                            @foreach ($item->profils as $a)
-                                                {{$a->no_rek}}
-                                            @endforeach
+                                                {{$item->no_rek}}
                                         </td>
                                     </tr>
                                 </tbody>

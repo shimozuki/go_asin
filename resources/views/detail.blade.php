@@ -112,12 +112,16 @@
                     Tidak Termasuk Listrik <br>
                     Tidak Ada Minimal Pembayaran
                 </p>
-                @if ($item->user_id == "")
-                    <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-primary">Sewa Kos</a>
+                @if ($item->id_user == @auth::user()->id)
+                    <button disabled="disabled" class="btn btn-info">Ini Kos Punya Kamu</button>
                 @else
-                    <a href="{{url('home')}}" class="btn btn-primary">Aktif</a>
+                    @if ($item->user_id == @auth::user()->id)
+                        <a href="{{url('home')}}" class="btn btn-primary">Ini Kamar Kamu</a>
+                    @else
+                        <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-primary">Sewa Kos</a>
+                        <a href="" class="btn btn-danger">Booking</a>
+                    @endif
                 @endif
-                <a href="" class="btn btn-danger">Booking</a>
             </div>
         </div>
     </div>

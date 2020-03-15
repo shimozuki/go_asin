@@ -27,7 +27,11 @@
                 <i class="feather icon-plus text-c-lite-green d-block f-40"></i>
                 <h5 class="m-t-20">Tambah Kamar</h5>
                 <p class="m-b-20">Tambah Type Kamar Yuk</p>
-                <a href="{{route('kamar.create')}}" class="btn btn-warning btn-sm btn-round">Buat Kamar</a>
+                @if (auth::user()->nama_bank == '' or auth::user()->no_rek == '' or auth::user()->no_telp == '')
+                    <a href="{{route('owner.edit', auth::user()->id)}}" class="btn btn-danger btn-sm btn-round">Lengkapi Profil Dahulu</a>
+                @else
+                    <a href="{{route('kamar.create')}}" class="btn btn-warning btn-sm btn-round">Buat Kamar</a>
+                @endif
             </div>
         </div>
     </div>

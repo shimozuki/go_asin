@@ -17,9 +17,9 @@ class FrontendController extends Controller
     // Detail Kos
     public function detailkos($id)
     {
-        $detail = Kamar::selectRaw('kamars.*,a.user_id')
+        $detail = Kamar::selectRaw('kamars.*,a.user_id,a.kamar_id')
         ->leftJoin('sewas as a','a.kamar_id','=','kamars.id')
-        ->where('kamars.id',$id)->get();
+        ->get();
         return view('detail', compact('detail'));
     }
 }

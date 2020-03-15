@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Profil;
 use Auth;
 
 class ownerController extends Controller
@@ -17,7 +16,7 @@ class ownerController extends Controller
     public function index()
     {
         //Profile
-        $profil = user::where('id',auth::user()->id)->get();
+        $profil = user::all();
         return view('owner.profile.index', compact('profil'));
     }
 
@@ -39,23 +38,7 @@ class ownerController extends Controller
      */
     public function store(Request $request)
     {
-        $foto = $request->file('foto');
-        $nama_foto = time()."_".$foto->getClientOriginalName();
-        // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'foto_profile';
-        $foto->move($tujuan_upload,$nama_foto);
-
-        $profil = new Profil;
-        $profil->user_id = auth::user()->id;
-        $profil->nama_bank = $request->nama_bank;
-        $profil->no_rek = $request->no_rek;
-        $profil->no_ktp = $request->no_ktp;
-        $profil->no_telp = $request->no_telp;
-        $profil->no_npwp = $request->no_npwp;
-        $profil->foto = $nama_foto;
-        $profil->save();
-
-        return redirect('owner');
+        
     }
 
     /**
@@ -91,7 +74,22 @@ class ownerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $foto = $request->file('foto');
+        $nama_foto = time()."_".$foto->getClientOriginalName();
+        // isi dengan nama folder tempat kemana file diupload
+        $tujuan_upload = 'foto_profile';
+        $foto->move($tujuan_upload,$nama_foto);
+
+        $profil = User::find($id);
+        $profil->nama_bank = $request->nama_bank;
+        $profil->no_rek = $request->no_rek;
+        $profil->no_ktp = $request->no_ktp;
+        $profil->no_telp = $request->no_telp;
+        $profil->no_npwp = $request->no_npwp;
+        $profil->foto = $nama_foto;
+        $profil->save();
+
+        return redirect('owner');
     }
 
     /**

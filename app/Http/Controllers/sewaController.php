@@ -14,9 +14,7 @@ class sewaController extends Controller
     // Index Sewa Kamar
     public function index($id)
     {
-        $sewa = Kamar::selectRaw('kamars.*,a.nama_bank,a.no_rek')
-        ->leftJoin('profils as a','a.user_id','=','kamars.id_user')
-        ->where('kamars.id',$id)->get();
+        $sewa = Kamar::all();
         return view('sewa.index', compact('sewa'));
     }
 
@@ -29,6 +27,8 @@ class sewaController extends Controller
             $sewa->kamar_id = $request->kamar_id;
             $sewa->lama_sewa = $request->lama_sewa;
             $sewa->status = 'Menunggu Pembayaran';
+            $sewa->stok_id = 1;
+            $sewa->notes = $request->notes;
             $sewa->save();
 
             return redirect('home');

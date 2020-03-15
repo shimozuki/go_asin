@@ -10,9 +10,9 @@ class sewa extends Model
         'user_id','kamar_id','lama_sewa','status','notes','stok_id'
     ];
 
-    public function kamars()
+    public function kamar()
     {
-        return $this->hasMany('App\kamar','id_kamar');
+        return $this->belongsTo('App\kamar','id');
     }
 
     public function users()

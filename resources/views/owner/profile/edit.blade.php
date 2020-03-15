@@ -32,7 +32,8 @@
         </div>
         <div class="col-md-6 col-sm-12 col-lg-9">
             <div class="card">
-                <form action="{{route('owner.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('owner.update', $profil->id)}}" method="post" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                 <div class="row">
                     <div class="col-6">
@@ -65,7 +66,7 @@
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-sm ml-4">Submit</button>
-                        <a href="" class="btn btn-warning btn-sm">Batal</a>
+                        <a href="{{route('owner.index')}}" class="btn btn-warning btn-sm">Batal</a>
                     </div>
                 </div>
             </div>

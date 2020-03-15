@@ -41,7 +41,7 @@
         <div class="col-lg-12">
             <!-- tab header start -->
             <div class="tab-header card col-lg-12">
-                <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist" id="mytab">
+                <ul class="nav nav-tabs md-tabs tab-timeline col-lx-12" role="tablist" id="mytab">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#kost" role="tab">Kost Saya</a>
                         <div class="slide"></div>
