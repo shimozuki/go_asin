@@ -22,8 +22,10 @@ class KamarController extends Controller
     public function index()
     {
         if (auth::user()->role == "Owner") {
-            $kamar = kamar::all();
-            return view('owner.kamar.index', compact('kamar'));
+            $cek = kamar::where('id_user',auth::user()->id)->first();
+            $sisa = sewa::where('kamar_id', $cek->id)->where('status','Lunas')->get();
+            $kamar = kamar::where('id_user',auth::user()->id)->get();
+            return view('owner.kamar.index', compact('kamar','sisa'));
         }
     }
 

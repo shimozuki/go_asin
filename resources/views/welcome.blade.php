@@ -57,7 +57,14 @@
                     </div>
                     <div class="job-lable">
                         <label class="label badge-success">Bisa Booking</label>
-                        <label class="label badge-info">{{$item->stok_kamar}} Kamar</label>
+                        <label class="label badge-info">
+                            <input type="hidden" value="{{$kamar = $item->stok_kamar - $cek->count()}}">
+                            @if ($kamar == 0)
+                             Kamar Penuh
+                            @else
+                            Tersisa {{$kamar}} Kamar
+                            @endif
+                        </label>
                         <div class="job-meta-data"><i class="icofont icofont-safety"></i>Rp. 800.000 / bulan</div>
                         <div class="job-meta-data"><i class="icofont icofont-location-pin"></i>Jakarta</div>
                     </div>

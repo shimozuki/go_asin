@@ -8,15 +8,8 @@
                 <div class="card-block text-center">
                     <i class="feather icon-home text-c-lite-green d-block f-40"></i>
                     <h6 class="m-t-20"><span class="text-c-lite-green">{{$item->nama_kamar}}</span></h6>
-                    <p class="m-b-20">{{$item->jenis_kamar}}</p>
+                    <p class="m-b-20">Kamar tersedia {{$item->stok_kamar - $sisa->count()}} Kamar Dari {{$item->stok_kamar}} Kamar</p>
                     <a href="" class="btn btn-info btn-sm btn-round">Detail Kamar</a>
-                    <div style="display: none">
-                            {{ $total = 0 }}
-                        </div>
-                    @foreach ($item->sewas as $a)
-                        <div style="display: none">{{$total += $a->stok_id}}</div>
-                    @endforeach
-                    {{$total}}
                 </div>
             </div>
         </div>

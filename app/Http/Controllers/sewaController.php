@@ -14,8 +14,13 @@ class sewaController extends Controller
     // Index Sewa Kamar
     public function index($id)
     {
+        $cek = sewa::where('status','Menunggu Pembayaran')->where('user_id',auth::user()->id)->get();
         $sewa = Kamar::all();
-        return view('sewa.index', compact('sewa'));
+        if ($cek == null) {
+            return view('sewa.index', compact('sewa'));
+        } else {
+            return redirect('home');
+        }
     }
 
     // Proses Sewa
@@ -30,7 +35,6 @@ class sewaController extends Controller
             $sewa->stok_id = 1;
             $sewa->notes = $request->notes;
             $sewa->save();
-
             return redirect('home');
         }
     }
