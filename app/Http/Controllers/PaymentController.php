@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 use Auth;
 
-class ownerController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,12 @@ class ownerController extends Controller
      */
     public function index()
     {
-        //Profile
         if (auth::check()) {
-            if (auth::user()->role == "Owner") {
-                $profil = user::where('id',auth::user()->id)->get();
-                return view('owner.profile.index', compact('profil'));
+            if (auth::user()->role == "User") {
+                return view('user.payment.index');
             }
+        } else{
+            return redirect('home');
         }
     }
 
@@ -31,7 +30,13 @@ class ownerController extends Controller
      */
     public function create()
     {
-        //
+        if (auth::check()) {
+            if (auth::user()->role == "User") {
+                return view('user.payment.create');
+            }
+        } else{
+            return redirect('home');
+        }
     }
 
     /**
@@ -64,9 +69,7 @@ class ownerController extends Controller
      */
     public function edit($id)
     {
-        //Profile
-        $profil = user::find($id);
-        return view('owner.profile.edit', compact('profil'));
+        //
     }
 
     /**
@@ -78,22 +81,7 @@ class ownerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $foto = $request->file('foto');
-        $nama_foto = time()."_".$foto->getClientOriginalName();
-        // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'foto_profile';
-        $foto->move($tujuan_upload,$nama_foto);
-
-        $profil = User::find($id);
-        $profil->nama_bank = $request->nama_bank;
-        $profil->no_rek = $request->no_rek;
-        $profil->no_ktp = $request->no_ktp;
-        $profil->no_telp = $request->no_telp;
-        $profil->no_npwp = $request->no_npwp;
-        $profil->foto = $nama_foto;
-        $profil->save();
-
-        return redirect('owner');
+        //
     }
 
     /**

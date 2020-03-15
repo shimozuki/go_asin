@@ -14,10 +14,12 @@ class sewaController extends Controller
     // Index Sewa Kamar
     public function index($id)
     {
-        $cek = sewa::where('status','Menunggu Pembayaran')->where('user_id',auth::user()->id)->get();
+        $cek = sewa::where('status','Menunggu Pembayaran')->where('user_id',auth::user()->id)->first();
         $sewa = Kamar::all();
-        if ($cek == null) {
-            return view('sewa.index', compact('sewa'));
+        if ($cek == null && $cek > '0') {
+            return view('sewa.index', compact('sewa','cek'));
+        } elseif(auth::user()->role == "User") {
+            return redirect('home');
         } else {
             return redirect('home');
         }

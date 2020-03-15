@@ -23,7 +23,7 @@
                         <div class="col-md-12 col-xl-6 ">
                             <div class="card app-design">
                                 <div class="card-block">
-                                    <button class="btn btn-primary f-right">{{$item->status}}</button>
+                                    <a href="{{route('payment.create')}}" class="btn btn-primary f-right">{{$item->status}}</a>
                                     <h6 class="f-w-400 text-muted">{{$item->nama_kamar}}</h6>
                                     <p class="text-c-blue f-w-400">{{$item->jenis_kamar}}</p>
                                     <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>

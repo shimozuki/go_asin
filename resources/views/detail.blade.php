@@ -94,12 +94,6 @@
                     </span>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card-body">
-                
-                </div>
-            </div>
         </div>
         <div class="col-sm-3">
             <div class="card">
@@ -125,14 +119,16 @@
                     @else
                         @if ($item->user_id == $auth)
                             @if ($item->status == "Menunggu Pembayaran")
-                                <a href="{{url('home')}}" class="btn btn-warning">Menunggu Pembayaran</a>
+                                <a href="{{route('payment.create')}}" class="btn btn-warning">Menunggu Pembayaran</a>
                             @else
                                 <a href="{{url('home')}}" class="btn btn-primary">Ini Kamar Kamu</a>    
                             @endif
                         @else
-                            @if ($kamar > 0)
+                            @if ($kamar > 0 && auth::user()->role == "User")
                                 <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-primary">Sewa Kos</a>
                                 <a href="" class="btn btn-danger">Booking</a>
+                            @else
+                                <label class="label badge-warning">Hanya Untuk Pencari Kossan</label>
                             @endif
                         @endif
                     @endif
@@ -140,6 +136,15 @@
             </div>
         </div>
     @endforeach
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+            
+            </div>
+        </div>
+    </div>
 </div>
 {{-- End Detail Kamar --}}
 @endsection

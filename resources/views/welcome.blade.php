@@ -60,9 +60,9 @@
                         <label class="label badge-info">
                             <input type="hidden" value="{{$kamar = $item->stok_kamar - $cek->count()}}">
                             @if ($kamar == 0)
-                             Kamar Penuh
+                             Kamar Penuh 
                             @else
-                            Tersisa {{$kamar}} Kamar
+                            Tersisa {{$kamar}} Kamar {{$cek->count()}}
                             @endif
                         </label>
                         <div class="job-meta-data"><i class="icofont icofont-safety"></i>Rp. 800.000 / bulan</div>

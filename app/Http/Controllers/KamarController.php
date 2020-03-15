@@ -21,12 +21,16 @@ class KamarController extends Controller
      */
     public function index()
     {
-        if (auth::user()->role == "Owner") {
-            $cek = kamar::where('id_user',auth::user()->id)->first();
-            $sisa = sewa::where('kamar_id', $cek->id)->where('status','Lunas')->get();
-            $kamar = kamar::where('id_user',auth::user()->id)->get();
-            return view('owner.kamar.index', compact('kamar','sisa'));
-        }
+       if (auth::check()) {
+            if (auth::user()->role == "Owner") {
+                $cek = kamar::where('id_user',auth::user()->id)->first();
+                $sisa = sewa::where('kamar_id', @$cek->id)->where('status','Lunas')->get();
+                $kamar = kamar::where('id_user',auth::user()->id)->get();
+                return view('owner.kamar.index', compact('kamar','sisa'));
+            }
+       } else {
+           return redirect('home');
+       }
     }
 
     /**
@@ -36,8 +40,12 @@ class KamarController extends Controller
      */
     public function create()
     {
-        if (auth::user()->role == "Owner") {
-            return view('owner.kamar.create');
+        if (auth::check()) {
+            if (auth::user()->role == "Owner") {
+                return view('owner.kamar.create');
+            }
+        } else {
+            return redirect('home');
         }
     }
 

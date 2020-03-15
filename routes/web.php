@@ -20,6 +20,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('owner','ownerController');
 Route::resource('kamar','KamarController');
 
+//////// USER \\\\\\\
+Route::resource('payment','PaymentController');
+
 //////// FRONTEND \\\\\\\
 Route::get('/','FrontendController@cardkos'); // Homepage
 Route::get('detail-kamar-kos/{id}','FrontendController@detailkos'); // Detail Kos

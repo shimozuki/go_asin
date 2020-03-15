@@ -4,14 +4,28 @@
 <!-- Choose Your Payment Method start -->
 <div class="row">
     @foreach ($sewa as $item)
-    <div class="col-6">
-        <div class="card">
-            <div class="body-card" style="height:300px">
-                <h4 class="mt-2 pl-2">{{$item->nama_kamar}}</h4>
-                <span class="pl-2">Kos Khusus </span><span>{{$item->jenis_kamar}}</span>
+        <div class="col-6">
+            <div class="card">
+                <div class="body-card" style="height:300px">
+                    <h4 class="mt-2 pl-2">{{$item->nama_kamar}}</h4>
+                    <span class="pl-2">Kos Khusus </span><span>{{$item->jenis_kamar}}</span>
+                </div>
             </div>
         </div>
-    </div>
+    @if ($cek)
+        <div class="col-6">
+            <div class="card">
+                <div class="body-card" style="height:300px">
+                    <h4 class="mt-2 pl-2">
+                        Kamu masih ada pembayaran yang belum selesai
+                    </h4>
+                    <center>
+                        <a href="{{route('payment.create')}}" class="btn btn-primary">Selesaikan Pembayaran</a>
+                    </center>
+                </div>
+            </div>
+        </div>
+    @else
     <div class="col-6">
         <div class="card">
             <div class="body-card" style="height:300px">
@@ -66,6 +80,7 @@
             </div>
         </div>
     </div>
+    @endif
     @endforeach
 </div>
 <!-- Choose Your Payment Method end -->

@@ -13,21 +13,25 @@ class FrontendController extends Controller
     public function cardkos()
     {
         $id = sewa::first();
-        $cek = sewa::where('status','Lunas')->find($id);
-        $kos = kamar::where('id',$id->kamar_id)->get();
+        $idk = kamar::first();
+        $cek = sewa::where('status','Lunas')->where('kamar_id', $idk->id)->get();
+        $kos = kamar::all();
         return view('welcome', compact("kos","cek"));
     }
 
     // Detail Kos
     public function detailkos($id)
     {
+
         $sewa = sewa::where('status','Lunas')->where('kamar_id',$id)->get();
         $ids = sewa::first();
-        $cek = sewa::where('status','Lunas')->find($ids);
+        $cek = sewa::where('status','Lunas')->where('kamar_id',$id)->get();
         $auth = @auth::user()->id;
-        $detail = kamar::SelectRaw('kamars.*,a.user_id,a.kamar_id,a.status')
+        $detail = kamar::SelectRaw('kamars.*,a.user_id,a.kamar_id,a.status,b.role')
         ->leftJoin('sewas as a','a.kamar_id', '=','kamars.id')
+        ->leftJoin('users as b','b.id','=','kamars.id_user')
         ->groupBy('a.kamar_id')
+        ->where('kaamrs.id',$id)
         ->get();
         return view('detail', compact('detail','sewa','cek','auth'));
     }
