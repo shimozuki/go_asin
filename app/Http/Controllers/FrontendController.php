@@ -31,7 +31,7 @@ class FrontendController extends Controller
         ->leftJoin('sewas as a','a.kamar_id', '=','kamars.id')
         ->leftJoin('users as b','b.id','=','kamars.id_user')
         ->groupBy('a.kamar_id')
-        ->where('kaamrs.id',$id)
+        ->where('kamars.id',$id)
         ->get();
         return view('detail', compact('detail','sewa','cek','auth'));
     }
