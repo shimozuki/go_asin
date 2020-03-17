@@ -14,7 +14,7 @@ class FrontendController extends Controller
     {
         $id = sewa::first();
         $idk = kamar::first();
-        $cek = sewa::where('status','Lunas')->where('kamar_id', $idk->id)->get();
+        $cek = sewa::where('status','Lunas')->where('kamar_id', @$idk->id)->get();
         $kos = kamar::all();
         return view('welcome', compact("kos","cek"));
     }
