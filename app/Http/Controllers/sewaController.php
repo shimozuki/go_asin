@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Kamar;
 use App\Profil;
-use App\Sewa;
+use App\sewa;
 use Auth;
 
 class sewaController extends Controller
@@ -16,7 +16,7 @@ class sewaController extends Controller
     {
         $cek = sewa::where('status','Menunggu Pembayaran')->where('user_id',auth::user()->id)->first();
         $sewa = Kamar::all();
-        if ($cek == null && $cek > '0') {
+        if ($cek == null || $cek > '0') {
             return view('sewa.index', compact('sewa','cek'));
         } elseif(auth::user()->role == "User") {
             return redirect('home');

@@ -120,16 +120,19 @@
                         @if ($item->user_id == $auth)
                             @if ($item->status == "Menunggu Pembayaran")
                                 <a href="{{route('payment.create')}}" class="btn btn-warning">Menunggu Pembayaran</a>
+                            @elseif($item->status == "Lunas")
+                                <a href="{{url('home')}}" class="btn btn-primary">Ini Kamar Kamu</a>
                             @else
-                                <a href="{{url('home')}}" class="btn btn-primary">Ini Kamar Kamu</a>    
+                                <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-primary">Sewa Kos</a>
+                                <a href="" class="btn btn-danger">Booking</a>    
                             @endif
                         @else
-                            @if ($kamar > 0 && auth::user()->role == "User")
+                            @if ($kamar > 0 && auth::user()->role == "User" )
                                 <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-primary">Sewa Kos</a>
                                 <a href="" class="btn btn-danger">Booking</a>
                             @else
                                 <label class="label badge-warning">Hanya Untuk Pencari Kossan</label>
-                            @endif
+                            @endif 
                         @endif
                     @endif
                 </div>
