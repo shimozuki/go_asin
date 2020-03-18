@@ -57,54 +57,58 @@ class KamarController extends Controller
      */
     public function store(Request $request)
     {
-        if (auth::user()->role == "Owner") {
-            $kamar = new Kamar;
-            $kamar->id = $request->id;
-            $kamar->id_user = auth::user()->id;
-            $kamar->nama_kamar = $request->nama_kamar;
-            $kamar->jenis_kamar = $request->jenis_kamar;
-            $kamar->luas_kamar = $request->luas_kamar;
-            $kamar->stok_kamar = $request->stok_kamar;
-            $kamar->harga_kamar = $request->harga_kamar;
-            $kamar->save();
+        if (auth::check()) {
 
-            foreach($request->addmore as $value){
-                $fkamar = new fkamar;
-                $fkamar->id_kamar = $kamar->id;
-                $fkamar->fkamar_name = $value['fkamar_name'];
-                $fkamar->save();
+            if (auth::user()->role == "Owner") {
+                $kamar = new Kamar;
+                $kamar->id = $request->id;
+                $kamar->id_user = auth::user()->id;
+                $kamar->nama_kamar = $request->nama_kamar;
+                $kamar->jenis_kamar = $request->jenis_kamar;
+                $kamar->luas_kamar = $request->luas_kamar;
+                $kamar->stok_kamar = $request->stok_kamar;
+                $kamar->harga_kamar = $request->harga_kamar;
+                $kamar->save();
+
+                foreach($request->addmore as $value){
+                    $fkamar = new fkamar;
+                    $fkamar->id_kamar = $kamar->id;
+                    $fkamar->fkamar_name = $value['fkamar_name'];
+                    $fkamar->save();
+                }
+
+                foreach ($request->addkm as $value) {
+                    $fkamar_mandi = new fkamar_mandi;
+                    $fkamar_mandi->idkamar_mandi = $kamar->id;
+                    $fkamar_mandi->fkamar_mandi = $value['fkamar_mandi'];
+                    $fkamar_mandi->save();
+                }
+
+                foreach ($request->addbersama as $value) {
+                    $fbersama = new fbersama;
+                    $fbersama->idfbersama = $kamar->id;
+                    $fbersama->fbersama_name = $value['fbersama_name'];
+                    $fbersama->save();
+                }
+
+                foreach ($request->addparkir as $value) {
+                    $fparkir = new fparkir;
+                    $fparkir->idfparkir = $kamar->id;
+                    $fparkir->fparkir_name = $value['fparkir_name'];
+                    $fparkir->Save();
+                }
+
+                foreach ($request->addarea as $value) {
+                    $area = new area;
+                    $area->idarea =  $kamar->id;
+                    $area->area_name = $value['area_name'];
+                    $area->save();
+                }
+
+                return redirect()->route('kamar.index');
             }
-
-            foreach ($request->addkm as $value) {
-                $fkamar_mandi = new fkamar_mandi;
-                $fkamar_mandi->idkamar_mandi = $kamar->id;
-                $fkamar_mandi->fkamar_mandi = $value['fkamar_mandi'];
-                $fkamar_mandi->save();
-            }
-
-            foreach ($request->addbersama as $value) {
-                $fbersama = new fbersama;
-                $fbersama->idfbersama = $kamar->id;
-                $fbersama->fbersama_name = $value['fbersama_name'];
-                $fbersama->save();
-            }
-
-            foreach ($request->addparkir as $value) {
-                $fparkir = new fparkir;
-                $fparkir->idfparkir = $kamar->id;
-                $fparkir->fparkir_name = $value['fparkir_name'];
-                $fparkir->Save();
-            }
-
-            foreach ($request->addarea as $value) {
-                $area = new area;
-                $area->idarea =  $kamar->id;
-                $area->area_name = $value['area_name'];
-                $area->save();
-            }
-
-            return redirect()->route('kamar.index');
-
+        } else {
+            return redirect('home');
         }
     }
 

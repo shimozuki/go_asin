@@ -28,15 +28,19 @@ class sewaController extends Controller
     // Proses Sewa
     public function store(Request $request)
     {
-        if (auth::user()->role == "User") {
-            $sewa = new sewa;
-            $sewa->user_id = auth::user()->id;
-            $sewa->kamar_id = $request->kamar_id;
-            $sewa->lama_sewa = $request->lama_sewa;
-            $sewa->status = 'Menunggu Pembayaran';
-            $sewa->stok_id = 1;
-            $sewa->notes = $request->notes;
-            $sewa->save();
+        if (auth::check()) {
+            if (auth::user()->role == "User") {
+                $sewa = new sewa;
+                $sewa->user_id = auth::user()->id;
+                $sewa->kamar_id = $request->kamar_id;
+                $sewa->lama_sewa = $request->lama_sewa;
+                $sewa->status = 'Menunggu Pembayaran';
+                $sewa->stok_id = 1;
+                $sewa->notes = $request->notes;
+                $sewa->save();
+                return redirect('home');
+            }
+        } else {
             return redirect('home');
         }
     }

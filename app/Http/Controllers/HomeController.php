@@ -26,15 +26,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (auth::user()->role == "Owner") {
-            return view('owner.index');
-        }elseif(auth::user()->role == "User") {
-            $sewa = Kamar::selectRaw('kamars.*,a.user_id,a.kamar_id,a.user_id,a.status')
-            ->leftJoin('sewas as a','a.kamar_id','=','kamars.id')
-            ->groupBy('a.user_id')
-            ->where('a.user_id',auth::user()->id)
-            ->get();
-            return view('user.index', compact('sewa'));
+        if (auth::check()) {
+            if (auth::user()->role == "Owner") {
+                return view('owner.index');
+            }elseif(auth::user()->role == "User") {
+                $sewa = Kamar::selectRaw('kamars.*,a.user_id,a.kamar_id,a.user_id,a.status')
+                ->leftJoin('sewas as a','a.kamar_id','=','kamars.id')
+                ->groupBy('a.user_id')
+                ->where('a.user_id',auth::user()->id)
+                ->get();
+                return view('user.index', compact('sewa'));
+            }
+        } else {
+            return redirect('home');
         }
     }
 }
