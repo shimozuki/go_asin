@@ -8,7 +8,7 @@
 3. Jalankan perintah 'Composer Install' pada direktori project <br>
 4. Jalanlan perintah 'cp .env.example .env', ini untuk membuat file .env<br>
 5. Buat DB dan jalankan perintah 'php artisan migrate'<br>
-6. Jalankan perintah 'php artisan serve'
+6. Jalankan perintah 'php artisan serve' <br>
 7. klik menu register dan taraaa
     
 Note : Aplikasi ini akan terus saya update.<br>
