@@ -1,151 +1,209 @@
-@extends('layouts.index')
-@section('title','Home')
+@extends('layouts.backend')
+@section('title','Dashboard Pemilik')
 @section('content')
+@if (@$notif->status == "Proses")
+    <div class="alert alert-info fade show">
+        <span class="close" data-dismiss="alert">×</span>
+        <strong>Info ! </strong>
+        Ada Pembayaran Baru Yang harus Ditinjau
+        <a href="{{url('payment-detail-owner/'. $notif->id.'/' .'user/'. $notif->user_id .'')}}" class="alert-link">Klik Disini</a>. 
+    </div>
+@endif
+
 <div class="row">
-    <!-- statustic-card  start -->
-    <div class="col-md-6 col-xl-3">
-        <div class="card widget-card-1">
-            <div class="card-block-small">
-                <i class="feather icon-pie-chart bg-c-blue card1-icon"></i>
-                <span class="text-c-blue f-w-600">Use Space</span>
-                <h4>49/50GB</h4>
-                <div>
-                    <span class="f-left m-t-10 text-muted">
-                        <i class="text-c-blue f-16 feather icon-alert-triangle m-r-10"></i>Get more space
-                    </span>
+    <!-- begin col-3 -->
+    <div class="col-lg-3 col-md-6">
+        <div class="widget widget-stats bg-gradient-green">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
+            <div class="stats-content">
+                <div class="stats-title">TODAY'S</div>
+                <div class="stats-number">Coming Soon..</div>
+                <div class="stats-progress progress">
+                    <div class="progress-bar" style="width: 70.1%;"></div>
                 </div>
+                <div class="stats-desc">Lagi dipikirn mau diisi apa...</div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
-        <div class="card widget-card-1">
-            <div class="card-block-small">
-                <i class="feather icon-home bg-c-pink card1-icon"></i>
-                <span class="text-c-pink f-w-600">Revenue</span>
-                <h4>$23,589</h4>
-                <div>
-                    <span class="f-left m-t-10 text-muted">
-                        <i class="text-c-pink f-16 feather icon-calendar m-r-10"></i>Last 24 hours
-                    </span>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-lg-3 col-md-6">
+        <div class="widget widget-stats bg-gradient-blue">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-dollar-sign fa-fw"></i></div>
+            <div class="stats-content">
+                <div class="stats-title">TODAY'S</div>
+                <div class="stats-number">Coming Soon..</div>
+                <div class="stats-progress progress">
+                    <div class="progress-bar" style="width: 40.5%;"></div>
                 </div>
+                <div class="stats-desc">Lagi dipikirn mau diisi apa...</div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
-        <div class="card widget-card-1">
-            <div class="card-block-small">
-                <i class="feather icon-alert-triangle bg-c-green card1-icon"></i>
-                <span class="text-c-green f-w-600">Fixed Issue</span>
-                <h4>45</h4>
-                <div>
-                    <span class="f-left m-t-10 text-muted">
-                        <i class="text-c-green f-16 feather icon-tag m-r-10"></i>Tracked at microsoft
-                    </span>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-lg-3 col-md-6">
+        <div class="widget widget-stats bg-gradient-purple">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-archive fa-fw"></i></div>
+            <div class="stats-content">
+                <div class="stats-title">TODAY'S</div>
+                <div class="stats-number">Coming Soon..</div>
+                <div class="stats-progress progress">
+                    <div class="progress-bar" style="width: 76.3%;"></div>
                 </div>
+                <div class="stats-desc">Lagi dipikirn mau diisi apa...</div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
-        <div class="card widget-card-1">
-            <div class="card-block-small">
-                <i class="feather icon-twitter bg-c-yellow card1-icon"></i>
-                <span class="text-c-yellow f-w-600">Followers</span>
-                <h4>+562</h4>
-                <div>
-                    <span class="f-left m-t-10 text-muted">
-                        <i class="text-c-yellow f-16 feather icon-watch m-r-10"></i>Just update
-                    </span>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-lg-3 col-md-6">
+        <div class="widget widget-stats bg-gradient-black">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-comment-alt fa-fw"></i></div>
+            <div class="stats-content">
+                <div class="stats-title">TODAY'S</div>
+                <div class="stats-number">Coming Soon..</div>
+                <div class="stats-progress progress">
+                    <div class="progress-bar" style="width: 54.9%;"></div>
                 </div>
+                <div class="stats-desc">Lagi dipikirn mau diisi apa...</div>
             </div>
         </div>
     </div>
-    <!-- statustic-card  end -->
-
-
-    <div class="col-xl-8 col-md-8">
-            <div class="card">
-                <div class="card-block bg-c-green">
-                    <div id="data-kamar" style="height: 230px"></div>
-                </div>
-                <div class="card-footer">
-                    <h6 class="text-muted m-b-30 m-t-15">Total completed project and earning</h6>
-                    <div class="row text-center">
-                        <div class="col-6 b-r-default">
-                            <h6 class="text-muted m-b-10">Completed Projects</h6>
-                            <h4 class="m-b-0 f-w-600 ">175</h4>
+    <!-- end col-3 -->
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        <!-- begin panel -->
+        <div class="panel panel-inverse"    >
+            <div class="panel-heading">
+                <h4 class="panel-title">Chat Dengan Penghuni Kost <span class="label bg-gradient-green pull-right">2 Pesan</span></h4>
+            </div>
+            <div class="panel-body bg-silver">
+                <div class="chats" data-scrollbar="true" data-height="225px">
+                    <div class="right">
+                        <span class="date-time">yesterday 11:23pm</span>
+                        <a href="javascript:;" class="name"><span class="label label-primary">Pemilik Kost</span> Me</a>
+                        <a href="javascript:;" class="image"><img alt="" src="{{asset('backend/img/user/user-12.jp')}}g" /></a>
+                        <div class="message">
+                           Fitur Chat akan hadir, tungguin aja ya...
                         </div>
-                        <div class="col-6">
-                            <h6 class="text-muted m-b-10">Total Earnings</h6>
-                            <h4 class="m-b-0 f-w-600 ">76.6M</h4>
+                    </div>
+                    <div class="left">
+                        <span class="date-time">08:12am</span>
+                        <a href="javascript:;" class="name">User</a>
+                        <a href="javascript:;" class="image"><img alt="" src="{{asset('backend/img/user/user-13.jp')}}g" /></a>
+                        <div class="message">
+                            Baik,.....
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="panel-footer">
+                <form name="send_message_form" data-id="message-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="message" placeholder="Enter your message here.">
+                        <span class="input-group-append">
+                            <button class="btn btn-primary" type="button"><i class="fab fa-lg fa-fw m-r-10 fa-telegram-plane"></i></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
+        <!-- end panel -->
+    </div>
+
+    <div class="col-lg-4">
+        <!-- begin panel -->
+        <div class="panel panel-inverse" data-sortable-id="index-4">
+            <div class="panel-heading">
+                <h4 class="panel-title">Penghuni Kamar <span class="pull-right label bg-gradient-green">{{$user->count()}} Penghuni</span></h4>
+            </div>
+            <ul class="registered-users-list clearfix">
+                @foreach ($user as $item)
+                    <li>
+                        <a href="javascript:;"><img src="{{asset('backend/img/user/user-5.jpg')}}" alt="" /></a>
+                        <h4 class="username text-ellipsis">
+                            {{$item->name}}
+                            <small>{{$item->lama_sewa}} Bulan</small>
+                        </h4>
+                    </li>
+                @endforeach
+            </ul>
+            <div class="panel-footer text-center">
+                @if ($user->count() > 6)
+                <a href="javascript:;" class="text-inverse">Lihat Semua</a>
+                @endif
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-inverse" data-sortable-id="index-8">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                </div>
+                <h4 class="panel-title">Fitur Yang Bakal Hadir..</h4>
+            </div>
+            <div class="panel-body p-0">
+                <ul class="todolist">
+                    <li>
+                        <a href="javascript:;" class="todolist-container" data-click="todolist">
+                            <div class="todolist-input"><i class="fa fa-square"></i></div>
+                            <div class="todolist-title">Chatting antara pengguna dan pemilik kos</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="todolist-container" data-click="todolist">
+                            <div class="todolist-input"><i class="fa fa-square"></i></div>
+                            <div class="todolist-title">Direct Payment yang lebih simple</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="todolist-container" data-click="todolist">
+                            <div class="todolist-input"><i class="fa fa-square"></i></div>
+                            <div class="todolist-title">Booking kamar</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="todolist-container" data-click="todolist">
+                            <div class="todolist-input"><i class="fa fa-square"></i></div>
+                            <div class="todolist-title">Pencarian kosan berdasarkan tempat/wilayah/nama kosan</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="todolist-container" data-click="todolist">
+                            <div class="todolist-input"><i class="fa fa-square"></i></div>
+                            <div class="todolist-title">Testimoni dari pencari dan pemilik kosan</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="todolist-container active" data-click="todolist">
+                            <div class="todolist-input"><i class="fa fa-square"></i></div>
+                            <div class="todolist-title">Upload foto kamar dari pemilik kosan</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="todolist-container active" data-click="todolist">
+                            <div class="todolist-input"><i class="fa fa-square"></i></div>
+                            <div class="todolist-title">Penilaian/rating dari pencari kosan</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="todolist-container active" data-click="todolist">
+                            <div class="todolist-input"><i class="fa fa-square"></i></div>
+                            <div class="todolist-title">Perpanjang kosan dengan sekali klik</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 @section('scripts')
-    <script type="text/javascript">
-    AmCharts.makeChart("data-kamar",
-    {
-        type:"serial",
-        hideCredits:!0,
-        theme:"light",
-        dataProvider:[{
-            type:"Type A",
-            visits:10
-        },
-    {
-        type:"Type B",
-        visits:15},
-    {
-        type:"Type C",
-        visits:12
-    },
-    {
-        type:"Type D",
-        visits:16
-    },
-    {
-        type:"Type E",
-        visits:8
-    }],
-    valueAxes:[
-        {
-            gridAlpha:.3,
-            gridColor:"#fff",
-            axisColor:"transparent",
-            color:"#fff",
-            dashLength:0
-        }],
-    gridAboveGraphs:!0,
-    startDuration:1,
-    graphs:[
-        {
-            balloonText:"Active User: <b>[[value]]</b>",
-            fillAlphas:1,
-            lineAlpha:1,
-            lineColor:"#fff",
-            type:"column",
-            valueField:"visits",
-            columnWidth:.5
-        }],
-    chartCursor: {
-        categoryBalloonEnabled:!1,
-        cursorAlpha:0,zoomable:!1},
-        categoryField:"type",
-    categoryAxis:{
-        gridPosition:"start",
-        gridAlpha:0,
-        axesAlpha:0,
-        lineAlpha:0,
-        fontSize:12,
-        color:"#fff",
-        tickLength:0
-    },
-    export:{
-        enabled:
-        !1
-    }})
-    </script>
+
 @endsection

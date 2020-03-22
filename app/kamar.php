@@ -8,7 +8,7 @@ use App\User;
 class kamar extends Model
 {
     protected $fillable = [
-        'id_user','nama_kamar','jenis_kamar','luas_kamar','stok_kamar','harga_kamar'
+        'id_user','nama_kamar','jenis_kamar','luas_kamar','stok_kamar','harga_kamar','sisa_kamar'
     ];
 
     protected $with = ['fkamars','fbersamas'];

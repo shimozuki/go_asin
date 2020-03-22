@@ -16,8 +16,13 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('sewa_id');
-            $table->unsignedBigInteger('approve_by');
+            $table->unsignedBigInteger('approve_by')->nullable();
             $table->unsignedBigInteger('penyewa_id');
+            $table->string('nama_pengirim');
+            $table->string('nama_bank');
+            $table->string('no_rek_pengirim');
+            $table->string('jml_payment');
+            $table->string('tgl_kirim');
             $table->string('status_pembayaran');
             $table->string('bukti_pembayaran');
             $table->timestamps();

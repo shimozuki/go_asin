@@ -20,6 +20,7 @@ class CreateKamarsTable extends Migration
             $table->string('jenis_kamar');
             $table->string('luas_kamar');
             $table->string('stok_kamar');
+            $table->string('sisa_kamar');
             $table->string('harga_kamar');
             $table->timestamps();
 

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\kamar;
+use App\sewa;
+use App\payment;
 use Auth;
 
 class ownerController extends Controller
@@ -22,7 +25,7 @@ class ownerController extends Controller
                 return view('owner.profile.index', compact('profil'));
             }
         } else {
-            return redirect('home');
+            return redirect('dashboard');
         }
     }
 
@@ -68,12 +71,12 @@ class ownerController extends Controller
     {
         //Profile
         if (auth::check()) {
-            if (auth::role == "Owner") {
+            if (auth::user()->role == "Owner") {
                 $profil = user::find($id);
                 return view('owner.profile.edit', compact('profil'));
             }
         } else {
-            return redirect('home');
+            return redirect('dashboard');
         }
     }
 
@@ -106,7 +109,7 @@ class ownerController extends Controller
                 return redirect('owner');
            }
        } else {
-           return redirect('home');
+           return redirect('dashboard');
        }
     }
 
@@ -119,5 +122,57 @@ class ownerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // Pembayaran User Detail
+    public function detailPayment($id, $user_id)
+    {
+        if (auth::check()) {
+            if (auth::user()->role == "Owner") {
+                $kamar = kamar::selectRaw('kamars.*,kamars.id as id_kamar,a.id,a.user_id,a.kamar_id,a.lama_sewa,a.notes,a.id as idsewa,a.status as status_payment,a.pemilik_id,b.nama_pengirim,b.nama_bank,b.no_rek_pengirim,b.tgl_kirim,b.id as sewa_ids,b.status_pembayaran,b.jml_payment')
+                    ->leftJoin('sewas as a','a.kamar_id','=','kamars.id')
+                    ->leftJoin('payments as b','b.sewa_id','=','a.id')
+                    ->where('a.pemilik_id',auth::user()->id)
+                    ->where('a.user_id',$user_id)
+                    ->first();
+                if ($kamar->status_pembayaran == 'Lunas') {
+                    return redirect('dashboard');
+                } elseif($kamar->sewa_ids == null){
+                    return redirect('dashboard');
+                }  else {
+                    return view('owner.kamar.payment_detail', compact('kamar'));
+                }
+            }
+        }
+    }
+
+    // Pembayaran diproses
+    public function setujuiPayment(Request $request)
+    {
+        if (auth::check()) {
+            if (auth::user()->role == "Owner") {
+                $update = sewa::find($request->idsewa);
+                $update->update([
+                    'status' => 'Lunas',
+                ]);
+                
+                if ($update) {
+                    $payment = payment::find($request->sewa_ids);
+                    $payment->update([
+                        'approve_by' => auth::user()->id,
+                        'status_pembayaran' => 'Lunas',
+                    ]);
+                }
+                if ($payment && $update) {
+                    $kamar = kamar::find($request->id_kamar);
+                    $kamar->update([
+                        'sisa_kamar' =>  $kamar->sisa_kamar - 1,
+                    ]);
+                } 
+                if ($payment && $update && $kamar) {
+                    return redirect('dashboard');
+                }
+            }
+        }
     }
 }

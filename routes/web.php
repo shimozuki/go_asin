@@ -14,14 +14,18 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->middleware('auth');
 
 ////// OWNER \\\\\\
 Route::resource('owner','ownerController');
 Route::resource('kamar','KamarController');
+Route::get('payment-detail-owner/{id}/user/{user_id}','ownerController@detailPayment');
+Route::get('setujui-pembayaran','ownerController@setujuiPayment');
 
 //////// USER \\\\\\\
 Route::resource('payment','PaymentController');
+Route::get('payment-create/{id}','PaymentController@buat');
+Route::get('my-room','userController@myroom');
 
 //////// FRONTEND \\\\\\\
 Route::get('/','FrontendController@cardkos'); // Homepage

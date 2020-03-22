@@ -1,16 +1,15 @@
-@extends('layouts.index')
+@extends('layouts.backend')
 @section('title','Data Profile')
 @section('content')
     <div class="row">
         @foreach ($profil as $item)
-        <div class="col-3">
+        <div class="col-12 col-xl-3 col-lg-3">
             <div class="card">
-                <div class="card-header contact-user">
-                    <img class="img-radius img-40 mb-3" src="..\files\assets\images\avatar-4.jpg" alt="contact-user">
+                <div class="card-header contact-user text-center">
+                    <img class="img-radius img-40 mb-3" src="{{asset('backend\img\user\user-12.jpg')}}" alt="contact-user">
                     <h5 class="m-l-10">  
                         @if ($item->nama_bank == "" or $item->no_rek == "" or $item->no_telp == "" or $item->no_ktp == "" or $item->no_npwp == "" or $item->foto == "")
                             <a href="{{route('owner.edit', $item->id)}}">{{$item->name}}
-                                <span class="text-danger" style="font-size:10px">Lengkapi Profil</span>
                             </a>
                         @else
                             <a href="{{route('owner.edit', $item->id)}}">{{$item->name}}
@@ -21,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-12 col-xl-9 col-lg-9">
             <div class="card">
                 <div class="row">
                     <div class="col-lg-12 col-xl-6">

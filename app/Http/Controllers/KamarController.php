@@ -23,13 +23,11 @@ class KamarController extends Controller
     {
        if (auth::check()) {
             if (auth::user()->role == "Owner") {
-                $cek = kamar::where('id_user',auth::user()->id)->first();
-                $sisa = sewa::where('kamar_id', @$cek->id)->where('status','Lunas')->get();
                 $kamar = kamar::where('id_user',auth::user()->id)->get();
                 return view('owner.kamar.index', compact('kamar','sisa'));
             }
        } else {
-           return redirect('home');
+           return redirect('dashboard');
        }
     }
 
@@ -42,10 +40,15 @@ class KamarController extends Controller
     {
         if (auth::check()) {
             if (auth::user()->role == "Owner") {
-                return view('owner.kamar.create');
+                if (auth::user()->nama_bank == '' or auth::user()->no_rek == '' or auth::user()->no_telp == '') {
+                    return redirect('owner/'. auth::user()->id.'/edit');
+                } else {
+                    return view('owner.kamar.create');
+                }
+                
             }
         } else {
-            return redirect('home');
+            return redirect('dashboard');
         }
     }
 
@@ -67,6 +70,7 @@ class KamarController extends Controller
                 $kamar->jenis_kamar = $request->jenis_kamar;
                 $kamar->luas_kamar = $request->luas_kamar;
                 $kamar->stok_kamar = $request->stok_kamar;
+                $kamar->sisa_kamar = $kamar->stok_kamar;
                 $kamar->harga_kamar = $request->harga_kamar;
                 $kamar->save();
 
@@ -108,7 +112,7 @@ class KamarController extends Controller
                 return redirect()->route('kamar.index');
             }
         } else {
-            return redirect('home');
+            return redirect('dashboard');
         }
     }
 

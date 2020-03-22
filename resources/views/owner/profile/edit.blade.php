@@ -1,11 +1,11 @@
-@extends('layouts.index')
-@section('title','Data Profile')
+@extends('layouts.backend')
+@section('title','Data Profiles')
 @section('content')
     <div class="row">
-        <div class="col-12 col-md-6 col-sm-6 col-lg-3">
+        <div class="col-12 col-xl-3 col-lg-3">
             <div class="card">
                 <div class="card-header contact-user">
-                    <img class="img-radius img-40" src="..\files\assets\images\avatar-4.jpg" alt="contact-user">
+                    <img class="img-radius img-40" src="{{asset('backend\img\user\user-1.jpg')}}" alt="contact-user">
                     <h5 class="m-l-10">{{$profil->name}}</h5>
                 </div>
                 <div class="card-block groups-contact">
@@ -30,38 +30,38 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-sm-12 col-lg-9">
+        <div class="col-12 col-xl-9 col-lg-9">
             <div class="card">
                 <form action="{{route('owner.update', $profil->id)}}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                 <div class="row">
-                    <div class="col-6">
-                        <div class="form-group ml-2 mt-3">
+                    <div class="col-12 col-xl-6 col-lg-6">
+                        <div class="form-group ml-2 mr-2 mt-3">
                             <input type="text" class="form-control" value="{{$profil->name}}" readonly>
                         </div>
-                        <div class="form-group ml-2 mt-3">
+                        <div class="form-group ml-2 mr-2 mt-3">
                             <input type="email" class="form-control" value="{{$profil->email}}" readonly>
                         </div>
-                        <div class="form-group ml-2 mt-3">
-                            <input type="text" name="no_telp" class="form-control" value="{{$profil->no_telp}}" placeholder="No Telepon">
+                        <div class="form-group ml-2 mr-2 mt-3">
+                            <input type="text" name="no_telp" class="form-control" value="{{$profil->no_telp}}" placeholder="No Telepon" required>
                         </div>
-                        <div class="form-group ml-2 mt-3">
+                        <div class="form-group ml-2 mr-2 mt-3">
                             <input type="text" name="no_npwp" class="form-control" value="{{$profil->no_npwp}}" placeholder="No NPWP">
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group mr-2 mt-3">
-                            <input type="text" name="nama_bank" class="form-control" value="{{$profil->nama_bank}}" placeholder="Nama Bank">
+                    <div class="col-12 col-xl-6 col-lg-6">
+                        <div class="form-group mr-2 ml-2 mt-3">
+                            <input type="text" name="nama_bank" class="form-control" value="{{$profil->nama_bank}}" placeholder="Nama Bank" required>
                         </div>
-                        <div class="form-group mr-2 mt-3">
-                            <input type="text" name="no_rek" class="form-control" value="{{$profil->no_rek}}" placeholder="No. Rekening">
+                        <div class="form-group mr-2 ml-2 mt-3">
+                            <input type="text" name="no_rek" class="form-control" value="{{$profil->no_rek}}" placeholder="No. Rekening" required>
                         </div>
-                        <div class="form-group mr-2 mt-3">
-                            <input type="text" name="no_ktp" class="form-control" value="{{$profil->no_ktp}}" placeholder="No KTP">
+                        <div class="form-group mr-2 ml-2 mt-3">
+                            <input type="text" name="no_ktp" class="form-control" value="{{$profil->no_ktp}}" placeholder="No KTP" required>
                         </div>
-                        <div class="form-group mr-2 mt-3">
-                            <input type="file" name="foto" class="form-control" value="{{$profil->foto}}" placeholder="Foto Profile">
+                        <div class="form-group mr-2 ml-2 mt-3">
+                            <input type="file" name="foto" class="form-control" value="{{$profil->foto}}" placeholder="Foto Profile" required>
                         </div>
                     </div>
                     <div class="form-group">

@@ -17,6 +17,7 @@ class CreateSewasTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('kamar_id');
+            $table->unsignedBigInteger('pemilik_id');
             $table->string('lama_sewa');
             $table->text('notes')->nullable();
             $table->string('stok_id');
@@ -25,6 +26,7 @@ class CreateSewasTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('kamar_id')->references('id')->on('kamars')->onDelete('cascade');
+            $table->foreign('pemilik_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
