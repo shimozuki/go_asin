@@ -26,6 +26,6 @@ class FrontendController extends Controller
         ->groupBy('a.kamar_id')
         ->where('kamars.id',$id)
         ->get();
-        return view('frontend.detail.index',compact('detail','sewa','cek','auth'));
+        return view('frontend.detail.index',compact('detail','auth'));
     }
 }

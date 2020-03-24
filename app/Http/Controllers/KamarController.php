@@ -24,7 +24,7 @@ class KamarController extends Controller
        if (auth::check()) {
             if (auth::user()->role == "Owner") {
                 $kamar = kamar::where('id_user',auth::user()->id)->get();
-                return view('owner.kamar.index', compact('kamar','sisa'));
+                return view('owner.kamar.index', compact('kamar'));
             }
        } else {
            return redirect('dashboard');
