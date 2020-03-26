@@ -7,6 +7,7 @@ use App\kamar;
 use App\profil;
 use App\sewa;
 use Auth;
+use Carbon\carbon;
 
 class sewaController extends Controller
 {
@@ -41,6 +42,8 @@ class sewaController extends Controller
                 $sewa->lama_sewa = $request->lama_sewa;
                 $sewa->pemilik_id = $request->pemilik_id;
                 $sewa->status = 'Menunggu Pembayaran';
+                $sewa->start = Carbon::now()->format('d-m-Y');
+                $sewa->end = Carbon::parse($sewa->start)->addDays(30)->format('d-m-Y');
                 $sewa->stok_id = 1;
                 $sewa->notes = $request->notes;
                 $sewa->save();

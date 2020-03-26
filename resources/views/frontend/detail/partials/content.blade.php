@@ -129,10 +129,10 @@
                                 @else
                                     @if ($item->sisa_kamar > 0 || auth::user()->role == "User" )
                                         <div class="row">
-                                            <div class="col-lg-6 col-sm-6 col-3">
+                                            <div class="col-lg-6 col-sm-6 col-6">
                                                 <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-success btn-block">Pesan Kosts</a>
                                             </div>
-                                            <div class="col-lg-6 col-sm-6 col-3">
+                                            <div class="col-lg-6 col-sm-6 col-6">
                                                 <a href="" class="btn btn-primary btn-block">Booking</a>
                                             </div>
                                         </div>

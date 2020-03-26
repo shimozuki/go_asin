@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\payment;
 use App\sewa;
 use Auth;
+use Carbon\carbon;
 
 class PaymentController extends Controller
 {
@@ -80,6 +81,8 @@ class PaymentController extends Controller
                 if ($payment) {
                     $sewa = sewa::find($sewa->id);
                     $sewa->status = $payment->status_pembayaran;
+                    $sewa->start = Carbon::now()->format('d-m-Y');
+                    $sewa->end = Carbon::parse($sewa->start)->addDays(30)->format('d-m-Y');
                     $sewa->save();
                 }
 

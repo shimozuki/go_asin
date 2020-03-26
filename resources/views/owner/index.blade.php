@@ -125,7 +125,7 @@
                         <a href="javascript:;"><img src="{{asset('backend/img/user/user-5.jpg')}}" alt="" /></a>
                         <h4 class="username text-ellipsis">
                             {{$item->name}}
-                            <small>{{$item->lama_sewa}} Bulan</small>
+                            <p style="font-size:8px; color:red">{{Carbon\carbon::parse($item->end)->diffInDays(now())}} Hari Lagi</p>
                         </h4>
                     </li>
                 @endforeach

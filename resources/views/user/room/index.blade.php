@@ -23,20 +23,27 @@
                         {{-- Kamar Aktif --}}
                             <div class="tab-pane fade active show" id="room-active">
                                 @if (@$room->status == "Lunas")
-                                    <div class="row">
+                                    <div class="row mb-5">
                                         <div class="col-lg-6 col-xl-6 col-6">
                                             <h4 class="card-title" style="color:black">{{$room->nama_kamar}}</h4>
                                             <p class="card-text">Deskripsi Disini</p>
                                             
-                                        </div>
+                                        </div> 
                                         <div class="col-lg-6 col-xl-6 col-6">
                                             <h5 class="card-title">
-                                                Masuk : {{\carbon\carbon::parse($room->masuk)->format('d-m-y')}} <br>
-                                                Berakhir : {{\carbon\carbon::parse($room->masuk)->format('d-m-y')}}
+                                                Masuk : {{\carbon\carbon::parse($room->start)->format('d-m-y')}} <br>
+                                                Berakhir : {{\carbon\carbon::parse($room->end)->format('d-m-y')}}
                                             </h5>
                                         </div>
-                                    </div>
-                                    <a href="javascript:;" class="btn btn-sm btn-info btn-block">Perpanjang</a>
+                                    </div> 
+                                        
+                                    @if ($date == 0)
+                                        <a href="javascript:;" class="btn btn-sm btn-danger btn-block">Berakhir</a>
+                                    @elseif($date == 3 || $date == 2 || $date == 1)
+                                    <a href="javascript:;" class="btn btn-sm btn-warning btn-block">Akan Berakhir</a>
+                                    @else
+                                        <p style="color:red">Kamar Kamu tersisa {{$date}} Hari Lagi </p>
+                                    @endif
                                 @elseif(@$room->status == "Menunggu Pembayaran")
                                     <h4 class="text-center">Tidak Ada Kamar Yang Aktif</h4>
                                 @else

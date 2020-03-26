@@ -22,6 +22,8 @@ class CreateSewasTable extends Migration
             $table->text('notes')->nullable();
             $table->string('stok_id');
             $table->string('status');
+            $table->string('start');
+            $table->string('end');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

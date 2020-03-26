@@ -8,6 +8,7 @@ use App\kamar;
 use App\sewa;
 use App\payment;
 use Auth;
+use Carbon\carbon;
 
 class ownerController extends Controller
 {
@@ -153,7 +154,9 @@ class ownerController extends Controller
             if (auth::user()->role == "Owner") {
                 $update = sewa::find($request->idsewa);
                 $update->update([
-                    'status' => 'Lunas',
+                    'status'    => 'Lunas',
+                    'start'     => Carbon::now()->format('d-m-Y'),
+                    'end'       => Carbon::now()->addDays(30)->format('d-m-Y'),
                 ]);
                 
                 if ($update) {
@@ -163,7 +166,7 @@ class ownerController extends Controller
                         'status_pembayaran' => 'Lunas',
                     ]);
                 }
-                if ($payment && $update) {
+                if ($update && $payment) {
                     $kamar = kamar::find($request->id_kamar);
                     $kamar->update([
                         'sisa_kamar' =>  $kamar->sisa_kamar - 1,

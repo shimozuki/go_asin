@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\sewa;
 use App\kamar;
 use Auth;
+use Carbon\carbon;
 
 class userController extends Controller
 {
@@ -18,7 +19,9 @@ class userController extends Controller
                     ->leftJoin('kamars as a','a.id','=','sewas.kamar_id')
                     ->where('sewas.user_id', auth::user()->id)
                     ->first();
-                return view('user.room.index', compact('room'));
+                $date =  Carbon::parse($room->end)->diffInDays(now());
+                
+                return view('user.room.index', compact('room','date'));
             } else {
                 return redirect('dashboard');
             }
