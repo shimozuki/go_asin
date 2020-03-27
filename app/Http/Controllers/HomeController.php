@@ -34,9 +34,10 @@ class HomeController extends Controller
                     ->where('a.pemilik_id',auth::user()->id)
                     ->where('a.status','Proses')
                     ->first();
-                $user = sewa::selectRaw('sewas.pemilik_id,sewas.user_id,sewas.lama_sewa,sewas.end,a.name')
+                $user = sewa::selectRaw('sewas.pemilik_id,sewas.user_id,sewas.status,sewas.lama_sewa,sewas.end,a.name')
                 ->leftJoin('users as a','a.id','=','sewas.user_id')
                 ->where('pemilik_id',auth::user()->id)
+                ->where('sewas.status','Lunas')
                 ->groupBy('sewas.user_id')
                 ->limit(6)
                 ->get();

@@ -7,6 +7,7 @@ use App\payment;
 use App\sewa;
 use Auth;
 use Carbon\carbon;
+use Mail;
 
 class PaymentController extends Controller
 {
@@ -86,6 +87,30 @@ class PaymentController extends Controller
                     $sewa->save();
                 }
 
+                if ($payment && $sewa) {
+                    // Menyiapkan data
+                    $email = $sewa->email_pemilik;
+                    $data = array(
+                        'nama_pemilik'      => $sewa->nama_pemilik,
+                        'invoice'           => $sewa->invoice,
+                        'nama_user'         => $sewa->nama_user,
+                        'start'             => $sewa->start,
+                        'nama_kamar'        => $sewa->nama_kamar,
+                        'harga_kamar'       => $sewa->harga_kamar,
+                        'nama_bank'         => $payment->nama_bank,
+                        'jml_payment'       => $payment->jml_payment,
+                        'no_rek_pengirim'   => $payment->no_rek_pengirim,
+                        'jenis'             => $sewa->jenis,
+                    );
+                        
+                    // Kirim Email
+                    Mail::send('owner.email.index', $data, function($mail) use ($email, $data){
+                    $mail->to($email,'no-replay')
+                            ->subject("Papi Kost - Konfirmasi Payment");
+                    $mail->from('laundri.dev@gmail.com');
+                    });
+                }
+
                 return redirect('my-room');
             }
         } else {
@@ -93,48 +118,18 @@ class PaymentController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    // Payment Booking
+    public function bookPayment($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        if(auth::check()){
+            if (auth::user()->role == "User") {
+                $cek = sewa::where('user_id', auth::user()->id)->first();
+                if ($cek->status == "Lunas") {
+                    return rediret('my-room');
+                } else {
+                    return view('user.payment.create_book', compact('cek'));
+                }
+            }
+        }
     }
 }

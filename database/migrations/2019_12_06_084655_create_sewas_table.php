@@ -18,12 +18,22 @@ class CreateSewasTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('kamar_id');
             $table->unsignedBigInteger('pemilik_id');
+            $table->string('nama_pemilik');
+            $table->string('email_pemilik');
+            $table->string('nama_user');
+            $table->string('email_user');
+            $table->string('nama_kamar');
+            $table->string('harga_kamar');
             $table->string('lama_sewa');
+            $table->string('nama_bank');
+            $table->string('no_rek');
             $table->text('notes')->nullable();
-            $table->string('stok_id');
+            $table->string('invoice');
+            $table->string('jenis');
             $table->string('status');
             $table->string('start');
             $table->string('end');
+            $table->string('tgl_book')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

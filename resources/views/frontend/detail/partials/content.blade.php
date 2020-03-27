@@ -121,7 +121,7 @@
                                             <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-success btn-block">Pesan Kost</a>
                                         </div>
                                         <div class="col-md-6">
-                                            <a href="" class="btn btn-primary btn-block">Booking</a>
+                                            <a href="{{url('booking-kamar', $item->id)}}" class="btn btn-primary btn-block">Booking</a>
                                         </div>    
                                     @endif
                                 @elseif(@auth::user()->role == 'Owner')
@@ -133,7 +133,7 @@
                                                 <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-success btn-block">Pesan Kosts</a>
                                             </div>
                                             <div class="col-lg-6 col-sm-6 col-6">
-                                                <a href="" class="btn btn-primary btn-block">Booking</a>
+                                                <a href="{{url('booking-kamar', $item->id)}}" class="btn btn-primary btn-block">Booking</a>
                                             </div>
                                         </div>
                                     @endif 

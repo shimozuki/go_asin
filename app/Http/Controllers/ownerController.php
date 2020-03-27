@@ -9,6 +9,7 @@ use App\sewa;
 use App\payment;
 use Auth;
 use Carbon\carbon;
+use Mail;
 
 class ownerController extends Controller
 {
@@ -153,11 +154,19 @@ class ownerController extends Controller
         if (auth::check()) {
             if (auth::user()->role == "Owner") {
                 $update = sewa::find($request->idsewa);
-                $update->update([
-                    'status'    => 'Lunas',
-                    'start'     => Carbon::now()->format('d-m-Y'),
-                    'end'       => Carbon::now()->addDays(30)->format('d-m-Y'),
-                ]);
+                if ($update->jenis == "Sewa") {
+                    $update->update([
+                        'status'    => 'Lunas',
+                        'start'     => Carbon::now()->format('d-m-Y'),
+                        'end'       => Carbon::now()->addDays(30)->format('d-m-Y'),
+                    ]);
+                } elseif ($update->jenis == "Booking") {
+                    $update->update([
+                        'status'    => 'Lunas',
+                        'start'     => $update->tgl_book,
+                        'end'       => Carbon::now()->addDays(30)->format('d-m-Y'),
+                    ]);
+                }
                 
                 if ($update) {
                     $payment = payment::find($request->sewa_ids);
@@ -173,6 +182,19 @@ class ownerController extends Controller
                     ]);
                 } 
                 if ($payment && $update && $kamar) {
+                     // Menyiapkan data
+                     $email = $update->email_user;
+                     $data = array(
+                         'nama_user'     => $update->nama_user,
+                     );
+                         
+                     // Kirim Email
+                     Mail::send('owner.email.penghuni', $data, function($mail) use ($email, $data){
+                         $mail->to($email,'no-replay')
+                                 ->subject("Papi Kost - Kamar Aktif");
+                         $mail->from('papikost.dev@gmail.com');
+                     });
+
                     return redirect('dashboard');
                 }
             }

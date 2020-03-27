@@ -13,6 +13,9 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#loading-payment">Menunggu Pembayaran</a>
                         </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Booking">Booking</a>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#history">History</a>
                         </li>
@@ -56,23 +59,31 @@
                         {{-- End --}}
                         {{-- Menunggu Pembayaran --}}
                             <div class="tab-pane fade text-center" id="loading-payment">
-                                @if (@$room->status == "Menunggu Pembayaran")
+                                @if (@$room->status == "Menunggu Pembayaran" && @$room->jenis == "Sewa")
                                     <h4 class="card-title">Menunggu Pembayaran</h4>
                                     <p class="card-text">Deskripsi</p>
                                     <a href="{{url('payment-create', $room->id)}}" class="btn btn-sm btn-yellow">Bayar</a>
                                 @elseif(@$room->status == "Proses")
                                     <h4 class="card-title">Pembayaran Sedang Diproses ...</h4>
+                                @elseif ($room->status == 'Menunggu Pembayaran' && @$room->jenis == "Booking")
+                                    <h4 class="card-title">Menunggu Pembayaran (booking)</h4>
+                                    <a href="{{url('payment-booking-create', $room->id)}}" class="btn btn-yellow btn-sm">Bayar Booking</a>
                                 @else
                                     <h4>Tidak Ada Pembayaran Menunggu</h4>
                                     <a href="{{url('/')}}" class="btn btn-primary btn-sm mt-3">Pesan Kamar</a>
                                 @endif
                             </div>
                         {{-- End --}}
-                        {{-- History --}}
-                            <div class="tab-pane fade text-center" id="history">
+                        {{-- Booking --}}
+                            {{-- <div class="tab-pane fade text-center" id="Booking">
                                 <h4 class="card-title">Coming Soon....</h4>
-                            </div>
+                            </div> --}}
                         {{-- End --}}
+                        {{-- History --}}
+                        <div class="tab-pane fade text-center" id="history">
+                            <h4 class="card-title">Coming Soon....</h4>
+                        </div>
+                    {{-- End --}}
                     </div>
                 </div>
             </div>

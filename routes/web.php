@@ -25,10 +25,19 @@ Route::get('setujui-pembayaran','ownerController@setujuiPayment');
 //////// USER \\\\\\\
 Route::resource('payment','PaymentController');
 Route::get('payment-create/{id}','PaymentController@buat');
+Route::get('payment-booking-create/{id}','PaymentController@bookPayment');
 Route::get('my-room','userController@myroom');
+
+Route::get('get-nama-kamar','sewaController@namakamar'); // Get nama kamar
+Route::get('get-harga-kamar','sewaController@hargakamar'); // Get harga kamar
+Route::get('get-nama-bank','sewaController@namabank'); // Get nama bank
+Route::get('get-no-rek','sewaController@norek'); // Get no rek
+Route::get('get-email-pemilik','sewaController@emailpemilik'); // Get Email Pemilik
 
 //////// FRONTEND \\\\\\\
 Route::get('/','FrontendController@cardkos'); // Homepage
 Route::get('detail-kamar-kos/{id}','FrontendController@detailkos'); // Detail Kos
 Route::get('sewa-kamar-kos/{id}','sewaController@index')->middleware('auth'); // Index Sewa Kos
 Route::post('sewa-kamar-kos','sewaController@store'); // Proses sewa kamar kos
+Route::get('booking-kamar/{id}','sewaController@book')->middleware('auth'); // Index Booking
+Route::post('booking-kamar','sewaController@prosesBooking'); // Proses Booking
