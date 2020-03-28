@@ -4,7 +4,7 @@
 <div class="row">
     @foreach ($kamar as $item)
         <div class="col-md-12 col-lg-4">
-            <a href="" style="text-decoration:none">
+            <a href="{{route('kamar.show', $item->id)}}" style="text-decoration:none">
                 <div class="card">
                     <div class="card-block text-center">
                         <i class="feather icon-home text-c-lite-green d-block f-40"></i>

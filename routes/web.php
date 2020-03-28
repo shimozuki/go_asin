@@ -21,6 +21,8 @@ Route::resource('owner','ownerController');
 Route::resource('kamar','KamarController');
 Route::get('payment-detail-owner/{id}/user/{user_id}','ownerController@detailPayment');
 Route::get('setujui-pembayaran','ownerController@setujuiPayment');
+Route::get('get-nama-provinsi','KamarController@namaProvinsi');
+Route::get('dokumentasi-rilis','ownerController@doc');
 
 //////// USER \\\\\\\
 Route::resource('payment','PaymentController');

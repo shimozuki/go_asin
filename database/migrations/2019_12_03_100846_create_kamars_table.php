@@ -22,6 +22,15 @@ class CreateKamarsTable extends Migration
             $table->string('stok_kamar');
             $table->string('sisa_kamar');
             $table->string('harga_kamar');
+            $table->string('ket_lain')->nullable();
+            $table->string('ket_biaya')->nullable();
+            $table->string('desc')->nullable();
+            $table->string('kategori');
+            $table->string('book');
+            $table->string('listrik');
+            $table->string('provinsi_id');
+            $table->string('provinsi_nama');
+            $table->string('bg_foto');
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');

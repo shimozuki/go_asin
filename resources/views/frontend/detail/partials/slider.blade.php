@@ -1,34 +1,28 @@
 <div class="slider">
     <div class="container">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div id="sliderfoto" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
+                @foreach ($foto as $item)
+                    <li data-target="#sliderfoto" data-slide-to="{{$item->foto_kamar}}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                @endforeach
             </ol>
     
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
-                <div class="item active">
-                    <img src="{{asset('home/img/cover/cover-2.jpg')}}" alt="Los Angeles" style="width:100%; height:250px">
-                </div>
-    
-                <div class="item">
-                    <img src="{{asset('home/img/cover/cover-8.jpg')}}" alt="Chicago" style="width:100%; height:250px">
-                </div>
-                
-                <div class="item">
-                    <img src="{{asset('home/img/cover/cover-13.jpg')}}" alt="New york" style="width:100%; height:250px">
-                </div>
+                @foreach ($foto as $item)
+                    <div class="item {{ $loop->first ? 'active' : '' }}">
+                        <img src="{{asset('foto_kamar/'. $item->foto_kamar)}}">
+                    </div>
+                @endforeach
             </div>
     
             <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <a class="left carousel-control" href="#sliderfoto" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
             <span class="sr-only">Previous</span>
             </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <a class="right carousel-control" href="#sliderfoto" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right"></span>
             <span class="sr-only">Next</span>
             </a>
@@ -41,6 +35,10 @@
         padding: 1%;
     }
     .carousel-inner {
-        max-height: 300px;
+        max-height: 450px;
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center; 
     }
 </style>

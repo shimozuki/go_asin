@@ -200,4 +200,14 @@ class ownerController extends Controller
             }
         }
     }
+
+    // Dokumentasi
+    public function doc()
+    {
+        if (auth::check()) {
+            if (auth::user()->role == "Owner") {
+                return view('owner.doc');
+            }
+        }
+    }
 }

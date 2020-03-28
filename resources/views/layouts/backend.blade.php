@@ -23,6 +23,7 @@
 	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{asset('backend/plugins/pace/pace.min.js')}}"></script>
+	<link href="{{asset('backend/plugins/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
 	<!-- ================== END BASE JS ================== -->
 </head>
 <body>
@@ -136,6 +137,12 @@
 								<li><a href="{{route('kamar.create')}}">Tambah Kosan</a></li>
 							</ul>
 						</li>
+						<li>
+							<a href="{{url('dokumentasi-rilis')}}">
+								<i class="fas fa-info fa-fw"></i>
+								<span>Dokumentasi</span>
+							</a>
+						</li>
 						{{-- End --}}
 					@elseif(auth::user()->role == "User")
 						{{-- Menu Khusus Untuk Role Pencari Kost --}}
@@ -184,12 +191,20 @@
 	<script src="{{asset('backend/plugins/js-cookie/js.cookie.js')}}"></script>
 	<script src="{{asset('backend/js/theme/default.min.js')}}"></script>
 	<script src="{{asset('backend/js/apps.min.js')}}"></script>
+	<script src="{{asset('backend/plugins/select2/dist/js/select2.min.js')}}"></script>
 	<!-- ================== END BASE JS ================== -->
 	
-	<script>
+	<script type="text/javascript">
 		$(document).ready(function() {
 			App.init();
 		});
+
+		$(document).ready(function (){
+           $("#select2").select2({
+             allowClear:true,
+             placeholder: 'Pilih Provinsi'
+           });
+        })
 	</script>
 	@yield('scripts')
 </body>

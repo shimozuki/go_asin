@@ -8,7 +8,7 @@ use App\User;
 class kamar extends Model
 {
     protected $fillable = [
-        'id_user','nama_kamar','jenis_kamar','luas_kamar','stok_kamar','harga_kamar','sisa_kamar'
+        'id_user','nama_kamar','jenis_kamar','luas_kamar','stok_kamar','harga_kamar','sisa_kamar','bg_foto','ket_lain','ket_biaya','desc','kategori','book','listrik','provinsi_id','provinsi_nama'
     ];
 
     protected $with = ['fkamars','fbersamas'];
@@ -46,6 +46,11 @@ class kamar extends Model
     public function areas()
     {
         return $this->hasMany('App\area','idarea');
+    }
+
+    public function fotokamars()
+    {
+        return $this->hasMany('App\fotokamar','idfoto');
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Kamar;
 use App\sewa;
+use App\fotokamar;
 use auth;
 
 class FrontendController extends Controller
@@ -26,6 +27,18 @@ class FrontendController extends Controller
         ->groupBy('a.kamar_id')
         ->where('kamars.id',$id)
         ->get();
-        return view('frontend.detail.index',compact('detail','auth'));
+
+        $foto = kamar::selectRaw('kamars.*,a.foto_kamar,a.id,a.idfoto')
+        ->leftJoin('fotokamars as a','a.idfoto','=','kamars.id')
+        ->where('kamars.id',$id)
+        ->get();
+
+        $loop = kamar::selectRaw('kamars.*,a.foto_kamar,a.id,a.idfoto')
+        ->leftJoin('fotokamars as a','a.idfoto','=','kamars.id')
+        ->where('kamars.id',$id)
+        ->first();
+
+        return view('frontend.detail.index',compact('detail','auth','loop','foto'));
     }
+    
 }

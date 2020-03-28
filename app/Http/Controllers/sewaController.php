@@ -40,11 +40,14 @@ class sewaController extends Controller
        if (auth::check()) {
            if (auth::user()->role == "User") {
                 $cek = sewa::where('user_id',auth::user()->id)->first();
+                $book = kamar::where('book',1)->where('user_id',auth::user()->id)->first();
                 $kamar = kamar::selectRaw('kamars.*,a.nama_bank,a.no_rek')
                 ->leftJoin('users as a','a.id','=','kamars.id_user')
                 ->where('kamars.id',$id)->get();
-                if (@$cek->user_id == null) {
+                if (@$cek->user_id == null ) {
                     return view('user.booking.index', compact('kamar','cek'));
+                } elseif($book) {
+                    return redirect()->back();
                 } elseif(auth::user()->role == "User") {
                     return redirect()->back();
                 } else {

@@ -11,7 +11,7 @@
                 <div class="panel-body">
                         <a href="" class="btn btn-default">Simpan</a>
                         <a href="" class="btn btn-default">Bagikan</a>
-                        <button disabled="disabled" class="btn btn-info" style="float:right; font-weight:bold">Khusus {{$item->jenis_kamar}}</button>
+                        <button disabled="disabled" class="btn btn-info" style="float:right; font-weight:bold">{{$item->jenis_kamar}}</button>
 
                         <div class="row" style="margin-top:5%">
                             <div class="col-lg-6 col-sm-6">
@@ -60,17 +60,17 @@
                         <div class="keterangan" style="margin-top:5%">
                             <p style="margin-top:5%">
                                 <b style="font-size:15px">Keterangan Lain</b>
-                                <p>Keterangan.....</p>
+                                <p>{{$item->ket_lain}}</p>
                             </p>
     
                             <p style="margin-top:5%">
                                 <b style="font-size:15px">Keterangan Biaya Lain</b>
-                                <p>Keterangan.....</p>
+                                <p>{{$item->ket_biaya}}</p>
                             </p>
     
                             <p style="margin-top:5%">
                                 <b style="font-size:15px">Deskripsi Kost</b>
-                                <p>Keterangan.....</p>
+                                <p>{{$item->desc}}</p>
                             </p>     
                         </div>           
                     @endforeach
@@ -105,13 +105,27 @@
                         <hr>
                         <p style="color:black">Terakhir Update {{$item->updated_at->format('d-m-Y')}}</p>
                         <p>Data sewaktu-waktu bisa berubah</p>
+                        <hr>
+                        
+                            @if ($item->listrik == 1)
+                                <ul>
+                                    <li>Termasuk Listrik</li>
+                                    <li>Tidak Ada Minimum Bayar</li>
+                                </ul>       
+                            @else
+                                <ul>
+                                    <li>Tidak Termasuk Listrik</li>
+                                    <li>Tidak Ada Minimum Bayar</li>
+                                </ul>  
+                            @endif
+                        
                         <div class="row text-center">
                             @if ($item->id_user == $auth)
                                 <button disabled="disabled" class="btn btn-info btn-block">Ini Kos Punya Kamu</button>
                             @else
                                 @if ($item->user_id == $auth )
                                     @if ($item->status == "Menunggu Pembayaran")
-                                        <a href="{{route('payment.create')}}" class="btn btn-warning btn-block">Menunggu Pembayaran</a>
+                                        <a href="{{url('my-room')}}" class="btn btn-warning btn-block">Menunggu Pembayaran</a>
                                     @elseif($item->status == "Lunas" && $item->user_id == auth::user()->id)
                                         <a href="{{url('my-room')}}" class="btn btn-primary btn-block">Ini Kamar Kamu</a>
                                     @elseif($item->status == "Proses")
@@ -121,7 +135,11 @@
                                             <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-success btn-block">Pesan Kost</a>
                                         </div>
                                         <div class="col-md-6">
-                                            <a href="{{url('booking-kamar', $item->id)}}" class="btn btn-primary btn-block">Booking</a>
+                                           @if ($item->book == 1)
+                                                <a href="{{url('booking-kamar', $item->id)}}" class="btn btn-primary btn-block">Booking</a>
+                                           @elseif($item->book == 0)
+                                               <button class="btn btn-warning btn-block" disabled="">Booking</button>
+                                           @endif
                                         </div>    
                                     @endif
                                 @elseif(@auth::user()->role == 'Owner')
@@ -133,14 +151,18 @@
                                                 <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-success btn-block">Pesan Kosts</a>
                                             </div>
                                             <div class="col-lg-6 col-sm-6 col-6">
-                                                <a href="{{url('booking-kamar', $item->id)}}" class="btn btn-primary btn-block">Booking</a>
+                                               @if ($item->book == 1)
+                                                    <a href="{{url('booking-kamar', $item->id)}}" class="btn btn-primary btn-block">Booking</a>
+                                               @elseif($item->book == 0)
+                                                   <button class="btn btn-warning btn-block" disabled="">Booking</button>
+                                               @endif
                                             </div>
                                         </div>
                                     @endif 
                                 @endif
                             @endif
                         </div>
-                        <p style="margin-top:2%">Pastikan kamu sudah membaca deskripsi dan fasilitas kost ini</p>
+                        <p style="margin-top:2%">Pastikan kamu sudah membaca deskripsi & fasilitas kost ini</p>
                     </div>
                 <!-- end threads-list -->
             </div>

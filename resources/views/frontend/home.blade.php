@@ -9,3 +9,6 @@
 @section('footer')
     @include('frontend.partials.footer')
 @endsection
+@section('scripts')
+
+@endsection
