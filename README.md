@@ -8,9 +8,9 @@
 3. Jalankan perintah 'Composer Install' pada direktori project <br>
 4. Jalanlan perintah 'cp .env.example .env', ini untuk membuat file .env<br>
 5. Buat DB dan jalankan perintah 'php artisan migrate'<br>
-6. Karena ini sudah menggunakan 'Push Email Notification' jangan lupa untuk mengaturnya ya 
+6. Karena ini sudah menggunakan 'Push Email Notification' jangan lupa untuk mengaturnya ya <br>
 7. Jalankan perintah 'php artisan serve' <br>
-8. klik menu register dan taraaa
+8. klik menu register dan taraaa <br>
     
 Note : Aplikasi ini akan terus saya update.<br>
 Kalau ada pertanyaan bisa kontak aku di email ini <b>andridesmana29@outlook.com</b>
