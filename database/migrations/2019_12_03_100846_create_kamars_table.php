@@ -16,6 +16,7 @@ class CreateKamarsTable extends Migration
         Schema::create('kamars', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_user');
+            $table->string('slug');
             $table->string('nama_kamar');
             $table->string('jenis_kamar');
             $table->string('luas_kamar');

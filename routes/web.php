@@ -38,8 +38,8 @@ Route::get('get-email-pemilik','sewaController@emailpemilik'); // Get Email Pemi
 
 //////// FRONTEND \\\\\\\
 Route::get('/','FrontendController@cardkos'); // Homepage
-Route::get('detail-kamar-kos/{id}','FrontendController@detailkos'); // Detail Kos
-Route::get('sewa-kamar-kos/{id}','sewaController@index')->middleware('auth'); // Index Sewa Kos
+Route::get('detail-kamar-kos/{id}/{kamar}','FrontendController@detailkos'); // Detail Kos
+Route::get('sewa-kamar-kos/{id}/{kamar}','sewaController@index')->middleware('auth'); // Index Sewa Kos
 Route::post('sewa-kamar-kos','sewaController@store'); // Proses sewa kamar kos
-Route::get('booking-kamar/{id}','sewaController@book')->middleware('auth'); // Index Booking
+Route::get('booking-kamar/{id}/{kamar}','sewaController@book')->middleware('auth'); // Index Booking
 Route::post('booking-kamar','sewaController@prosesBooking'); // Proses Booking

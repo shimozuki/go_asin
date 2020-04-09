@@ -73,9 +73,11 @@ class KamarController extends Controller
                 $tujuan_upload = 'bg_foto';
                 $foto->move($tujuan_upload,$nama_foto);
 
+                $slug = \Str::slug($request->nama_kamar) . "-" . \Str::random(6);
                 $kamar = new Kamar;
                 $kamar->id = $request->id;
                 $kamar->id_user = auth::user()->id;
+                $kamar->slug = $slug;
                 $kamar->nama_kamar = $request->nama_kamar;
                 $kamar->jenis_kamar = $request->jenis_kamar;
                 $kamar->luas_kamar = $request->luas_kamar;

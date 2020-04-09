@@ -9,6 +9,7 @@ class area extends Model
     protected $fillable = [
         'idarea','area_name'
     ];
+    
 
     public function kamars()
     {

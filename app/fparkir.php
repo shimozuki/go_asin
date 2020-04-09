@@ -9,6 +9,7 @@ class fparkir extends Model
     protected $fillable = [
         'idfparkir','fparkir_name'
     ]; 
+    
 
     public function kamars()
     {

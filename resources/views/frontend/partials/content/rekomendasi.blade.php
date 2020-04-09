@@ -3,7 +3,7 @@
         @foreach ($kos as $item)
         <div class="cards_item">
           <div class="card">
-            <a href="{{url('detail-kamar-kos', $item->id)}}" style="text-decoration: none;">
+            <a href="{{url('detail-kamar-kos', [$item->id,$item->slug])}}" style="text-decoration: none;">
             <div class="card_image"><img src="{{asset('bg_foto/' . $item->bg_foto)}}" style="min-height:200px; max-height:200px">
             </div>
               <div class="card_content" style="margin-top:2%">
@@ -38,9 +38,10 @@
         </div>
         @endforeach
         <div class="col-md-12 text-center" style="margin-bottom:2%">
-          @if ($kos->count() > 6)
+          {{-- @if ($kos->count() > 6)
           <button type="submit" class="btn btn-default btn-sm">Lihat Semua</button>
-          @endif
+          @endif --}}
+          {{$kos->links()}}
         </div>
     </div>
   </div>

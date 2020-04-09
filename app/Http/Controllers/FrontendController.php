@@ -13,11 +13,11 @@ class FrontendController extends Controller
     // Card Kos
     public function cardkos()
     {
-        $kos = kamar::limit(6)->orderBy('id','DESC')->get();
+        $kos = kamar::orderBy('id','DESC')->paginate(6);
         return view('frontend.home', compact("kos"));
     }
 
-    // Detail Kos
+    // Detail Koskamar
     public function detailkos($id)
     {
         $auth = @auth::user()->id;

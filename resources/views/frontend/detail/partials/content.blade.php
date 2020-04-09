@@ -132,11 +132,11 @@
                                         <button disabled="disabled" class="btn btn-warning btn-block">Pesanan Kamar Sedang Di Proses</button>
                                     @else
                                         <div class="col-md-6">
-                                            <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-success btn-block">Pesan Kost</a>
+                                            <a href="{{url('sewa-kamar-kos', [$item->id, $item->slug])}}" class="btn btn-success btn-block">Pesan Kost</a>
                                         </div>
                                         <div class="col-md-6">
                                            @if ($item->book == 1)
-                                                <a href="{{url('booking-kamar', $item->id)}}" class="btn btn-primary btn-block">Booking</a>
+                                                <a href="{{url('booking-kamar', [$item->id, $item->slug])}}" class="btn btn-primary btn-block">Booking</a>
                                            @elseif($item->book == 0)
                                                <button class="btn btn-warning btn-block" disabled="">Booking</button>
                                            @endif
@@ -148,11 +148,11 @@
                                     @if ($item->sisa_kamar > 0 || auth::user()->role == "User" )
                                         <div class="row">
                                             <div class="col-lg-6 col-sm-6 col-6">
-                                                <a href="{{url('sewa-kamar-kos', $item->id)}}" class="btn btn-success btn-block">Pesan Kosts</a>
+                                                <a href="{{url('sewa-kamar-kos', [$item->id, $item->slug])}}" class="btn btn-success btn-block">Pesan Kosts</a>
                                             </div>
                                             <div class="col-lg-6 col-sm-6 col-6">
                                                @if ($item->book == 1)
-                                                    <a href="{{url('booking-kamar', $item->id)}}" class="btn btn-primary btn-block">Booking</a>
+                                                    <a href="{{url('booking-kamar', [$item->id, $item->slug])}}" class="btn btn-primary btn-block">Booking</a>
                                                @elseif($item->book == 0)
                                                    <button class="btn btn-warning btn-block" disabled="">Booking</button>
                                                @endif

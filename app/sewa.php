@@ -10,6 +10,11 @@ class sewa extends Model
         'user_id','kamar_id','lama_sewa','status','start','end','tgl_book','notes','jenis','pemilik_id','nama_kamar','harga_kamar','nama_bank','no_rek','invoice','nama_user','nama_pemilik','email_user','email_pemilik'
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function kamar()
     {
         return $this->belongsTo('App\kamar','id');
