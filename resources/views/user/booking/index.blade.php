@@ -12,7 +12,6 @@
                         <span class="pl-2">Kos Khusus </span>{{$item->jenis_kamar}}<span></span> <br>
                         <span class="pl-2">Luas Kamar </span>{{$item->luas_kamar}}<span></span> <br>
                         <span class="pl-2">Harga Kamar </span>@currency($item->harga_kamar)<span></span>
-                    @endforeach
                 </div>
             </div>
         </div>
@@ -42,6 +41,7 @@
                                 <span id="select_harga_kamar"></span>
                                 <span id="select_nama_bank"></span>
                                 <span id="select_no_rek"></span>
+                                <span id="select_email-pemilik"></span>
 
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-12">
@@ -64,6 +64,7 @@
                                 </div>
                                 <input type="hidden" id="kamar_id" name="kamar_id" value="{{$item->id}}" readonly>
                                 <input type="hidden" id="id_user" name="pemilik_id" value="{{$item->id}}" readonly>
+                                <input type="hidden" name="nama_pemilik" value="{{$item->name}}" readonly>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary waves-effect waves-light">Booking</button>
                                     <a href="" class="btn btn-warning waves-effect waves-light">Batal</a>
@@ -71,6 +72,7 @@
                             </div>
                         </div>
                     </form>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -136,6 +138,21 @@
         var id_user = $(this).val();
             $.get('{{ Url("get-no-rek") }}',{'_token': $('meta[name=csrf-token]').attr('content'),id_user:id_user}, function(resp){  
                 $("#select_no_rek").html(resp);
+            });
+        });
+
+        // Select Email Pemilik
+        $(document).ready(function() {
+        var id_user = $("#id_user").val();
+                $.get('{{ Url("get-email-pemilik") }}',{'_token': $('meta[name=csrf-token]').attr('content'),id_user:id_user}, function(resp){  
+                $("#select_email-pemilik").html(resp);
+            });
+        });
+
+        $(document).on('change', '#id_user', function (e) { 
+        var id_user = $(this).val();
+            $.get('{{ Url("get-email-pemilik") }}',{'_token': $('meta[name=csrf-token]').attr('content'),id_user:id_user}, function(resp){  
+                $("#select_email-pemilik").html(resp);
             });
         });
     </script>

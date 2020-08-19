@@ -41,7 +41,7 @@ class sewaController extends Controller
            if (auth::user()->role == "User") {
                 $cek = sewa::where('user_id',auth::user()->id)->first();
                 $book = kamar::where('book',1)->where('id_user',auth::user()->id)->first();
-                $kamar = kamar::selectRaw('kamars.*,a.nama_bank,a.no_rek')
+                $kamar = kamar::selectRaw('kamars.*,a.nama_bank,a.no_rek,a.name')
                 ->leftJoin('users as a','a.id','=','kamars.id_user')
                 ->where('kamars.id',$id)->get();
                 if (@$cek->user_id == null ) {
