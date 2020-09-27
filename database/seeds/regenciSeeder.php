@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\regency;
 
 class regenciSeeder extends Seeder
 {
@@ -311,142 +312,142 @@ class regenciSeeder extends Seeder
         $regency->nama = 'KABUPATEN TANJUNG BALAI';
         $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
         
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
 
-        $regency = new regency;
-        $regency->id = 1101;
-        $regency->provinsi_id = 11;
-        $regency->nama = 'KABUPATEN SIMEULUE';
-        $regency->save();
+        // $regency = new regency;
+        // $regency->id = 1101;
+        // $regency->provinsi_id = 11;
+        // $regency->nama = 'KABUPATEN SIMEULUE';
+        // $regency->save();
     }
 }
