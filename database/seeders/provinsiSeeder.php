@@ -1,4 +1,5 @@
 <?php
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\provinsi;
@@ -36,7 +37,7 @@ class provinsiSeeder extends Seeder
         $provinsi->kode = 15;
         $provinsi->nama = 'JAMBI';
         $provinsi->save();
-        
+
         $provinsi = new provinsi;
         $provinsi->kode = 16;
         $provinsi->nama = 'SUMATERA SELATAN';
@@ -51,7 +52,7 @@ class provinsiSeeder extends Seeder
         $provinsi->kode = 18;
         $provinsi->nama = 'LAMPUNG';
         $provinsi->save();
-        
+
         $provinsi = new provinsi;
         $provinsi->kode = 19;
         $provinsi->nama = 'KEPULAUAN BANGKA BELITUNG';

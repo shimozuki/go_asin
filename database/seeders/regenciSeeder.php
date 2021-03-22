@@ -1,4 +1,5 @@
 <?php
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\regency;
@@ -89,7 +90,7 @@ class regenciSeeder extends Seeder
         $regency->provinsi_id = 11;
         $regency->nama = 'KABUPATEN GAYO LUES';
         $regency->save();
-        
+
         $regency = new regency;
         $regency->id = 1114;
         $regency->provinsi_id = 11;
@@ -173,7 +174,7 @@ class regenciSeeder extends Seeder
         $regency->provinsi_id = 12;
         $regency->nama = 'KABUPATEN TAPANULI TENGAH';
         $regency->save();
-        
+
         $regency = new regency;
         $regency->id = 1205;
         $regency->provinsi_id = 12;
@@ -239,7 +240,7 @@ class regenciSeeder extends Seeder
         $regency->provinsi_id = 12;
         $regency->nama = 'KABUPATEN HUMBANG HASUNDUTAN';
         $regency->save();
-        
+
         $regency = new regency;
         $regency->id = 1216;
         $regency->provinsi_id = 12;
@@ -395,7 +396,7 @@ class regenciSeeder extends Seeder
         // $regency->provinsi_id = 11;
         // $regency->nama = 'KABUPATEN SIMEULUE';
         // $regency->save();
-        
+
         // $regency = new regency;
         // $regency->id = 1101;
         // $regency->provinsi_id = 11;
