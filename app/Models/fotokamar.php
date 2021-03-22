@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class fbersama extends Model
+class fotokamar extends Model
 {
     protected $fillable = [
-        'idfbersama','fbersama_name'
+        'idfoto','foto_kamar'
     ];
 
     public function kamars()

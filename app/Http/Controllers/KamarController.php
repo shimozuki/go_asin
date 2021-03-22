@@ -3,16 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\kamar;
-use App\fkamar;
-use App\fkamar_mandi;
-use App\fbersama;
-use App\fparkir;
-use App\area;
-use App\sewa;
-use App\fotokamar;
-use App\provinsi;
-use Auth;
+use App\Models\{kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,sewa,fotokamar,provinsi};
 
 class KamarController extends Controller
 {
@@ -48,7 +39,7 @@ class KamarController extends Controller
                     $provinsi = provinsi::select('kode','nama')->get();
                     return view('owner.kamar.create', compact('provinsi'));
                 }
-                
+
             }
         } else {
             return redirect('dashboard');

@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class regency extends Model
+class provinsi extends Model
 {
     protected $fillable = [
-        'provinsi_id','nama'
+        'kode','name'
     ];
 }

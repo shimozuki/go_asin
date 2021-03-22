@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\kamar;
-use App\sewa;
-use App\payment;
+use App\Models\{User,kamar,sewa,payment};
 use Auth;
 use Carbon\carbon;
 use Mail;
@@ -98,7 +95,7 @@ class ownerController extends Controller
                 // isi dengan nama folder tempat kemana file diupload
                 $tujuan_upload = 'foto_profile';
                 $foto->move($tujuan_upload,$nama_foto);
-        
+
                 $profil = User::find($id);
                 $profil->nama_bank = $request->nama_bank;
                 $profil->no_rek = $request->no_rek;
@@ -107,7 +104,7 @@ class ownerController extends Controller
                 $profil->no_npwp = $request->no_npwp;
                 $profil->foto = $nama_foto;
                 $profil->save();
-        
+
                 return redirect('owner');
            }
        } else {
@@ -167,7 +164,7 @@ class ownerController extends Controller
                         'end'       => Carbon::now()->addDays(30)->format('d-m-Y'),
                     ]);
                 }
-                
+
                 if ($update) {
                     $payment = payment::find($request->sewa_ids);
                     $payment->update([
@@ -180,14 +177,14 @@ class ownerController extends Controller
                     $kamar->update([
                         'sisa_kamar' =>  $kamar->sisa_kamar - 1,
                     ]);
-                } 
+                }
                 if ($payment && $update && $kamar) {
                      // Menyiapkan data
                      $email = $update->email_user;
                      $data = array(
                          'nama_user'     => $update->nama_user,
                      );
-                         
+
                      // Kirim Email
                      Mail::send('owner.email.penghuni', $data, function($mail) use ($email, $data){
                          $mail->to($email,'no-replay')

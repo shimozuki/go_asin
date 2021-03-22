@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\kamar;
-use App\profil;
-use App\sewa;
-use App\User;
+use App\Models\{kamar,profil,sewa,User};
 use Auth;
 use Carbon\carbon;
 use Mail;
@@ -99,7 +96,7 @@ class sewaController extends Controller
                         'no_rek'        => $sewa->no_rek,
                         'jenis'         => 'Sewa',
                     );
-                        
+
                     // Kirim Email
                     Mail::send('user.email.index', $data, function($mail) use ($email, $data){
                         $mail->to($email,'no-replay')
@@ -158,7 +155,7 @@ class sewaController extends Controller
                         'no_rek'        => $book->no_rek,
                         'jenis'         => 'Booking',
                     );
-                        
+
                     // Kirim Email
                     Mail::send('user.email.index', $data, function($mail) use ($email, $data){
                         $mail->to($email,'no-replay')

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\kamar;
-use App\sewa;
+use App\Models\{kamar,sewa};
 use Auth;
 use Carbon\carbon;
 

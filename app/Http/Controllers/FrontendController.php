@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Kamar;
-use App\sewa;
-use App\fotokamar;
+use App\Models\{Kamar,sewa,fotokamar};
 use auth;
 
 class FrontendController extends Controller
@@ -40,5 +38,5 @@ class FrontendController extends Controller
 
         return view('frontend.detail.index',compact('detail','auth','loop','foto'));
     }
-    
+
 }

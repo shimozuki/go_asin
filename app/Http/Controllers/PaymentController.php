@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\payment;
-use App\sewa;
+use App\Models\{payment,sewa};
 use Auth;
 use Carbon\carbon;
 use Mail;
@@ -102,7 +101,7 @@ class PaymentController extends Controller
                         'no_rek_pengirim'   => $payment->no_rek_pengirim,
                         'jenis'             => $sewa->jenis,
                     );
-                        
+
                     // Kirim Email
                     Mail::send('owner.email.index', $data, function($mail) use ($email, $data){
                     $mail->to($email,'no-replay')
