@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('role');
+            $table->enum('role',['Pemilik','Pencari']);
             $table->string('credit')->default(20);
             $table->string('nama_bank')->nullable();
             $table->string('no_rek')->nullable();

@@ -26,8 +26,8 @@
             <div class="form-group m-b-20">
                <select name="role" class="form-control">
                    <option value="">--Mendaftar Sebagai--</option>
-                   <option value="Owner">Pemilik Kost</option>
-                   <option value="User">Pencari Kost</option>
+                   <option value="Pemilik">Pemilik Kost</option>
+                   <option value="Pencari">Pencari Kost</option>
                </select>
             </div>
             <div class="row">

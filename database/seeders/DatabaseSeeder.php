@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(provinsiSeeder::class);
         $this->call(regenciSeeder::class);
+        $this->call(RoleSeeder::class);
     }
 }

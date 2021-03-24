@@ -13,6 +13,6 @@ class area extends Model
 
     public function kamars()
     {
-        return $this->hasMany('App\kamar','id_kamar');
+        return $this->hasMany('App\Models\kamar','id_kamar');
     }
 }

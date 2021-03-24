@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class fkamar_mandi extends Model
 {
     protected $fillable = [
-        'idkamar_mandi','fkamar_mandi'
+        'kamar_id','name'
     ];
 
     public function kamars()

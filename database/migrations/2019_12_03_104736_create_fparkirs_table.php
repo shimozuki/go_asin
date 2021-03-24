@@ -15,11 +15,11 @@ class CreateFparkirsTable extends Migration
     {
         Schema::create('fparkirs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('idfparkir');
-            $table->string('fparkir_name');
+            $table->unsignedBigInteger('kamar_id');
+            $table->string('name');
             $table->timestamps();
 
-            $table->foreign('idfparkir')->references('id')->on('kamars')->onDelete('cascade');
+            $table->foreign('kamar_id')->references('id')->on('kamars')->onDelete('cascade');
         });
     }
 

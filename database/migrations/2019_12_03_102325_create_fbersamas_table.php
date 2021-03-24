@@ -15,11 +15,11 @@ class CreateFbersamasTable extends Migration
     {
         Schema::create('fbersamas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('idfbersama');
-            $table->string('fbersama_name');
+            $table->unsignedBigInteger('kamar_id');
+            $table->string('name');
             $table->timestamps();
 
-            $table->foreign('idfbersama')->references('id')->on('kamars')->onDelete('cascade');
+            $table->foreign('kamar_id')->references('id')->on('kamars')->onDelete('cascade');
         });
     }
 

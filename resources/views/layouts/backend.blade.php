@@ -9,7 +9,7 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	
+
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="{{asset('backend/plugins/jquery-ui/jquery-ui.min.css')}}" rel="stylesheet" />
@@ -20,17 +20,20 @@
 	<link href="{{asset('backend/css/default/style-responsive.min.css')}}" rel="stylesheet" />
 	<link href="{{asset('backend/css/default/theme/default.css')}}" rel="stylesheet" id="theme" />
 	<!-- ================== END BASE CSS STYLE ================== -->
-	
+
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{asset('backend/plugins/pace/pace.min.js')}}"></script>
 	<link href="{{asset('backend/plugins/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+
+  <link href="{{asset('backend/plugins/DataTables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" />
+	<link href="{{asset('backend/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css')}}" rel="stylesheet" />
 	<!-- ================== END BASE JS ================== -->
 </head>
 <body>
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
 	<!-- end #page-loader -->
-	
+
 	<!-- begin #page-container -->
 	<div id="page-container" class="page-container fade page-sidebar-fixed page-header-fixed">
 		<!-- begin #header -->
@@ -45,7 +48,7 @@
 				</button>
 			</div>
 			<!-- end navbar-header -->
-			
+
 			<!-- begin header-nav -->
 			<ul class="navbar-nav navbar-right">
 				<li class="dropdown mr-5">
@@ -61,7 +64,7 @@
 			<!-- end header navigation right -->
 		</div>
 		<!-- end #header -->
-		
+
 		<!-- begin #sidebar -->
 		<div id="sidebar" class="sidebar">
 			<!-- begin sidebar scrollbar -->
@@ -89,16 +92,16 @@
 					</li>
 					<li>
 						<ul class="nav nav-profile">
-                            <li>
+              <li>
 								@if (auth::user()->role == "Owner")
 									<a href="{{route('owner.index')}}"><i class="fa fa-user"></i> Profile</a>
 								@elseif(auth::user()->role == "User")
-									<a href="{{url('/dashboard')}}"><i class="fa fa-user"></i> Profile</a>
+									<a href="{{url('/home')}}"><i class="fa fa-user"></i> Profile</a>
 								@endif
 							</li>
-                            <li><a href="mailto:andridesmana@outlook.com"><i class="fa fa-pencil-alt"></i> Kirim Masukan</a></li>
+              <li><a href="mailto:andridesmana@outlook.com"><i class="fa fa-pencil-alt"></i> Kirim Masukan</a></li>
 							<li><a href="javascript:;"><i class="fa fa-question-circle"></i> About</a></li>
-							
+
 							<li>
 								<a href="{{ route('logout') }}"
 								onclick="event.preventDefault();
@@ -109,7 +112,7 @@
 									@csrf
 								</form>
 							</li>
-                        </ul>
+            </ul>
 					</li>
 				</ul>
 				<!-- end sidebar user -->
@@ -117,34 +120,42 @@
 				<ul class="nav">
 					<li class="nav-header">Navigation</li>
 
-					<li>
-						<a href="{{url('/dashboard')}}">
-						    <i class="fa fa-th-large"></i>
-						    <span>Dashboard<span class="label label-theme m-l-5">NEW</span></span> 
+					<li class="{{ Request::is('home') ? 'active' : ''}}">
+						<a href="{{url('/home')}}">
+						    <i class="fa fa-home"></i>
+						    <span>Dashboard<span class="label label-theme m-l-5">NEW</span></span>
 						</a>
 					</li>
-					
-					@if (auth::user()->role == "Owner")
+
+					@if (auth::user()->role == "Pemilik")
 						{{-- Menu Khusus Untuk Role Pemilik Kost --}}
-						<li class="has-sub">
+						<li class="has-sub {{ Request::is('pemilik/kamar*') ? 'active' : ''}}">
 							<a href="javascript:;">
 								<b class="caret"></b>
-								<i class="fa fa-align-left"></i> 
-								<span>Kosan</span>
+								<i class="fa fa-building"></i>
+								<span>Kamar</span>
 							</a>
 							<ul class="sub-menu">
-								<li><a href="{{route('kamar.index')}}">Data Kosan</a></li>
-								<li><a href="{{route('kamar.create')}}">Tambah Kosan</a></li>
+								<li class="{{ Request::is('pemilik/kamar') ? 'active' : ''}}"><a href="{{route('kamar.index')}}">Data Kamar</a></li>
+								<li class="{{ Request::is('pemilik/kamar/create') ? 'active' : ''}}"><a href="{{route('kamar.create')}}">Tambah Kamar</a></li>
 							</ul>
 						</li>
-						<li>
+
+						<li class="{{ Request::is('/home') ? 'active' : ''}}">
+							<a href="">
+								<i class="fas fa-users"></i>
+								<span>Penghuni</span>
+							</a>
+						</li>
+
+            <li class="{{ Request::is('/home') ? 'active' : ''}}">
 							<a href="{{url('dokumentasi-rilis')}}">
 								<i class="fas fa-info fa-fw"></i>
 								<span>Dokumentasi</span>
 							</a>
 						</li>
 						{{-- End --}}
-					@elseif(auth::user()->role == "User")
+					@elseif(auth::user()->role == "Pencari")
 						{{-- Menu Khusus Untuk Role Pencari Kost --}}
 							<li>
 								<a href="{{url('my-room')}}">
@@ -164,25 +175,25 @@
 		</div>
 		<div class="sidebar-bg"></div>
 		<!-- end #sidebar -->
-		
+
 		<!-- begin #content -->
 		<div id="content" class="content">
 			<!-- begin page-header -->
 			<h1 class="page-header">@yield('title_page')</h1>
 			<!-- end page-header -->
-			
+
 			<!-- begin panel -->
 			@yield('content')
 			<!-- end panel -->
 		</div>
 		<!-- end #content -->
-		
+
 		<!-- begin scroll to top btn -->
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
 		<!-- end scroll to top btn -->
 	</div>
 	<!-- end page container -->
-	
+
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{asset('backend/plugins/jquery/jquery-3.2.1.min.js')}}"></script>
 	<script src="{{asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
@@ -191,20 +202,28 @@
 	<script src="{{asset('backend/plugins/js-cookie/js.cookie.js')}}"></script>
 	<script src="{{asset('backend/js/theme/default.min.js')}}"></script>
 	<script src="{{asset('backend/js/apps.min.js')}}"></script>
+
 	<script src="{{asset('backend/plugins/select2/dist/js/select2.min.js')}}"></script>
+
+  	<script src="{{asset('backend/plugins/DataTables/media/js/jquery.dataTables.js')}}"></script>
+	<script src="{{asset('backend/plugins/DataTables/media/js/dataTables.bootstrap.min.js')}}"></script>
+	<script src="{{asset('backend/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js')}}"></script>
+	<script src="{{asset('backend/js/demo/table-manage-default.demo.min.js')}}"></script>
 	<!-- ================== END BASE JS ================== -->
-	
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			App.init();
+			TableManageDefault.init();
+
 		});
 
 		$(document).ready(function (){
-           $("#select2").select2({
-             allowClear:true,
-             placeholder: 'Pilih Provinsi'
-           });
-        })
+        $("#select2").select2({
+          allowClear:true,
+          placeholder: 'Pilih Provinsi'
+        });
+    })
 	</script>
 	@yield('scripts')
 </body>
