@@ -7,7 +7,7 @@
 2. Silahkan Clone dengan perintah 'Git Clone https://github.com/andes2912/kos.git'. <br>
 3. Jalankan perintah 'Composer Install' pada direktori project <br>
 4. Jalanlan perintah 'cp .env.example .env', ini untuk membuat file .env<br>
-5. Buat DB dan jalankan perintah 'php artisan migrate'<br>
+5. Buat DB dan jalankan perintah 'php artisan migrate --seed'<br>
 6. Karena ini sudah menggunakan 'Push Email Notification' jangan lupa untuk mengaturnya ya <br>
 7. Jalankan perintah 'php artisan serve' <br>
 8. klik menu register dan taraaa <br>
