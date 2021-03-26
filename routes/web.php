@@ -20,8 +20,6 @@ Route::middleware('auth')->group(function () {
   ////// PEMILIK \\\\\\
   Route::prefix('/pemilik')->middleware('role:Pemilik')->group(function () {
     Route::resource('kamar','Owner\KamarController');
-
-    Route::get('get-nama-provinsi','Owner\KamarController@namaProvinsi'); //Get Name provinsi
   });
 
 });

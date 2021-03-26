@@ -19,7 +19,8 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/app-user.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/faq.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/dashboard-analytics.css')}}">
-{{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/card-analytics.css')}}"> --}}
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/users.css')}}">
+
 <!-- END: Page CSS-->
 
 {{-- BEGIN: EDITOR --}}

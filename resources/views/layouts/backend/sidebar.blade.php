@@ -18,8 +18,8 @@
         </li>
 
         {{-- Kamar --}}
-        <li class="nav-item {{ Request::is('pemilik') ? 'has-sub sidebar-group-active open' : ''}}">
-          <a href="#"><i class="feather icon-heart"></i><span class="menu-title" data-i18n="Campaign">Kamar</span></a>
+        <li class="nav-item {{ Request::is('pemilik/kamar*') ? 'has-sub sidebar-group-active open' : ''}}">
+          <a href="#"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Campaign">Kamar</span></a>
           <ul class="menu-content">
             <li class="{{Request::is('pemilik/kamar') ? 'active' : ''}}">
               <a href="{{route('kamar.index')}}"><i></i><span class="menu-item" data-i18n="Aktif">Data Kamar</span></a>
@@ -30,9 +30,11 @@
           </ul>
         </li>
 
-
-
-
+        {{-- Penghuni --}}
+        <li class="nav-item {{ (request()->is('')) ? 'active' : '' }}">
+          <a href="/home"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Penghuni">Penguni</span>
+          </a>
+        </li>
 
         {{-- Setting --}}
         {{-- <li class="nav-item {{ Request::is('backend') ? 'has-sub sidebar-group-active open' : ''}}">

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Model\kamar;
 
 class fkamar extends Model
 {
@@ -10,8 +11,8 @@ class fkamar extends Model
         'kamar_id','name'
     ];
 
-    public function kamars()
+    public function kamar()
     {
-        return $this->hasMany('App\Models\kamar','id_kamar');
+        return $this->belongsTo(kamar::class);
     }
 }

@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+use App\Models\{User,fkamar};
 
 class kamar extends Model
 {
     protected $fillable = [
-        'user_id','nama_kamar','jenis_kamar','luas_kamar','stok_kamar','harga_kamar','sisa_kamar','bg_foto','ket_lain','ket_biaya','desc','kategori','book','listrik','provinsi_id','provinsi_nama'
+        'user_id','nama_kamar','jenis_kamar','luas_kamar','stok_kamar','harga_kamar','sisa_kamar','bg_foto','ket_lain','ket_biaya','desc','kategori','book','listrik','provinsi_id'
     ];
 
     // protected $with = ['fkamars','fbersamas','users'];
@@ -16,6 +16,36 @@ class kamar extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function user()
+    {
+      return $this->belongsTo(User::class);
+    }
+
+    public function fkamar()
+    {
+      return $this->hasMany(fkamar::class);
+    }
+
+    public function kmandi()
+    {
+      return $this->hasMany(fkamar_mandi::class);
+    }
+
+    public function fbersama()
+    {
+      return $this->hasMany(fbersama::class);
+    }
+
+    public function fparkir()
+    {
+      return $this->hasMany(fparkir::class);
+    }
+
+    public function area()
+    {
+      return $this->hasMany(area::class);
     }
 
 }

@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function kamars()
     {
-        return $this->hasMany('App\Models\kamar','id_user');
+        return $this->hasOne(kamar::class);
     }
 
     public function datauser()

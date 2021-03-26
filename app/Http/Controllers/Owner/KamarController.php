@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use App\Models\{DataUser,kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,fotokamar,provinsi};
 use Auth;
@@ -64,7 +63,6 @@ class KamarController extends Controller
       $kamar->book = $request->book;
       $kamar->bg_foto = $nama_foto;
       $kamar->provinsi_id = $request->provinsi_id;
-      $kamar->provinsi_nama = $request->provinsi_nama;
       $kamar->save();
 
       if ($kamar) {
@@ -139,7 +137,7 @@ class KamarController extends Controller
      */
     public function show($slug)
     {
-      $show = kamar::where('slug', $slug)->first();
+      $show = kamar::where('slug', $slug)->where('user_id',auth::id())->first();
       return view('pemilik.kamar.show', compact('show'));
     }
 
@@ -149,10 +147,12 @@ class KamarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-      $edit = kamar::where('slug', $slug)->first();
-      return view('pemilik.kamar.edit', compact('edit'));
+      $edit = kamar::where('id', $id)->first();
+      // dd($edit);
+      $provinsi = provinsi::select('kode','nama')->get();
+      return view('pemilik.kamar.edit', compact('edit','provinsi'));
     }
 
     /**
@@ -164,7 +164,79 @@ class KamarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $kamar = Kamar::findOrFail($id);
+      $kamar->user_id = auth::id();
+      $kamar->nama_kamar = $request->nama_kamar;
+      $kamar->jenis_kamar = $request->jenis_kamar;
+      $kamar->luas_kamar = $request->luas_kamar;
+      $kamar->stok_kamar = $request->stok_kamar;
+      $kamar->sisa_kamar = $kamar->stok_kamar;
+      $kamar->harga_kamar = $request->harga_kamar;
+      $kamar->ket_lain = $request->ket_lain;
+      $kamar->ket_biaya = $request->ket_biaya;
+      $kamar->desc = $request->desc;
+      $kamar->kategori = $request->kategori;
+      $kamar->book = $request->book;
+      $kamar->provinsi_id = $request->provinsi_id;
+      $kamar->save();
+
+       if ($kamar) {
+        if ($request->addmore) {
+          foreach($request->addmore as $value){
+            $fkamar = new fkamar;
+            $fkamar->kamar_id = $id;
+            $fkamar->name = $value['name'];
+            $fkamar->save();
+          }
+        }
+      }
+
+      if ($kamar ) {
+        if ($request->addkm) {
+          foreach ($request->addkm as $value) {
+            $fkamar_mandi = new fkamar_mandi;
+            $fkamar_mandi->kamar_id = $id;
+            $fkamar_mandi->name = $value['name'];
+            $fkamar_mandi->save();
+          }
+        }
+      }
+
+      if ($kamar ) {
+        if ($request->addbersama) {
+          foreach ($request->addbersama as $value) {
+            $fbersama = new fbersama;
+            $fbersama->kamar_id = $id;
+            $fbersama->name = $value['name'];
+            $fbersama->save();
+          }
+        }
+      }
+
+      if ($kamar) {
+        if ($request->addparkir) {
+          foreach ($request->addparkir as $value) {
+            $fparkir = new fparkir;
+            $fparkir->kamar_id = $id;
+            $fparkir->name = $value['name'];
+            $fparkir->save();
+          }
+        }
+      }
+
+      if ($kamar) {
+        if ($request->addarea) {
+          foreach ($request->addarea as $value) {
+            $area = new area;
+            $area->kamar_id =  $id;
+            $area->name = $value['name'];
+            $area->save();
+          }
+        }
+      }
+
+      Session::flash('success','Kamar Berhasil Di Update !');
+      return redirect('pemilik/kamar');
     }
 
     /**
@@ -176,26 +248,5 @@ class KamarController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-
-    // Get Nama Provinsi
-    public function namaProvinsi(Request $request)
-    {
-      $provinsi = provinsi::select('kode','nama')
-        ->where('kode',$request->kode)
-        ->get();
-
-        $select = '';
-        $select .= '
-                <div class="form-group has-success" hidden>
-                <select class="form-control" name="provinsi_nama">
-                ';
-                foreach ($provinsi as $item) {
-        $select .= '<option value="'.$item->nama.'">'.$item->nama.'</option>';
-                    }'
-                    </select>
-                    </div>';
-        return $select;
     }
 }

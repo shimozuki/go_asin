@@ -17,28 +17,8 @@
 
 <!-- BEGIN: Page JS-->
 <script src="{{asset('assets/js/scripts/datatables/datatable.js')}}"></script>
+<script src="{{asset('assets/js/scripts/pages/user-profile.js')}}"></script>
+
 <!-- END: Page JS-->
 
-{{-- BEGIN: EDITOR --}}
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script type="text/javascript">
-  $('#editor').summernote({
-    placeholder: 'Write here ...',
-    tabsize: 2,
-    height: 500
-  });
-
-  $('#editor2').summernote({
-    placeholder: 'Write here ...',
-    tabsize: 2,
-    height: 200
-  });
-
-  $('#editor3').summernote({
-    placeholder: 'Write here ...',
-    tabsize: 2,
-    height: 200
-  });
-</script>
-{{-- END: CKEDITOR --}}
 
