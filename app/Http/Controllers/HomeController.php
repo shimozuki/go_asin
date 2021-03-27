@@ -30,7 +30,7 @@ class HomeController extends Controller
         if (Auth::user()->role == 'Pemilik') {
           return view('pemilik.index');
         } elseif(Auth::user()->role == 'Pencari') {
-          return 'Pencari';
+          return view('user.index');
         } else {
           abort(404);
         }
