@@ -12,8 +12,10 @@
 */
 
 ///// FRONTEND \\\\\
-Route::get('/','Frontend\FrontendsController@homepage');
-
+  // Homepage
+  Route::get('/','Frontend\FrontendsController@homepage');
+  // Show Kamar
+  Route::get('/{slug}','Frontend\FrontendsController@show');
 
 
 Auth::routes();
@@ -24,6 +26,12 @@ Route::middleware('auth')->group(function () {
   ////// PEMILIK \\\\\\
   Route::prefix('/pemilik')->middleware('role:Pemilik')->group(function () {
     Route::resource('kamar','Owner\KamarController');
+  });
+
+
+  ///// USER \\\\\
+  Route::prefix('/user')->middleware('role:Pencari')->group(function () {
+    Route::post('/transaction/{id}','User\TransactionController@store');
   });
 
 });

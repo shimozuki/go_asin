@@ -12,12 +12,12 @@
   <body>
 
     {{-- Header --}}
-      @include('frontend.header')
+      @include('frontend.partials.header')
       @yield('header')
     {{-- END Header --}}
 
     {{-- Navbar --}}
-      @include('frontend.navbar')
+      @include('frontend.partials.navbar')
       @yield('nav')
     {{-- END Navbar --}}
 
@@ -42,7 +42,7 @@
     {{-- END Testimoni --}}
 
     {{-- Footer --}}
-      @include('frontend.footer')
+      @include('frontend.partials.footer')
     {{-- END Footer --}}
 
   <!-- loader -->

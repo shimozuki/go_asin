@@ -4,21 +4,21 @@
 @endsection
 
 @section('hero')
-  @include('frontend.hero')
+  @include('frontend.partials.hero')
 @endsection
 
 @section('item_hero')
-  @include('frontend.item_hero')
+  @include('frontend.partials.item_hero')
 @endsection
 
 @section('card')
-  @include('frontend.card')
+  @include('frontend.partials.card')
 @endsection
 
 @section('faq')
-  @include('frontend.faq')
+  @include('frontend.partials.faq')
 @endsection
 
 @section('testimoni')
-  @include('frontend.testimoni')
+  @include('frontend.partials.testimoni')
 @endsection
