@@ -22,4 +22,9 @@ class Transaction extends Model
     {
       return $this->belongsTo('App\Models\kamar','kamar_id');
     }
+
+    public function payment()
+    {
+      return $this->hasOne('App\Models\payment','transaction_id');
+    }
 }

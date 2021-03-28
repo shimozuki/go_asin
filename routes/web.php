@@ -34,8 +34,9 @@ Route::middleware('auth')->group(function () {
   ///// USER \\\\\
   Route::prefix('/user')->middleware('role:Pencari')->group(function () {
     Route::post('/transaction-room/{id}','User\TransactionController@store')->name('sewa.store'); // Proses save Room
-    Route::get('/{key}','User\TransactionController@detail_payment'); // Detail payment
-    Route::put('konfirmasi-payment/{id}','User\TransactionController@update');
+    Route::get('room/{key}','User\TransactionController@detail_payment'); // Detail payment
+    Route::put('konfirmasi-payment/{id}','User\TransactionController@update'); // Konfirmasi Payment
+    Route::get('tagihan','User\TransactionController@tagihan');
   });
 
 });

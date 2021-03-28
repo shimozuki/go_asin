@@ -16,4 +16,9 @@ class payment extends Model
     {
       return $this->belongsTo(User::class);
     }
+
+    public function transaksi()
+    {
+      return $this->hasOne(Transaction::class);
+    }
 }

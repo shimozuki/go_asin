@@ -11,6 +11,17 @@ use Session;
 
 class TransactionController extends Controller
 {
+    // Tagihan
+    public function tagihan()
+    {
+      if (Auth::check()) {
+        if (Auth::user()->role == 'Pencari') {
+          $tagihan = Transaction::where('user_id', Auth::id())->get();
+          return view('user.payment.index', compact('tagihan'));
+        }
+      }
+    }
+
     // Transaction Sewa Kamar
     public function store(Request $request, $id)
     {
@@ -56,12 +67,12 @@ class TransactionController extends Controller
     // Detail Pembayaran
     public function detail_payment($key)
     {
-      if (Auth::user()->transaksi->key == $key && Auth::user()->payment->status == 'Pending') {
-        $transaksi = Transaction::where('key',$key)->first();
+      $transaksi = Transaction::where('key',$key)->first();
+      if ($transaksi->payment->status == 'Pending') {
         return view('user.payment.show', compact('transaksi'));
       } else {
-        Session::flash('error','Data Tidak Ditemukan !');
-        return redirect('/home');
+        Session::flash('error','Pembayaran Sudah Terkirim');
+        return redirect('/user/tagihan');
       }
     }
 
@@ -69,7 +80,7 @@ class TransactionController extends Controller
     public function update(Request $request, $id)
     {
       $konfirmasi = Transaction::findOrFail($id);
-      $konfirmasi->status     = 'Proses';
+      $konfirmasi->status = 'Pending';
       $konfirmasi->save();
 
       if ($konfirmasi) {
@@ -86,12 +97,6 @@ class TransactionController extends Controller
       }
 
       Session::flash('success','Pembayaran Terkirim');
-      return redirect('/home');
-
-      // if ($konfirmasi && $payment) {
-      //   $kamar = kamar::where('id', $payment->kamar_id)->first();
-      //   $kamar->sisa_kamar  = $kamar->sisa_kamar - 1;
-      //   $kamar->save();
-      // }
+      return redirect('/user/tagihan');
     }
 }

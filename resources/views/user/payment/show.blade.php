@@ -46,7 +46,7 @@
         <h4 class="font-weight-bold">Lakukan Konfirmasi Pembayaran</h4>
         <h6>Silahkan lakukan konfirmasi ketika Anda sudah melakukan transfer.</h6>
         <hr>
-        <form action="{{url('user/konfirmasi-payment', $transaksi->id)}}" method="post">
+        <form action="{{url('user/konfirmasi-payment',$transaksi->id)}}" method="post">
           @csrf
           @method('PUT')
           <div class="form-group">
