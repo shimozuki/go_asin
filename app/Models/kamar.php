@@ -45,4 +45,14 @@ class kamar extends Model
       return $this->hasMany(area::class);
     }
 
+    public function datauser()
+    {
+      return $this->hasOne('App\Models\DataUser','user_id');
+    }
+
+    public function payment()
+    {
+      return $this->hasOne('App\Models\payment','kamar_id');
+    }
+
 }

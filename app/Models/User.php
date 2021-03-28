@@ -38,7 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function kamars()
+    public function kamar()
     {
         return $this->hasOne(kamar::class);
     }
@@ -46,6 +46,16 @@ class User extends Authenticatable
     public function datauser()
     {
       return $this->hasOne(DataUser::class);
+    }
+
+    public function payment()
+    {
+      return $this->hasOne(payment::class);
+    }
+
+    public function transaksi()
+    {
+      return $this->hasOne(Transaction::class);
     }
 
 }

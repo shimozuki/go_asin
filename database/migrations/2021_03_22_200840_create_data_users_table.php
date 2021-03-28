@@ -16,7 +16,7 @@ class CreateDataUsersTable extends Migration
         Schema::create('data_users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('nama_bank')->nullable();
+            $table->enum('nama_bank',['BNI','BCA','BRI','MANDIRI'])->nullable();
             $table->string('nama_pemilik')->nullable();
             $table->integer('nomor_rekening')->nullable();
             $table->integer('nomor_ktp')->nullable();

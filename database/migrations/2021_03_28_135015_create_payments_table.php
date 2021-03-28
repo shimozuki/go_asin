@@ -23,13 +23,14 @@ class CreatePaymentsTable extends Migration
             $table->string('nama_pemilik')->nullable();
             $table->integer('nomor_rekening')->nullable();
             $table->enum('status',['Pending','Success','Cancel'])->default('Pending');
+            $table->enum('bank_tujuaan',['BNI','BRI','BCA','MANDIRI'])->nullable();
             $table->integer('jumlah_bayar')->nullable();
-            $table->string('bukti_bayar')->nullable(); //Image
+            $table->varchar('tgl_transfer')->nullable(); //Image
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
-            $table->foreign('kamar_id')->references('id')->on('kamars')->onUpdate('cascade');
-            $table->foreign('transaction_id')->references('id')->on('transactions')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('kamar_id')->references('id')->on('kamars')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('transaction_id')->references('id')->on('transactions')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }
