@@ -11,17 +11,19 @@
 |
 */
 
-///// FRONTEND \\\\\
-  // Homepage
-  Route::get('/','Frontend\FrontendsController@homepage');
-  // Show Kamar
-  Route::get('/{slug}','Frontend\FrontendsController@show');
-
 
 Auth::routes();
 
+///// FRONTEND \\\\\
+// Homepage
+Route::get('/','Frontend\FrontendsController@homepage');
+// Show Kamar
+Route::get('/room/{slug}','Frontend\FrontendsController@showkamar');
+
+
+
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::get('/home', 'HomeController@index');
 
   ////// PEMILIK \\\\\\
   Route::prefix('/pemilik')->middleware('role:Pemilik')->group(function () {

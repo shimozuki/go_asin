@@ -6,8 +6,14 @@
     </button>
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a href="/login" class="nav-link">Masuk</a></li>
-        <li class="nav-item"><a href="/register" class="nav-link">Daftar</a></li>
+        @auth
+          <li class="nav-item">
+            <a href="/home">Halo, {{Auth::user()->name}} </a>
+          </li>
+        @else
+          <li class="nav-item"><a href="/login" class="nav-link">Masuk</a></li>
+          <li class="nav-item"><a href="/register" class="nav-link">Daftar</a></li>
+        @endauth
       </ul>
     </div>
   </div>

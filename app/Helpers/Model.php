@@ -35,6 +35,7 @@ if (! function_exists('forDate'))
     }
 }
 
+// Show bulan dan tahun
 if (! function_exists('monthyear'))
 {
     function monthyear()

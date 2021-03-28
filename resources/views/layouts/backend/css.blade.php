@@ -20,7 +20,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/faq.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/dashboard-analytics.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/users.css')}}">
-@if (auth::user()->role == 'Pencari')
+@if (Auth::user()->role == 'Pencari')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/core/menu/menu-types/horizontal-menu.css')}}">
 @endif
 <!-- END: Page CSS-->

@@ -135,14 +135,23 @@
       <div class="card shadow">
         <div class="card-body">
           <p> {{rupiah($kamar->harga_kamar)}} / Bulan</p>
+          <select class="DropChange" id="hargakamar" hidden>
+            <option value="{{$kamar->harga_kamar}}" selected></option>
+          </select>
           <div class="d-flex">
-            <input type="text" class="form-control datepicker mr-2" id="datepicker" placeholder="Tanggal Sewa" data-date-start-date="0d">
-            <span><i class="fas fa-calendar-day fa-3x"></i></i></span>
+            <input type="text" class="form-control datepicker mr-2" id="datepicker" placeholder="TGL Sewa" data-date-start-date="0d">
+            <select name="" id="lamasewa" class="form-control datepicker DropChange">
+              <option>Lama Sewa</option>
+              <option value="1">1 Bulan</option>
+              <option value="3">3 Bulan</option>
+              <option value="6">6 Bulan</option>
+              <option value="12">1 Tahun</option>
+            </select>
           </div>
         </div>
       </div>
       <div class="card shadow">
-        <div class="card-body">
+        <div class="card-body" id="tampil">
           <div class="d-flex justify-content-between">
             <div>
               <p>Harga Sewa <br>
@@ -153,10 +162,12 @@
             <div>
 
               <p style="color: black">
-                <span>{{rupiah($kamar->harga_kamar)}}</span> <br>
+                <span id="sewakamar"></span> <br>
                 Rp. 10.000.00 <br>
                 Rp. 300.000
               </p>
+              <input type="hidden" class="DropChange" id="depost" value="300000">
+              <input type="hidden" class="DropChange" id="biayadmin" value="10000">
             </div>
           </div>
           <hr>
@@ -167,10 +178,14 @@
               </p>
             </div>
             <div>
-             <p style="color: black"> Rp. 2.310.000</p>
+             <p style="color: black" id="hargatotal"></p>
             </div>
           </div>
-          <button type="submit" class="btn btn-success btn-block">Ajukan Sewa</button>
+          @auth
+            <button type="submit" class="btn btn-success btn-block">Ajukan Sewa</button>
+          @else
+            <a href="{{route('login')}}" class="btn btn-outline-primary btn-block">Masuk</a>
+          @endauth
         </div>
       </div>
     </div>

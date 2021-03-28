@@ -16,10 +16,10 @@ class FrontendsController extends Controller
     }
 
     // Show Kamar
-    public function show($slug)
+    public function showkamar($slug)
     {
       $kamar = kamar::where('slug', $slug)->first();
-      // dd($kamar);
+
       return view('frontend.show', compact('kamar'));
     }
 }

@@ -34,7 +34,7 @@
           <div class="card shadow">
             <img class="card-img-top" src="{{asset('bg_foto/' .$kamars->bg_foto)}}" alt="Card image cap">
             <div class="card-body">
-              <p class="card-text"><a href=" {{$kamars->slug}} ">{{$kamars->nama_kamar}}</a></p>
+              <p class="card-text"><a href="{{url('room', $kamars->slug)}}">{{$kamars->nama_kamar}}</a></p>
             </div>
           </div>
         </div>
