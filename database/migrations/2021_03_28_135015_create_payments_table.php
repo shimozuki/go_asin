@@ -25,7 +25,7 @@ class CreatePaymentsTable extends Migration
             $table->enum('status',['Pending','Success','Cancel'])->default('Pending');
             $table->enum('bank_tujuaan',['BNI','BRI','BCA','MANDIRI'])->nullable();
             $table->integer('jumlah_bayar')->nullable();
-            $table->varchar('tgl_transfer')->nullable(); //Image
+            $table->string('tgl_transfer')->nullable(); //Image
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
