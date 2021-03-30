@@ -21,9 +21,8 @@ class CreatePaymentsTable extends Migration
             $table->enum('type_transfer',['Bank','E-Wallet'])->nullable();
             $table->string('nama_bank')->nullable();
             $table->string('nama_pemilik')->nullable();
-            $table->integer('nomor_rekening')->nullable();
             $table->enum('status',['Pending','Success','Cancel'])->default('Pending');
-            $table->enum('bank_tujuaan',['BNI','BRI','BCA','MANDIRI'])->nullable();
+            $table->enum('bank_tujuan',['BNI','BRI','BCA','MANDIRI'])->nullable();
             $table->integer('jumlah_bayar')->nullable();
             $table->string('tgl_transfer')->nullable(); //Image
             $table->timestamps();

@@ -28,6 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('kamar','Owner\KamarController'); //Data Kamar
     Route::get('profile','Owner\ProfileController@profile'); // Profile
     Route::put('payment-profile/{user_id}','Owner\ProfileController@payment_profile'); // Save Data Payment
+
+    Route::get('booking-list','Owner\BookListController@index')->name('booking-list'); // Booking List
+    Route::get('room/{key}','Owner\BookListController@confirm_payment'); // Confirm payment from user
+    Route::put('payment-confirm/{id}','Owner\BookListController@proses_confirm_payment'); // Proses Confirm Payment
+    Route::get('reject-payment','Owner\BookListController@reject_confirm_payment'); // Reject Payment
   });
 
 

@@ -23,7 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('harga_kamar');
             $table->integer('harga_total');
             $table->string('tgl_sewa');
-            $table->enum('status',['Pending','Proses','Done','Cancel'])->default('Pending');
+            $table->enum('status',['Pending','Proses','Done','Cancel','Reject'])->default('Pending');
             $table->timestamps();
 
             $table->foreign('kamar_id')->references('id')->on('kamars');

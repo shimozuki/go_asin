@@ -32,6 +32,12 @@
             </ul>
           </li>
 
+          {{-- Booking / Sewa --}}
+          <li class="nav-item {{ (request()->is('')) ? 'active' : '' }}">
+            <a href="{{url('pemilik/booking-list')}}"><i class="feather icon-book"></i><span class="menu-title" data-i18n="Booking">Booking</span>
+            </a>
+          </li>
+
           {{-- Penghuni --}}
           <li class="nav-item {{ (request()->is('')) ? 'active' : '' }}">
             <a href="/home"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Penghuni">Penghuni</span>

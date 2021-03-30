@@ -27,4 +27,9 @@ class Transaction extends Model
     {
       return $this->hasOne('App\Models\payment','transaction_id');
     }
+
+    public function datauser()
+    {
+      return $this->belongsTo('App\Models\DataUser','user_id');
+    }
 }

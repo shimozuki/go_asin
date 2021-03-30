@@ -1,5 +1,5 @@
 <?php
-use App\Models\{provinsi,User};
+use App\Models\{provinsi,User,DataUser,payment};
 
 
 // Ambil nama provinsi by kode
@@ -55,5 +55,18 @@ if (! function_exists('getNameUser'))
         $name = !empty($data) ? $data->name : 'Not Found';
         $name = !empty($name) ? $name : 'Not Found';
         return $name;
+    }
+}
+
+// Ambil nomor user by id
+if (! function_exists('getTlpUser'))
+{
+    function getTlpUser($user_id=0)
+    {
+        $model = new DataUser;
+        $data  = $model::where('user_id',$user_id)->first();
+        $tlp = !empty($data) ? $data->tlp : 'Not Found';
+        $tlp = !empty($tlp) ? $tlp : 'Not Found';
+        return $tlp;
     }
 }

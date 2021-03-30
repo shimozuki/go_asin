@@ -28,6 +28,11 @@ class KamarController extends Controller
     public function create()
     {
       $provinsi = provinsi::select('kode','nama')->get();
+      // Cek data bank
+      if ($this->databank()) {
+        Session::flash('error','Data Akun Belum Lengkap !');
+        return redirect('/home');
+      }
       return view('pemilik.kamar.create', compact('provinsi'));
     }
 
@@ -248,5 +253,13 @@ class KamarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // Cek data bank user
+    protected function databank()
+    {
+      $databank = Auth::user()->datauser->nama_bank == NULL && Auth::user()->datauser->nama_pemilik == NULL && Auth::user()->datauser->nomor_rekening == NULL;
+
+      return $databank;
     }
 }

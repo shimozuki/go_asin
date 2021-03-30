@@ -40,7 +40,7 @@
     </div>
   </div>
 
-   <div class="col-md-6">
+  <div class="col-md-6">
     <div class="card shadow">
       <div class="card-body">
         <h4 class="font-weight-bold">Lakukan Konfirmasi Pembayaran</h4>
