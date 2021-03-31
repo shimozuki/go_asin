@@ -62,9 +62,19 @@
                         <td>
                           <a href="{{url('room', $item->kamar->slug)}}" target="_blank">{{$item->kamar->nama_kamar}}</a>
                         </td>
-                        <td>{{$item->kamar->harga_kamar}}</td>
+                        <td>{{rupiah($item->kamar->harga_kamar)}}</td>
                         <td>{{$item->lama_sewa}} Bulan</td>
-                        <td>{{$item->status}}</td>
+                        <td>
+                          @if ($item->status == 'Proses')
+                            <span class="badge badge-info">Kamar Aktif</span>
+                          @elseif($item->status == 'Done')
+                            <span class="badge badge-info">Sewa Selesai</span>
+                          @elseif($item->status == 'Cancel')
+                            <span class="badge badge-info">Sewa Batal</span>
+                          @elseif($item->status == 'Reject')
+                            <span class="badge badge-info">Sewa Ditolak</span>
+                          @endif
+                        </td>
                       </tr>
                     @php
                       $no++;
