@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('room/{key}','Owner\BookListController@confirm_payment'); // Confirm payment from user
     Route::put('payment-confirm/{id}','Owner\BookListController@proses_confirm_payment'); // Proses Confirm Payment
     Route::get('reject-payment','Owner\BookListController@reject_confirm_payment'); // Reject Payment
+    Route::get('penghuni','Owner\PenghuniController@penghuni'); // Penghuni
   });
 
 

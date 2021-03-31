@@ -39,7 +39,7 @@
 
         {{-- Penghuni --}}
         <li class="nav-item {{ (request()->is('')) ? 'active' : '' }}">
-          <a href="/home"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Penghuni">Penghuni</span>
+          <a href="/pemilik/penghuni"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Penghuni">Penghuni</span>
           </a>
         </li>
 
