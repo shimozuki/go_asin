@@ -28,6 +28,10 @@ class TransactionController extends Controller
 
       if (Auth::check()) {
         if (Auth::user()->role == 'Pencari') {
+          $request->validate([
+            'tgl_sewa'  => 'required'
+          ]);
+
           $room = kamar::where('id', $id)->first(); // Get Room by id
 
           $iduser = Auth::id(); // Get ID User

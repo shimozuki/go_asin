@@ -141,7 +141,7 @@
               <option value="{{$kamar->harga_kamar}}" selected></option>
             </select>
             <div class="d-flex">
-              <input type="text" name="tgl_sewa" class="form-control datepicker mr-2" id="datepicker" placeholder="TGL Sewa" data-date-start-date="0d" autocomplete="off">
+              <input type="text" name="tgl_sewa" class="form-control datepicker mr-2" id="datepicker" placeholder="TGL Sewa" data-date-start-date="0d" autocomplete="off" required>
               <select name="lama_sewa" id="lamasewa" class="form-control datepicker DropChange">
                 <option>Lama Sewa</option>
                 <option value="1">1 Bulan</option>
