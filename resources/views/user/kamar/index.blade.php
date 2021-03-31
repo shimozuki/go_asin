@@ -66,13 +66,13 @@
                         <td>{{$item->lama_sewa}} Bulan</td>
                         <td>
                           @if ($item->status == 'Proses')
-                            <span class="badge badge-info">Kamar Aktif</span>
+                            <span class="badge badge-primary">Kamar Aktif</span>
                           @elseif($item->status == 'Done')
                             <span class="badge badge-info">Sewa Selesai</span>
                           @elseif($item->status == 'Cancel')
-                            <span class="badge badge-info">Sewa Batal</span>
+                            <span class="badge badge-warning">Sewa Batal</span>
                           @elseif($item->status == 'Reject')
-                            <span class="badge badge-info">Sewa Ditolak</span>
+                            <span class="badge badge-danger">Sewa Ditolak</span>
                           @endif
                         </td>
                       </tr>
