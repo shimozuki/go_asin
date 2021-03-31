@@ -33,6 +33,7 @@
                       <th class="text-nowrap">Type Kamar</th>
                       <th class="text-nowrap">Jenis Kamar</th>
                       <th class="text-nowrap">Tersedia</th>
+                      <th class="text-nowrap">Sisa</th>
                       <th class="text-nowrap">Harga Kamar</th>
                       <th class="text-center">Action</th>
                     </tr>
@@ -48,6 +49,7 @@
                         <td>{{$item->kategori}}</td>
                         <td>{{$item->jenis_kamar}}</td>
                         <td>{{$item->stok_kamar}}</td>
+                        <td>{{$item->sisa_kamar}}</td>
                         <td>{{$item->harga_kamar}}</td>
                         <td class="text-center">
                           <a href="{{route('kamar.show', $item->slug)}}" class="btn btn-info btn-sm">Show</a>

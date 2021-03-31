@@ -36,6 +36,12 @@ class BookListController extends Controller
       $confirm->status      = 'Proses';
       $confirm->updated_at  = Carbon::now();
       $confirm->save();
+
+      if ($confirm) {
+        $kamar = kamar::where('id', $confirm->kamar_id)->first();
+        $kamar->sisa_kamar = $kamar->sisa_kamar - 1;
+        $kamar->save();
+      }
       Session::flash('success','Payment Sudah Di Proses');
       return redirect('/pemilik/booking-list');
     }
