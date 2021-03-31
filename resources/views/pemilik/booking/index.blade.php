@@ -53,13 +53,13 @@
                           @if ($bookings->status == 'Pending')
                             <a href="{{url('pemilik/room', $bookings->key)}}">Konfirmasi</a>
                           @elseif($bookings->status == 'Proses')
-                            <span class="badge badge-info">Proses</span>
+                            <span class="badge badge-primary">Aktif</span>
                           @elseif($bookings->status == 'Done')
                             <span class="badge badge-info">Selesai</span>
                           @elseif($bookings->status == 'Cancel')
-                            <span class="badge badge-info">Cancel</span>
+                            <span class="badge badge-warning">Cancel</span>
                           @elseif($bookings->status == 'Reject')
-                            <span class="badge badge-info">Reject</span>
+                            <span class="badge badge-danger">Reject</span>
                           @endif
                         </td>
                       </tr>
