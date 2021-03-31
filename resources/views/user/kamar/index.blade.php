@@ -1,19 +1,8 @@
 @extends('layouts.backend.app')
 @section('title')
-  Tagihan Pembayaran
+  Kamar Saya
 @endsection
 @section('content')
-@if ($message = Session::get('success'))
-  <div class="alert alert-success alert-block">
-  <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>{{ $message }}</strong>
-  </div>
-@elseif($message = Session::get('error'))
-  <div class="alert alert-danger alert-block">
-  <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>{{ $message }}</strong>
-  </div>
-@endif
 <section id="basic-datatable">
   <div class="row">
     <div class="col-md-3">
@@ -46,7 +35,7 @@
     <div class="col-md-9">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Data Tagihan</h4>
+            <h4 class="card-title">Data Kamar</h4>
           </div>
           <div class="card-content">
             <div class="card-body card-dashboard">
@@ -60,29 +49,23 @@
                       <th class="text-nowrap">Harga</th>
                       <th class="text-nowrap">Keterangan</th>
                       <th class="text-nowrap">Status</th>
-                      <th class="text-nowrap">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     @php
-                      $no=1;
+                      $no = 1;
                     @endphp
-                    @foreach ($tagihan as $tagihans)
-                      @if ($tagihans->payment->status == 'Pending')
-                        <tr>
-                          <td>{{$no}}</td>
-                          <td>{{$tagihans->transaction_number}}</td>
-                          <td>{{$tagihans->kamar->nama_kamar}}</td>
-                          <td>{{rupiah($tagihans->harga_total)}}</td>
-                          <td>{{$tagihans->lama_sewa}} Bulan</td>
-                          <td>{{$tagihans->payment->status}}</td>
-                          <td>
-                            @if ($tagihans->payment->status == 'Pending')
-                              <a href="{{url('user/room', $tagihans->key)}}">Konfirmasi</a>
-                            @endif
-                          </td>
-                        </tr>
-                      @endif
+                    @foreach ($kamar as $item)
+                      <tr>
+                        <td>{{$no}}</td>
+                        <td>{{$item->transaction_number}}</td>
+                        <td>
+                          <a href="{{url('room', $item->kamar->slug)}}" target="_blank">{{$item->kamar->nama_kamar}}</a>
+                        </td>
+                        <td>{{$item->kamar->harga_kamar}}</td>
+                        <td>{{$item->lama_sewa}} Bulan</td>
+                        <td>{{$item->status}}</td>
+                      </tr>
                     @php
                       $no++;
                     @endphp

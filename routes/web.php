@@ -41,7 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/transaction-room/{id}','User\TransactionController@store')->name('sewa.store'); // Proses save Room
     Route::get('room/{key}','User\TransactionController@detail_payment'); // Detail payment
     Route::put('konfirmasi-payment/{id}','User\TransactionController@update'); // Konfirmasi Payment
-    Route::get('tagihan','User\TransactionController@tagihan');
+    Route::get('tagihan','User\TransactionController@tagihan'); // Ambil data tagihan
+    Route::get('myroom','User\MyRoomsController@myroom'); // Kamar aktif
   });
 
 });

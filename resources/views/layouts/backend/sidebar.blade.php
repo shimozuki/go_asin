@@ -18,34 +18,31 @@
           </a>
         </li>
 
-        @if (Auth::user()->role == 'Pemilik')
-          {{-- Kamar --}}
-          <li class="nav-item {{ Request::is('pemilik/kamar*') ? 'has-sub sidebar-group-active open' : ''}}">
-            <a href="#"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Campaign">Kamar</span></a>
-            <ul class="menu-content">
-              <li class="{{Request::is('pemilik/kamar') ? 'active' : ''}}">
-                <a href="{{route('kamar.index')}}"><i></i><span class="menu-item" data-i18n="Aktif">Data Kamar</span></a>
-              </li>
-              <li class="{{Request::is('pemilik/kamar/create') ? 'active' : ''}}">
-                <a href="{{route('kamar.create')}}"><i></i><span class="menu-item" data-i18n="Selesai">Tambah Kamar</span></a>
-              </li>
-            </ul>
-          </li>
+        {{-- Kamar --}}
+        <li class="nav-item {{ Request::is('pemilik/kamar*') ? 'has-sub sidebar-group-active open' : ''}}">
+          <a href="#"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Campaign">Kamar</span></a>
+          <ul class="menu-content">
+            <li class="{{Request::is('pemilik/kamar') ? 'active' : ''}}">
+              <a href="{{route('kamar.index')}}"><i></i><span class="menu-item" data-i18n="Aktif">Data Kamar</span></a>
+            </li>
+            <li class="{{Request::is('pemilik/kamar/create') ? 'active' : ''}}">
+              <a href="{{route('kamar.create')}}"><i></i><span class="menu-item" data-i18n="Selesai">Tambah Kamar</span></a>
+            </li>
+          </ul>
+        </li>
 
-          {{-- Booking / Sewa --}}
-          <li class="nav-item {{ (request()->is('')) ? 'active' : '' }}">
-            <a href="{{url('pemilik/booking-list')}}"><i class="feather icon-book"></i><span class="menu-title" data-i18n="Booking">Booking</span>
-            </a>
-          </li>
+        {{-- Booking / Sewa --}}
+        <li class="nav-item {{ (request()->is('')) ? 'active' : '' }}">
+          <a href="{{url('pemilik/booking-list')}}"><i class="feather icon-book"></i><span class="menu-title" data-i18n="Booking">Booking</span>
+          </a>
+        </li>
 
-          {{-- Penghuni --}}
-          <li class="nav-item {{ (request()->is('')) ? 'active' : '' }}">
-            <a href="/home"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Penghuni">Penghuni</span>
-            </a>
-          </li>
-        @elseif(Auth::user()->role == 'Pencari')
+        {{-- Penghuni --}}
+        <li class="nav-item {{ (request()->is('')) ? 'active' : '' }}">
+          <a href="/home"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Penghuni">Penghuni</span>
+          </a>
+        </li>
 
-        @endif
 
       </ul>
     </div>
@@ -76,6 +73,10 @@
           <a class="nav-link" href="/home">
             <i class="feather icon-home"></i><span data-i18n="Dashboard">Dashboard</span>
           </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('user/myroom')}}"><i class="feather icon-square"></i><span>Kamar Saya</span></a>
         </li>
 
         <li class="nav-item">
