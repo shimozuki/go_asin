@@ -7,16 +7,13 @@
   @include('frontend.partials.hero')
 @endsection
 
-@section('item_hero')
-  {{-- @include('frontend.partials.item_hero') --}}
-@endsection
-
 @section('card')
   @include('frontend.partials.card')
+  @include('frontend.partials.card-provinsi')
 @endsection
 
 @section('faq')
-  @include('frontend.partials.faq')
+  {{-- @include('frontend.partials.faq') --}}
 @endsection
 
 @section('testimoni')

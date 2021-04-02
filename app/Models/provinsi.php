@@ -9,6 +9,4 @@ class provinsi extends Model
     protected $fillable = [
         'kode','name'
     ];
-
-
 }
