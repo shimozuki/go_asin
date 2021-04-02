@@ -1,10 +1,12 @@
+
 $('#datepicker').datepicker({
-    clearBtn: true,
-    changeYear: true,
-    changeMonth: true,
-    // minDate: new Date(),
-    dateFormat: "yy-mm-dd",
-    todayHighlight: true
+  clearBtn: true,
+  changeYear: true,
+  changeMonth: true,
+  minDate: new Date(),
+  dateFormat: "yy-mm-dd",
+  todayHighlight: true,
+  autoclose: true,
 });
 
 // Total harga kamar + lama sewa
