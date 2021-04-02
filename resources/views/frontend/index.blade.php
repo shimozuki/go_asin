@@ -8,7 +8,7 @@
 @endsection
 
 @section('item_hero')
-  @include('frontend.partials.item_hero')
+  {{-- @include('frontend.partials.item_hero') --}}
 @endsection
 
 @section('card')

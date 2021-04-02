@@ -12,8 +12,8 @@
   <body>
 
     {{-- Header --}}
-      @include('frontend.partials.header')
-      @yield('header')
+      {{-- @include('frontend.partials.header')
+      @yield('header') --}}
     {{-- END Header --}}
 
     {{-- Navbar --}}
