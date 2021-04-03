@@ -14,8 +14,14 @@ class BookListController extends Controller
     //Booking List
     public function index()
     {
-      $booking = Transaction::where('kamar_id', Auth::user()->kamar->id)->get();
-      return view('pemilik.booking.index', compact('booking'));
+      if (!empty(Auth::user()->kamar->id)) {
+        $booking = Transaction::where('kamar_id', Auth::user()->kamar->id)->get();
+        return view('pemilik.booking.index', compact('booking'));
+      } else {
+        Session::flash('error','Data Kamar Masih Kosong');
+        return redirect('/home');
+      }
+
     }
 
     // Konfirmasi Pembayaran from user
