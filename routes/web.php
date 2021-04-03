@@ -14,32 +14,37 @@
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->middleware('auth');
+///// FRONTEND \\\\\
+// Homepage
+Route::get('/','Frontend\FrontendsController@homepage');
 
-////// OWNER \\\\\\
-Route::resource('owner','ownerController');
-Route::resource('kamar','KamarController');
-Route::get('payment-detail-owner/{id}/user/{user_id}','ownerController@detailPayment');
-Route::get('setujui-pembayaran','ownerController@setujuiPayment');
-Route::get('get-nama-provinsi','KamarController@namaProvinsi');
-Route::get('dokumentasi-rilis','ownerController@doc');
+Route::get('/room/{slug}','Frontend\FrontendsController@showkamar'); //Show Kamar
 
-//////// USER \\\\\\\
-Route::resource('payment','PaymentController');
-Route::get('payment-create/{id}','PaymentController@buat');
-Route::get('payment-booking-create/{id}','PaymentController@bookPayment');
-Route::get('my-room','userController@myroom');
+Route::middleware('auth')->group(function () {
+    Route::get('/home', 'HomeController@index');
 
-Route::get('get-nama-kamar','sewaController@namakamar'); // Get nama kamar
-Route::get('get-harga-kamar','sewaController@hargakamar'); // Get harga kamar
-Route::get('get-nama-bank','sewaController@namabank'); // Get nama bank
-Route::get('get-no-rek','sewaController@norek'); // Get no rek
-Route::get('get-email-pemilik','sewaController@emailpemilik'); // Get Email Pemilik
+  ////// PEMILIK \\\\\\
+  Route::prefix('/pemilik')->middleware('role:Pemilik')->group(function () {
+    Route::resource('kamar','Owner\KamarController'); //Data Kamar
+    Route::get('profile','Owner\ProfileController@profile'); // Profile
+    Route::put('payment-profile/{user_id}','Owner\ProfileController@payment_profile'); // Save Data Payment
 
-//////// FRONTEND \\\\\\\
-Route::get('/','FrontendController@cardkos'); // Homepage
-Route::get('detail-kamar-kos/{id}/{kamar}','FrontendController@detailkos'); // Detail Kos
-Route::get('sewa-kamar-kos/{id}/{kamar}','sewaController@index')->middleware('auth'); // Index Sewa Kos
-Route::post('sewa-kamar-kos','sewaController@store'); // Proses sewa kamar kos
-Route::get('booking-kamar/{id}/{kamar}','sewaController@book')->middleware('auth'); // Index Booking
-Route::post('booking-kamar','sewaController@prosesBooking'); // Proses Booking
+    Route::get('booking-list','Owner\BookListController@index')->name('booking-list'); // Booking List
+    Route::get('room/{key}','Owner\BookListController@confirm_payment'); // Confirm payment from user
+    Route::put('payment-confirm/{id}','Owner\BookListController@proses_confirm_payment'); // Proses Confirm Payment
+    Route::get('reject-payment','Owner\BookListController@reject_confirm_payment'); // Reject Payment
+    Route::get('penghuni','Owner\PenghuniController@penghuni'); // Penghuni
+  });
+
+
+  ///// USER \\\\\
+  Route::prefix('/user')->middleware('role:Pencari')->group(function () {
+    Route::post('/transaction-room/{id}','User\TransactionController@store')->name('sewa.store'); // Proses save Room
+    Route::get('room/{key}','User\TransactionController@detail_payment'); // Detail payment
+    Route::put('konfirmasi-payment/{id}','User\TransactionController@update'); // Konfirmasi Payment
+    Route::get('tagihan','User\TransactionController@tagihan'); // Ambil data tagihan
+    Route::get('myroom','User\MyRoomsController@myroom'); // Kamar aktif
+  });
+
+});
+

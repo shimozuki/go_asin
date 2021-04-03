@@ -1,30 +1,20 @@
-<div class="search-banner has-bg">
-    <!-- begin bg-cover -->
-    <div class="bg-cover">
-        <img src="{{asset('home/img/cover/home.jpg')}}" style=""/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 d-flex align-items-center">
+      <p class="mb-0 phone pl-md-2">
+        <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a>
+        <a href="#"><span class="fa fa-paper-plane mr-1"></span> youremail@email.com</a>
+      </p>
     </div>
-    <!-- end bg-cover -->
-    <!-- begin container -->
-    <div class="container">
-        <h2 class="text-header">Cari Kos dan Apartement Makin Mudah...</h2>
-        <div class="input-group m-b-20">
-            <input type="text" class="form-control input-lg" placeholder="Ketik nama lokasi/area/alamat" />
-            <span class="input-group-btn">
-                <button type="submit" class="btn btn-lg"><i class="fa fa-search"></i></button>
-            </span>
-        </div>
-        <h5>Paling banyak dicari</h5>
-        <ul class="popular-tags">
-            <li><a href="#"><i class="fa fa-circle text-primary"></i> Jakarta</a></li>
-            <li><a href="#"><i class="fa fa-circle text-warning"></i> DKI Jakarta</a></li>
-            <li><a href="#"><i class="fa fa-circle"></i> Jogyakarta</a></li>
-            <li><a href="#"><i class="fa fa-circle text-success"></i> Semarang</a></li>
-            <li><a href="#"><i class="fa fa-circle text-muted"></i> Bandung</a></li>
-            <li><a href="#"><i class="fa fa-circle text-purple"></i> Jakarta Selatan</a></li>
-        </ul>
+    <div class="col-md-6 d-flex justify-content-md-end">
+      <div class="social-media">
+        <p class="mb-0 d-flex">
+          <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+          <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+          <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+          <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+        </p>
+      </div>
     </div>
-    <!-- end container -->
+  </div>
 </div>
-<style>
-
-</style>

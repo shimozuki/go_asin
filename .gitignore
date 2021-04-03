@@ -1,9 +1,12 @@
 /node_modules
-/public/hot
+/public/bg_foto
+/public/bukti_bayar
+/public/foto_profile
+/public/foto_kamar
 /public/storage
 /storage/*.key
 /vendor
-.env.backup
+.env
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml

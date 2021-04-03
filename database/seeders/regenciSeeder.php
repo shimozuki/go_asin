@@ -2,7 +2,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\regency;
+use App\Models\regency;
 
 class regenciSeeder extends Seeder
 {

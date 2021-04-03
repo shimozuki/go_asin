@@ -1,77 +1,47 @@
-<div class="container">
-    <!-- begin row -->
+<footer class="footer">
+  <div class="container">
     <div class="row">
-        <!-- begin col-4 -->
-        <div class="col-md-6">
-            <!-- begin section-container -->
-            <div class="section-container">
-                <h4>Papi Kost - Aplikasi Pencari Kost</h4>
-                <p>
-                    PAPI KOST menyajikan informasi Kamar kosan, lengkap dengan fasilitas kost, harga kost, dan dekorasi kamar beserta foto desain kamar yang sebisa mungkin menggambarkan kondisi sebenarnya. Kami memiliki tim, Agen dan Mamichecker, yang saat ini mengunjungi, memastikan, dan mengecek properti kost satu per satu. Adapun kost yang sudah dicek memiliki tanda Mamichecker. Informasi ketersediaan kamar kost dan harga kost kami upayakan selalu update untuk memastikan info kost kami akurat dan bermanfaat untuk anak kost
-                </p>
-            </div>
-            <!-- end section-container -->
+      <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+        <h2 class="footer-heading">Papikos.com</h2>
+        <p>Cari dan Sewa Kos atau Apartment Makin Mudah dan Murah di Indonesia.</p>
+        {{-- <ul class="ftco-footer-social p-0">
+          <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
+          <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
+          <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+        </ul> --}}
+      </div>
+
+      <div class="col-md-6 col-lg-4 pl-lg-5 mb-4 mb-md-0">
+        <h2 class="footer-heading">Pap!Kos</h2>
+        <ul class="list-unstyled">
+          <li><a href="#" class="py-2 d-block">Tentang Kami</a></li>
+          <li><a href="#" class="py-2 d-block">Kebijakan dan Privasi</a></li>
+          <li><a href="#" class="py-2 d-block">Syarat dan Ketentuan Umum</a></li>
+          <li><a href="#" class="py-2 d-block">Pusat Bantuan</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+        <h2 class="footer-heading">Hubungi Kami</h2>
+        <div class="block-23 mb-3">
+          <ul>
+            <li><span class="icon fa fa-map"></span><span class="text">Jakarta, Indonesia</span></li>
+            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+62 8xxxxxxxx</span></a></li>
+            <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">andridesmana@outlook.com</span></a></li>
+          </ul>
         </div>
-        <!-- end col-4 -->
-        <!-- begin col-4 -->
-        <div class="col-md-6">
-            <!-- begin section-container -->
-            <div class="section-container">
-                <h4>Fitur Pencarian Kosan di Papi Kost</h4>
-                <ul>
-                    <li>Cari kost dekat Kampus/Universitas di masing-masing kota</li>
-                    <li>Cari kost di Jogja, Depok, Jakarta, Surabaya, Bandung, dan Kota besar lainnya </li>
-                    <li>Cari kost di sekitar lokasi saya saat ini </li>
-                    <li>Fitur Berlangganan (dapatkan update info kosan yang kamu inginkan lewat email)</li>
-                    <li>Fitur Favorit kost (sukai dan simpan kamar kost yang kamu suka)</li>
-                    <li>Fitur History (tampilkan kembali kosan yang pernah kamu kunjungi atau pernah kamu hubungi)</li>
-                    <li>Filter Pencarian Kost berdasarkan Tipe Kost (Kost Putra, Kost Putri, Kost Campur), Spesifikasi Kost (Kost Bebas, Kost Pasutri, Kost AC, Kost Kamar mandi dalam, Kost Wifi dll), Tipe Pembayaran Kost (Kost Harian, Kost Bulanan, Kost Tahunan)</li>
-                </ul>
-            </div>
-            <!-- end section-container -->
-        </div>
-        <!-- end col-4 -->
+      </div>
     </div>
-    <!-- end row -->
-</div>
-<div class="container" style="height:auto">
-    <!-- begin row -->
-    <div class="row">
-        <!-- begin col-4 -->
-        <div class="col-xl-6 col-sm-4">
-            <!-- begin section-container -->
-            <div class="section-container">
-                <h4>PAPI KOST</h4>
-                <p>
-                <a href="">Tentang Kami</a> <br>
-                <a href="">Job di Papi Kost</a> <br>
-                <a href="">Pusat Bantuan</a> <br>
-                </p>
-            </div>
-            <!-- end section-container -->
-        </div>
-        <!-- end col-4 -->
-        <!-- begin col-4 -->
-        <div class="col-xl-6 col-sm-4">
-            <!-- begin section-container -->
-            <div class="section-container">
-                <h4>KEBIJAKAN</h4>
-              <a href="">Kebijakan Privasi</a> <br>
-              <a href="">Syarat dan Ketentuan Umum</a> <br>
-            </div>
-            <!-- end section-container -->
-        </div>
-        <!-- end col-4 -->
-         <!-- begin col-4 -->
-         <div class="col-xl-6 col-sm-4">
-            <!-- begin section-container -->
-            <div class="section-container">
-                <h4>HUBUNGI KAMI</h4>
-                    <a href="mailto:andridesmana29@outlook.com">andridesmana29@outlook.com</a>
-            </div>
-            <!-- end section-container -->
-        </div>
-        <!-- end col-4 -->
+    <div class="row mt-5">
+      <div class="col-md-12 text-center">
+        <p class="copyright">
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+          | Themplate
+          by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+        </p>
+        <p class="copyright">
+          Build With <i class="fa fa-heart" aria-hidden="true" style="color: red"></i> by <a href="https://andridesmana.pw" target="_blank">Andri Desmana</a>
+        </p>
+      </div>
     </div>
-    <!-- end row -->
-</div>
+  </div>
+</footer>

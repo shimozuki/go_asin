@@ -15,11 +15,11 @@ class CreateFotokamarsTable extends Migration
     {
         Schema::create('fotokamars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('idfoto');
+            $table->unsignedBigInteger('kamar_id');
             $table->string('foto_kamar');
             $table->timestamps();
 
-            $table->foreign('idfoto')->references('id')->on('kamars')->onDelete('cascade');
+            $table->foreign('kamar_id')->references('id')->on('kamars')->onDelete('cascade');
         });
     }
 
