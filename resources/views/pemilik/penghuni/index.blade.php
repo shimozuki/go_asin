@@ -21,6 +21,7 @@
                       <th class="text-nowrap">Jenis Kamar</th>
                       <th class="text-nowrap">Lama Sewa</th>
                       <th class="text-nowrap">Register Date</th>
+                      <th class="text-nowrap">Sisa Hari</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -35,6 +36,7 @@
                           <td>{{$item->kamar->jenis_kamar}}</td>
                           <td>{{$item->lama_sewa}} Bulan</td>
                           <td>{{forDate($item->created_at)}}</td>
+                          <td>{{$sisa}} Hari</td>
                         </tr>
                       @php
                         $no++;
