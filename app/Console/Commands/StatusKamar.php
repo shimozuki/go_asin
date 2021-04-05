@@ -41,13 +41,11 @@ class StatusKamar extends Command
     {
         $kamar = Transaction::where('status','Proses')->get();
         foreach ($kamar as $item) {
-          $date = $item->tgl_sewa;
-          $datenow = Carbon::now();
-          $now = Carbon::parse($date)->diffInDays($datenow);
-          $nows = $item->hari + $now;
-          $sisa = $nows;
 
-          if ($sisa == 0) {
+          $now = Carbon::now()->format('d-m-Y');
+          $end = $item->end_date_sewa;
+
+          if ($end == $now ) {
             Transaction::where('id', $item->id)->update([
               'status'  => 'Done'
             ]);
