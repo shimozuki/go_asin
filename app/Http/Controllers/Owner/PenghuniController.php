@@ -15,7 +15,9 @@ class PenghuniController extends Controller
     public function penghuni()
     {
       if (!empty(Auth::user()->kamar->user_id)) {
-        $penghuni = Transaction::where('status','Proses')->where('kamar_id', Auth::user()->kamar->user_id)->get();
+        $penghuni = Transaction::where('status','Proses')->where('pemilik_id', Auth::user()->kamar->user_id)->get();
+
+        $sisa = [];
         foreach ($penghuni as $item) {
           $date = $item->tgl_sewa;
           $datenow = carbon::now();

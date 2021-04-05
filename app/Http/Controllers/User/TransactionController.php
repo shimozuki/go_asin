@@ -46,6 +46,15 @@ class TransactionController extends Controller
           $kamar->user_id             = Auth::id();
           $kamar->pemilik_id          = $room->user_id;
           $kamar->lama_sewa           = $request->lama_sewa;
+          if ($request->lama_sewa == 1) {
+            $kamar->hari              = 30;
+          } elseif($request->lama_sewa == 3) {
+            $kamar->hari              = 90;
+          } elseif($request->lama_sewa == 6) {
+            $kamar->hari              = 180;
+          } elseif ($request->lama_sewa == 12) {
+            $kamar->hari              = 360;
+          }
           $kamar->harga_kamar         = $room->harga_kamar;
           $kamar->harga_total         = $room->harga_kamar * $request->lama_sewa + $number;
           $kamar->tgl_sewa            = $request->tgl_sewa;
