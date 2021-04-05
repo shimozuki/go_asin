@@ -24,9 +24,9 @@
         <hr>
         <div class="d-flex justify-content-between">
           <span>
-            {{$transaksi->kamar->datauser->nama_bank}} <br>
-            {{$transaksi->kamar->datauser->nomor_rekening}} <br>
-            {{$transaksi->kamar->datauser->nama_pemilik}}
+            {{getNamaBank($transaksi->pemilik_id)}} <br>
+            {{getNoRek($transaksi->pemilik_id)}} <br>
+            {{getNamePemilikBank($transaksi->pemilik_id)}}
           </span>
         </div>
         <hr>

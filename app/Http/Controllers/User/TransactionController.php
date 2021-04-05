@@ -44,6 +44,7 @@ class TransactionController extends Controller
           $kamar->transaction_number  = 'BOOK-' .$number .$id .'-' .$date;
           $kamar->kamar_id            = $id;
           $kamar->user_id             = Auth::id();
+          $kamar->pemilik_id          = $room->user_id;
           $kamar->lama_sewa           = $request->lama_sewa;
           $kamar->harga_kamar         = $room->harga_kamar;
           $kamar->harga_total         = $room->harga_kamar * $request->lama_sewa + $number;
