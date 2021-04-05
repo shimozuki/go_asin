@@ -8,7 +8,12 @@
 @endsection
 
 @section('card')
-  @include('frontend.partials.card')
+  @if ($countkamar > 0)
+    @include('frontend.partials.card')
+  @else
+    <img src="{{asset('frontend/images/empty.png')}}" alt="Data Kos Kosong" style="height: 300px; display:block; margin-left:auto; margin-right:auto; margin-top:5%">
+    <p style="text-align: center">Data kamar masih kosong !</p>
+  @endif
   @include('frontend.partials.card-provinsi')
 @endsection
 
