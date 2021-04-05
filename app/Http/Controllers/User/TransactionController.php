@@ -93,7 +93,6 @@ class TransactionController extends Controller
         $payment->type_transfer     = 'BANK';
         $payment->nama_bank         = $request->nama_bank;
         $payment->nama_pemilik      = $request->nama_pemilik;
-        $payment->nomor_rekening    = $request->nomor_rekening;
         $payment->bank_tujuan       = $request->bank_tujuan;
         $payment->status            = 'Success';
         $payment->jumlah_bayar      = $konfirmasi->harga_total;
