@@ -42,10 +42,10 @@ class StatusKamar extends Command
         $kamar = Transaction::where('status','Proses')->get();
         foreach ($kamar as $item) {
           $date = $item->tgl_sewa;
-          $datenow = carbon::now();
-          $now = carbon::parse($date)->diffInDays($datenow);
-          $nows = ($item->lama_sewa * 30);
-          $sisa = $nows - $now;
+          $datenow = Carbon::now();
+          $now = Carbon::parse($date)->diffInDays($datenow);
+          $nows = $item->hari + $now;
+          $sisa = $nows;
 
           if ($sisa == 0) {
             Transaction::where('id', $item->id)->update([

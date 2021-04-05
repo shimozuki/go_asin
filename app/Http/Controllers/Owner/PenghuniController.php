@@ -17,16 +17,7 @@ class PenghuniController extends Controller
       if (!empty(Auth::user()->kamar->user_id)) {
         $penghuni = Transaction::where('status','Proses')->where('pemilik_id', Auth::user()->kamar->user_id)->get();
 
-        $sisa = [];
-        foreach ($penghuni as $item) {
-          $date = $item->tgl_sewa;
-          $datenow = carbon::now();
-          $now = carbon::parse($date)->diffInDays($datenow);
-          $nows = ($item->lama_sewa * 30);
-          $sisa = $nows - $now;
-        }
-
-        return view('pemilik.penghuni.index', compact('penghuni','sisa'));
+        return view('pemilik.penghuni.index', compact('penghuni'));
       } else {
         Session::flash('error','Data Kamar Masih Kosong');
         return redirect('/home');
