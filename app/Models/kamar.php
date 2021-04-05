@@ -47,7 +47,7 @@ class kamar extends Model
 
     public function datauser()
     {
-      return $this->hasOne('App\Models\DataUser','user_id');
+      return $this->belongsTo('App\Models\DataUser','user_id');
     }
 
     public function payment()

@@ -184,7 +184,11 @@
               </div>
             </div>
             @auth
-              <button type="submit" class="btn btn-success btn-block">Ajukan Sewa</button>
+              @if (Auth::user()->role == 'Pencari')
+                <button type="submit" class="btn btn-success btn-block">Ajukan Sewa</button>
+              @else
+                <button disabled="disabled" class="btn btn-info btn-block">Hanya Login Sebagai Pencari</button>
+              @endif
             @else
               <a href="{{route('login')}}" class="btn btn-outline-primary btn-block">Masuk</a>
             @endauth
