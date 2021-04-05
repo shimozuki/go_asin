@@ -47,7 +47,7 @@
         </div>
         <div class="pl-3">
           <i class="fas fa-calendar-check mr-1" style="color: darkolivegreen"></i>
-          <span style="color: black">20 Transaksi Berhasil</span> <br>
+          <span style="color: black">{{getTransaksiSuccess($kamar->user_id)}} Transaksi Berhasil</span> <br>
 
           <button class="btn btn-outline-info btn-sm mt-5">Tanya Pemilik Kos</button>
         </div>
@@ -141,7 +141,7 @@
               <option value="{{$kamar->harga_kamar}}" selected></option>
             </select>
             <div class="d-flex">
-              <input type="text" name="tgl_sewa" class="form-control datepicker mr-2" id="datepicker" placeholder="TGL Sewa" data-date-start-date="0d" autocomplete="off" required>
+              <input type="text" name="tgl_sewa" class="form-control datepicker mr-2" id="datepicker" placeholder="Mulai Kos"  autocomplete="off" required>
               <select name="lama_sewa" id="lamasewa" class="form-control datepicker DropChange">
                 <option>Lama Sewa</option>
                 <option value="1">1 Bulan</option>
@@ -150,6 +150,7 @@
                 <option value="12">1 Tahun</option>
               </select>
             </div>
+            <small>Kamu bisa mengajukan kos 2 bulan dari sekarang.</small>
           </div>
         </div>
         <div class="card shadow">
