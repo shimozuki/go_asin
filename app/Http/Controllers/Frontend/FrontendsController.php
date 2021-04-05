@@ -12,7 +12,8 @@ class FrontendsController extends Controller
     public function homepage()
     {
       $kamar = kamar::all();
-      return view('frontend.index', compact('kamar'));
+      $countkamar = kamar::count();
+      return view('frontend.index', compact('kamar','countkamar'));
     }
 
     // Show Kamar
