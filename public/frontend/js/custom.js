@@ -3,10 +3,11 @@ $('#datepicker').datepicker({
   clearBtn: true,
   changeYear: true,
   changeMonth: true,
-  minDate: new Date(),
-  dateFormat: "yy-mm-dd",
-  todayHighlight: true,
   autoclose: true,
+  todayHighlight: true,
+  format: 'mm/dd/yyyy',
+  startDate: new Date(),
+  endDate: new Date(new Date().setDate(new Date().getDate() + 60))
 });
 
 // Total harga kamar + lama sewa
