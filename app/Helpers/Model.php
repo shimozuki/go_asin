@@ -1,5 +1,5 @@
 <?php
-use App\Models\{provinsi,User,DataUser,payment};
+use App\Models\{provinsi,User,DataUser,payment,Transaction};
 
 
 // Ambil nama provinsi by kode
@@ -107,5 +107,17 @@ if (! function_exists('getNamePemilikBank'))
       $namepemilikbank = !empty($data) ? $data->nama_pemilik : 'Not Found';
       $namepemilikbank = !empty($namepemilikbank) ? $namepemilikbank : 'Not Found';
       return $namepemilikbank;
+    }
+}
+
+// Ambil nama pemilik bank by user id
+if (! function_exists('getTransaksiSuccess'))
+{
+    function getTransaksiSuccess($user_id=0)
+    {
+      $model = new Transaction;
+      $data  = $model::where('user_id',$user_id)->where('status','Proses')->get();
+      $transaksi = !empty($data) ? $data->count() : '0';
+      return $transaksi;
     }
 }
