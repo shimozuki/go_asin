@@ -71,20 +71,20 @@ class TransactionController extends Controller
           $kamar->end_date_sewa       = Carbon::parse($request->tgl_sewa)->addDays($kamar->hari)->format('d-m-Y');
           $kamar->save();
 
+          // jika sukses Simpan ke table payment
+          if ($kamar) {
+            $payment = new payment;
+            $payment->transaction_id    = $kamar->id;
+            $payment->user_id           = Auth::id();
+            $payment->kamar_id          = $id;
+            $payment->save();
+          }
+
           if ($kamar = $request->credit) {
             $point = User::where('id', Auth::id())->firstOrFail();
             $credit = $point->credit - $point->credit;
             $point->credit = $credit;
             $point->save();
-          }
-
-          // jika sukses Simpan ke table payment
-          if ($kamar) {
-            $payment = new payment;
-            $payment->transaction_id    = $room->id;
-            $payment->user_id           = Auth::id();
-            $payment->kamar_id          = $id;
-            $payment->save();
           }
 
           Session::flash('success','Berhasil, Silahkan Melakukan Pembayaran');

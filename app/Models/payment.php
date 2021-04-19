@@ -19,6 +19,6 @@ class payment extends Model
 
     public function transaksi()
     {
-      return $this->hasOne(Transaction::class);
+      return $this->hasMany(Transaction::class);
     }
 }
