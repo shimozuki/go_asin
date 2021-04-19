@@ -159,7 +159,8 @@
               <div>
                 <p>Harga Sewa <br>
                   Biaya Admin <br>
-                  Depost
+                  Deposit <br>
+                  Point
                 </p>
               </div>
               <div>
@@ -167,10 +168,24 @@
                 <p style="color: black">
                   <span id="sewakamar"></span> <br>
                   Rp. 10.000.00 <br>
-                  Rp. 300.000
+                  Rp. 300.000 <br>
+                  + 2 Points
                 </p>
                 <input type="hidden" class="DropChange" id="depost" value="300000">
                 <input type="hidden" class="DropChange" id="biayadmin" value="10000">
+                <input type="hidden" class="DropChange" id="points" value="{{calculatePointUser(Auth::id())}}">
+              </div>
+            </div>
+            <div class="mb-3 d-flex justify-content-between">
+              <div>
+                <div class="custom-control custom-switch custom-switch-danger switch-md mr-2 mb-1">
+                  <input type="checkbox" name="credit" class="custom-control-input" id="useCredit" value="false">
+                  <label class="custom-control-label" for="useCredit">
+                  </label>
+                </div>
+              </div>
+              <div>
+                {{getPointUser(Auth::id())}} Points ( {{rupiah(calculatePointUser(Auth::id()))}} )
               </div>
             </div>
             <hr>
@@ -180,10 +195,14 @@
                   Total Pembayaran
                 </p>
               </div>
-              <div>
-              <p style="color: black" id="hargatotal"></p>
+              <div id="harga">
+                <p style="color: black" id="hargatotal"></p>
               </div>
+              <p id="show">
+                <span style="color: black" id="hargatotalpoints"></span>
+              </p>
             </div>
+
             @auth
               @if (Auth::user()->role == 'Pencari')
                 <button type="submit" class="btn btn-success btn-block">Ajukan Sewa</button>

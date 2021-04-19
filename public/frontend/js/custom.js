@@ -25,14 +25,31 @@ $(function() {
 // Total harga sewa kamar keseluruhan
 $(function() {
   $(".DropChange").change(function(){
-    var valone = $('#hargakamar').val();
-    var valtwo = $('#lamasewa').val();
-    var valThree = $('#depost').val();
-    var valFour = $('#biayadmin').val();
-    var perkalian =  valone  * valtwo;
+    var valone      = $('#hargakamar').val();
+    var valtwo      = $('#lamasewa').val();
+    var valThree    = $('#depost').val();
+    var valFour     = $('#biayadmin').val();
+    var perkalian   =  valone  * valtwo;
     var jumlah = parseInt(perkalian) + parseInt(valThree) + parseInt(valFour);
-    var totalharga = 'Rp ' + jumlah.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+    var totalharga  = 'Rp ' + jumlah.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
     $('#hargatotal').text(totalharga);
+  });
+});
+
+
+// Total harga di kurangi points
+$(function () {
+  $(".DropChange").change(function () {
+    var valPoints = $('#points').val();
+    var valone      = $('#hargakamar').val();
+    var valtwo      = $('#lamasewa').val();
+    var valThree    = $('#depost').val();
+    var valFour     = $('#biayadmin').val();
+    var perkalian   =  valone  * valtwo;
+    var jumlah      = parseInt(perkalian) + parseInt(valThree) + parseInt(valFour);
+    var total = parseInt(jumlah) - parseInt(valPoints);
+    var totalhargapoints = 'Rp ' + total.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+    $('#hargatotalpoints').text(totalhargapoints);
   });
 });
 
@@ -41,4 +58,20 @@ document.getElementById('lamasewa').addEventListener('change', function () {
   var style = this.value == 1 ? 'block' : this.value == 3 ? 'block' : this.value == 6 ? 'block' : this.value == 12 ? 'block' : 'none';
 
   document.getElementById('tampil').style.display = style;
+});
+
+var switchStatus = false;
+$("#useCredit").on('change', function() {
+    if ($(this).is(':checked')) {
+      switchStatus = $(this).is(':checked');
+      alert('Gunakan Points Untuk Pembayaran ?');// To verify
+      document.getElementById("show").style.display = "block";
+      document.getElementById("harga").style.display = "none";
+    }
+    else {
+      switchStatus = $(this).is(':checked');
+      alert('Gak Jadi Deh !');// To verify
+      document.getElementById("show").style.display = "none";
+      document.getElementById("harga").style.display = "block";
+    }
 });

@@ -49,7 +49,7 @@ class BookListController extends Controller
         $kamar->save();
         if ($kamar) {
           // Add credit point
-          $point = User::where('id', $payment->user_id)->firstOrFail();
+          $point = User::where('id', $confirm->user_id)->firstOrFail();
           $point->credit  = $point->credit + 2;
           $point->save();
         }

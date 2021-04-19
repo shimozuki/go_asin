@@ -56,8 +56,17 @@ class TransactionController extends Controller
           } elseif ($request->lama_sewa == 12) {
             $kamar->hari              = 360;
           }
+
+          $points = calculatePointUser(Auth::id());
+
           $kamar->harga_kamar         = $room->harga_kamar;
-          $kamar->harga_total         = $room->harga_kamar * $request->lama_sewa + $number;
+          if ($request->credit) {
+            $totalharga      = $room->harga_kamar * $request->lama_sewa + $number;
+            $kamar->harga_total       = $totalharga - $points;
+          } else {
+            $kamar->harga_total       = $room->harga_kamar * $request->lama_sewa + $number;
+          }
+
           $kamar->tgl_sewa            = Carbon::parse($request->tgl_sewa)->format('d-m-Y');
           $kamar->end_date_sewa       = Carbon::parse($request->tgl_sewa)->addDays($kamar->hari)->format('d-m-Y');
           $kamar->save();
