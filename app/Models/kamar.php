@@ -60,4 +60,9 @@ class kamar extends Model
       return $this->hasOne('App\Models\provinsi','kode','provinsi_id');
     }
 
+    public function transaksi()
+    {
+      return $this->hasOne('App\Models\Transaction','kamar_id');
+    }
+
 }
