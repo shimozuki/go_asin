@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Transaction,kamar,payment};
+use App\Models\{Transaction,kamar,payment,User};
 use Auth;
 use Str;
 use Session;
@@ -61,7 +61,7 @@ class TransactionController extends Controller
 
           $kamar->harga_kamar         = $room->harga_kamar;
           if ($request->credit) {
-            $totalharga      = $room->harga_kamar * $request->lama_sewa + $number;
+            $totalharga               = $room->harga_kamar * $request->lama_sewa + $number;
             $kamar->harga_total       = $totalharga - $points;
           } else {
             $kamar->harga_total       = $room->harga_kamar * $request->lama_sewa + $number;
@@ -71,12 +71,19 @@ class TransactionController extends Controller
           $kamar->end_date_sewa       = Carbon::parse($request->tgl_sewa)->addDays($kamar->hari)->format('d-m-Y');
           $kamar->save();
 
+          if ($kamar = $request->credit) {
+            $point = User::where('id', Auth::id())->firstOrFail();
+            $credit = $point->credit - $point->credit;
+            $point->credit = $credit;
+            $point->save();
+          }
+
           // jika sukses Simpan ke table payment
           if ($kamar) {
             $payment = new payment;
-            $payment->transaction_id    = $kamar->id;
-            $payment->user_id           = $kamar->user_id;
-            $payment->kamar_id          = $kamar->kamar_id;
+            $payment->transaction_id    = $room->id;
+            $payment->user_id           = Auth::id();
+            $payment->kamar_id          = $id;
             $payment->save();
           }
 
