@@ -47,7 +47,7 @@
         </div>
         <div class="pl-3">
           <i class="fas fa-calendar-check mr-1" style="color: darkolivegreen"></i>
-          <span style="color: black">{{getTransaksiSuccess($kamar->transaksi->user_id)}} Transaksi Berhasil</span> <br>
+          <span style="color: black">{{getTransaksiSuccess(!empty($kamar->transaksi->user_id) ? $kamar->transaksi->user_id : '')}} Transaksi Berhasil</span> <br>
 
           <button class="btn btn-outline-info btn-sm mt-5">Tanya Pemilik Kos</button>
         </div>
