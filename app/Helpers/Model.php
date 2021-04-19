@@ -110,7 +110,7 @@ if (! function_exists('getNamePemilikBank'))
     }
 }
 
-// Ambil nama pemilik bank by user id
+// Get transaksi sukses
 if (! function_exists('getTransaksiSuccess'))
 {
     function getTransaksiSuccess($user_id=0)
@@ -118,6 +118,31 @@ if (! function_exists('getTransaksiSuccess'))
       $model = new Transaction;
       $data  = $model::where('user_id',$user_id)->where('status','Proses')->get();
       $transaksi = !empty($data) ? $data->count() : '0';
+      return $transaksi;
+    }
+}
+
+// Get point/credit user
+if (! function_exists('getPointUser'))
+{
+    function getPointUser($id=0)
+    {
+      $model = new User;
+      $data  = $model::select('id','credit')->where('id',$id)->first();
+      $transaksi = !empty($data) ? $data->credit : '0';
+      return $transaksi;
+    }
+}
+
+// Calculate point/credit user
+if (! function_exists('calculatePointUser'))
+{
+    function calculatePointUser($id=0)
+    {
+      $model = new User;
+      $data  = $model::select('id','credit')->where('id',$id)->first();
+      $cal = $data->credit * 2000;
+      $transaksi = !empty($cal) ? $cal : '0';
       return $transaksi;
     }
 }
