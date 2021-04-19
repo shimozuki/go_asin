@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Transaction,kamar,payment};
+use App\Models\{Transaction,kamar,payment,User};
 use auth;
 use Session;
 use Carbon\carbon;
@@ -47,6 +47,12 @@ class BookListController extends Controller
         $kamar = kamar::where('id', $confirm->kamar_id)->first();
         $kamar->sisa_kamar = $kamar->sisa_kamar - 1;
         $kamar->save();
+        if ($kamar) {
+          // Add credit point
+          $point = User::where('id', $payment->user_id)->firstOrFail();
+          $point->credit  = $point->credit + 2;
+          $point->save();
+        }
       }
       Session::flash('success','Payment Sudah Di Proses');
       return redirect('/pemilik/booking-list');
