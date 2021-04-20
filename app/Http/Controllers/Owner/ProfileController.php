@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{DataUser,User};
+use App\Models\{DataUser,User,Testimoni};
 use Auth;
 use Session;
 
@@ -32,6 +32,17 @@ class ProfileController extends Controller
       $datauser->save();
 
       Session::flash('success','Data Payment Berhasil Disimpan');
+      return back();
+    }
+
+    // Testimoni
+    public function testimoni(Request $request)
+    {
+      Testimoni::create([
+        'user_id'   => Auth::id(),
+        'testimoni' => $request->testimoni
+      ]);
+
       return back();
     }
 }

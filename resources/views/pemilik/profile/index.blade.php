@@ -25,6 +25,13 @@
                       Payment
                   </a>
               </li>
+
+              <li class="nav-item">
+                  <a class="nav-link d-flex py-75" id="testimoni" data-toggle="pill" href="#data-testimoni" aria-expanded="true">
+                      <i class="feather icon-cast mr-50 font-medium-3"></i>
+                      Testimoni
+                  </a>
+              </li>
           </ul>
       </div>
       <!-- right content section -->
@@ -33,6 +40,8 @@
           <div class="card-content">
             <div class="card-body">
               <div class="tab-content">
+
+                {{-- Payment --}}
                 <div role="tabpanel" class="tab-pane active" id="data-payment" aria-labelledby="payment" aria-expanded="true">
                   <form action="{{url('pemilik/payment-profile', Auth::id())}}" method="POST">
                     @csrf
@@ -77,6 +86,32 @@
                       </div>
                     </div>
                   </form>
+                </div>
+
+                {{-- Testimoni --}}
+                <div role="tabpanel" class="tab-pane" id="data-testimoni" aria-labelledby="testimoni" aria-expanded="true">
+                  @if (empty(Auth::user()->testimoni->user_id))
+                    <form action="{{url('pemilik/testimoni')}}" method="POST">
+                      @csrf
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="form-group">
+                            <div class="controls">
+                              <label for="Testimoni">Testimoni</label>
+                              <textarea name="testimoni" class="form-control" rows="5" placeholder="Tulis Ulasan Kamu Disini"></textarea>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-start">
+                          <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save</button>
+                          <a href="/home" class="btn btn-outline-warning">Cancel</a>
+                        </div>
+                      </div>
+                    </form>
+                  @else
+                    <h3>Testimoni Sudah Diisi !</h3>
+                  @endif
                 </div>
               </div>
             </div>
