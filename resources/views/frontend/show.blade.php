@@ -173,20 +173,24 @@
                 </p>
                 <input type="hidden" class="DropChange" id="depost" value="300000">
                 <input type="hidden" class="DropChange" id="biayadmin" value="10000">
-                <input type="hidden" class="DropChange" id="points" value="{{calculatePointUser(Auth::id())}}">
+                @auth
+                  <input type="hidden" class="DropChange" id="points" value="{{calculatePointUser(Auth::id())}}">
+                @endauth
               </div>
             </div>
             <div class="mb-3 d-flex justify-content-between">
-              <div>
-                <div class="custom-control custom-switch custom-switch-danger switch-md mr-2 mb-1">
-                  <input type="checkbox" name="credit" class="custom-control-input" id="useCredit" value="false">
-                  <label class="custom-control-label" for="useCredit">
-                  </label>
+                @auth
+                <div>
+                  <div class="custom-control custom-switch custom-switch-danger switch-md mr-2 mb-1">
+                    <input type="checkbox" name="credit" class="custom-control-input" id="useCredit" value="false">
+                    <label class="custom-control-label" for="useCredit">
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div>
+                <div>
                 {{getPointUser(Auth::id())}} Points ( {{rupiah(calculatePointUser(Auth::id()))}} )
-              </div>
+                </div>
+                @endauth
             </div>
             <hr>
             <div class="d-flex justify-content-between">

@@ -58,4 +58,9 @@ class User extends Authenticatable
       return $this->hasOne(Transaction::class);
     }
 
+    public function testimoni()
+    {
+      return $this->hasOne(Testimoni::class);
+    }
+
 }

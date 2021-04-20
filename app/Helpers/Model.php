@@ -1,7 +1,6 @@
 <?php
 use App\Models\{provinsi,User,DataUser,payment,Transaction};
 
-
 // Ambil nama provinsi by kode
 if (! function_exists('getNameProvinsi'))
 {
