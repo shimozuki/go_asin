@@ -4,7 +4,7 @@
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="{{url('/home')}}">
                     <div class="brand-logo"></div>
-                    <h2 class="brand-text mb-0">KNDJH</h2>
+                    <h2 class="brand-text mb-0">Pemilik</h2>
                 </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block primary" data-ticon="icon-disc"></i></a></li>
         </ul>
@@ -18,15 +18,15 @@
           </a>
         </li>
 
-        {{-- Kamar --}}
-        <li class="nav-item {{ Request::is('pemilik/kamar*') ? 'has-sub sidebar-group-active open' : ''}}">
-          <a href="#"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Campaign">Kamar</span></a>
+        {{-- tanah --}}
+        <li class="nav-item {{ Request::is('pemilik/tanah*') ? 'has-sub sidebar-group-active open' : ''}}">
+          <a href="#"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Campaign">Rumah</span></a>
           <ul class="menu-content">
-            <li class="{{Request::is('pemilik/kamar') ? 'active' : ''}}">
-              <a href="{{route('kamar.index')}}"><i></i><span class="menu-item" data-i18n="Aktif">Data Kamar</span></a>
+            <li class="{{Request::is('pemilik/tanah') ? 'active' : ''}}">
+              <a href="{{route('tanah.index')}}"><i></i><span class="menu-item" data-i18n="Aktif">Data Rumah</span></a>
             </li>
-            <li class="{{Request::is('pemilik/kamar/create') ? 'active' : ''}}">
-              <a href="{{route('kamar.create')}}"><i></i><span class="menu-item" data-i18n="Selesai">Tambah Kamar</span></a>
+            <li class="{{Request::is('pemilik/tanah/create') ? 'active' : ''}}">
+              <a href="{{route('tanah.create')}}"><i></i><span class="menu-item" data-i18n="Selesai">Tambah Rumah</span></a>
             </li>
           </ul>
         </li>
@@ -39,7 +39,7 @@
 
         {{-- Penghuni --}}
         <li class="nav-item {{ (request()->is('')) ? 'active' : '' }}">
-          <a href="/pemilik/penghuni"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Penghuni">Penghuni</span>
+          <a href="/pemilik/penghuni"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Penghuni">Penyewa</span>
           </a>
         </li>
 
@@ -55,7 +55,7 @@
         <li class="nav-item mr-auto">
           <a class="navbar-brand" href="../../../html/ltr/horizontal-menu-template-dark/index.html">
             <div class="brand-logo"></div>
-            <h2 class="brand-text mb-0">Vuexy</h2>
+            <h2 class="brand-text mb-0">User</h2>
           </a>
         </li>
         <li class="nav-item nav-toggle">
@@ -76,11 +76,11 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="{{url('user/myroom')}}"><i class="feather icon-square"></i><span>Kamar Saya</span></a>
+          <a class="nav-link" href="{{url('user/myroom')}}"><i class="feather icon-square"></i><span>tanah Saya</span></a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/"><i class="feather icon-square"></i><span>Pilih Kamar</span></a>
+          <a class="nav-link" href="/"><i class="feather icon-square"></i><span>Pilih tanah</span></a>
         </li>
       </ul>
     </div>

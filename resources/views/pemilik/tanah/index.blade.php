@@ -18,8 +18,8 @@
     <div class="col-12">
         <div class="card">
           <div class="card-header">
-              <h4 class="card-title">Data List Kamar
-                <a href="{{route('kamar.create')}}" class="btn btn-primary btn-sm">Tambah Kamar</a>
+              <h4 class="card-title">Data List Rumah
+                <a href="{{route('tanah.create')}}" class="btn btn-primary btn-sm">Tambah Data</a>
               </h4>
           </div>
           <div class="card-content">
@@ -29,12 +29,11 @@
                   <thead>
                     <tr>
                       <th width="1%">No</th>
-                      <th class="text-nowrap">Nama Kamar</th>
-                      <th class="text-nowrap">Type Kamar</th>
-                      <th class="text-nowrap">Jenis Kamar</th>
+                      <th class="text-nowrap">Nama Perumahan</th>
+                      <th class="text-nowrap">Type Rumah</th>
                       <th class="text-nowrap">Tersedia</th>
                       <th class="text-nowrap">Sisa</th>
-                      <th class="text-nowrap">Harga Kamar</th>
+                      <th class="text-nowrap">Harga Sewa Rumah</th>
                       <th class="text-center">Action</th>
                     </tr>
                   </thead>
@@ -42,19 +41,17 @@
                       @php
                         $no = 1;
                       @endphp
-                      @foreach ($kamar as $item)
+                      @foreach ($tanah as $item)
                       <tr>
                         <td>{{$no}}</td>
-                        <td>{{$item->nama_kamar}}</td>
+                        <td>{{$item->nama}}</td>
                         <td>{{$item->kategori}}</td>
-                        <td>{{$item->jenis_kamar}}</td>
-                        <td>{{$item->stok_kamar}}</td>
-                        <td>{{$item->sisa_kamar}}</td>
-                        <td>{{$item->harga_kamar}}</td>
+                        <td>{{$item->stok}}</td>
+                        <td>{{$item->sisa}}</td>
+                        <td>{{$item->harga}}</td>
                         <td class="text-center">
-                          <a href="{{route('kamar.show', $item->slug)}}" class="btn btn-info btn-sm">Show</a>
-                          <a href="{{route('kamar.edit', $item->id)}}" class="btn btn-warning btn-sm">Edit</a>
-                        </td>
+                          <a href="{{route('tanah.show', $item->slug)}}" class="btn btn-info btn-sm">Show</a>
+                          <a href="{{route('tanah.edit', $item->id)}}" class="btn btn-warning btn-sm">Edit</a>
                       </tr>
                       @php
                         $no++;

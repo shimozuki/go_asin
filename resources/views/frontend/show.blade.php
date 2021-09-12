@@ -1,38 +1,32 @@
 @extends('layouts.frontend.index')
 @section('title')
-  {{$kamar->nama_kamar}}
+  {{$tanah->nama}}
 @endsection
 @section('card')
 <div class="container">
   <div class="row">
     <div class="col-md-8 mt-3 mb-3">
       <div class="card shadow">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="https://cdn.pixabay.com/photo/2014/08/11/21/39/wall-416060_1280.jpg" class="d-block w-100" style="height: 350px" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="https://cdn.pixabay.com/photo/2015/10/20/18/57/furniture-998265_1280.jpg" class="d-block w-100" style="height: 350px" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="https://cdn.pixabay.com/photo/2014/12/27/14/37/living-room-581073_1280.jpg" class="d-block w-100" style="height: 350px" alt="...">
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
+        @foreach($tanah->fotokamar as $key => $slider)
+        <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+            <img src="{{asset('foto_kamar/' .$slider->foto_kamar)}}" class="d-block w-100"  alt="..."> 
         </div>
+        @endforeach
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button"  data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true">     </span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
       </div>
     </div>
 
@@ -41,17 +35,22 @@
         <div class="d-flex" style="margin: 5%">
           <img src="https://cdn.pixabay.com/photo/2018/08/28/13/29/avatar-3637561_1280.png" width="50px" height="50px" class="rounded">
           <div class="pl-3">
-            <span class="font-weight-bold" style="font-size: 20px; color:black">{{getNameUser($kamar->user_id)}}</span>
-            <p style="font-size: 12px; margin-top:-5%">Pemilik - Aktif Sejak {{monthyear($kamar->user->created_at)}} </p>
+            <span class="font-weight-bold" style="font-size: 20px; color:black">{{getNameUser($tanah->user_id)}}</span>
+            <p style="font-size: 12px; margin-top:-5%">Pemilik - Aktif Sejak {{monthyear($tanah->user->created_at)}} </p>
           </div>
         </div>
+        <!-- <div class="pl-3">
+          <i class="fas fa-user mr-1" style="color: darkolivegreen"></i>
+          <span style="color: black">Kos {{$tanah->jenis_kamar}}</span> <br>
+        </div> -->
         <div class="pl-3">
           <i class="fas fa-calendar-check mr-1" style="color: darkolivegreen"></i>
-          <span style="color: black">{{getTransaksiSuccess(!empty($kamar->transaksi->user_id) ? $kamar->transaksi->user_id : '')}} Transaksi Berhasil</span> <br>
-
-          <button class="btn btn-outline-info btn-sm mt-5">Tanya Pemilik Kos</button>
+          <span style="color: black">{{getTransaksiSuccess(!empty($tanah->transaksi->user_id) ? $tanah->transaksi->user_id : '')}} Transaksi Berhasil</span> <br>
         </div>
-
+        <div class="pl-3">
+          <i class="fas fa-calendar-week mr-1" style="color: darkolivegreen"></i>
+          <span style="color: black">Tersedia {{$tanah->sisa}} Tanah </span> <br>
+        </div>
       </div>
     </div>
 
@@ -59,17 +58,17 @@
     <div class="col-md-8 col-sm-12 col-12 mb-3">
       <div class="card shadow">
         <div class="card-body">
-          <p class="font-weight-bold" style="font-size: 20px; color:black"> {{$kamar->nama_kamar}} </p>
+          <p class="font-weight-bold" style="font-size: 20px; color:black"> {{$tanah->nama}} </p>
           <div class="mb-3">
-            <span style=" color:black">
-              {{$kamar->jenis_kamar}} - {{getNameProvinsi($kamar->provinsi_id)}}
-              - Tersisa {{$kamar->sisa_kamar}} Kamar
-            </span>
+            <!-- <span style=" color:black">
+              {{$tanah->jenis_kamar}} - {{getNameProvinsi($tanah->provinsi_id)}}
+              - Tersisa {{$tanah->sisa}} Kamar
+            </span> -->
           </div>
           <div class="d-flex justify-content-between">
             <div>
               <p style="font-size: 14px">
-                Terakhir diupdate {{forDate($kamar->updated_at)}}
+                Terakhir diupdate {{forDate($tanah->updated_at)}}
               </p>
             </div>
             <div>
@@ -81,37 +80,37 @@
           <hr>
           <h5 style="color: black">Fasilitas</h5>
           <p style="font-size: 14px">
-            {{$kamar->listrik == 0 ? 'Tidak Termasuk Listrik' : 'Termasuk Listrik'}} <br>
+            {{$tanah->listrik == 0 ? 'Tidak Termasuk Listrik' : 'Termasuk Listrik'}} <br>
             Tidak Ada Minimum Pembayaran <br>
             Diskon Jutaan
           </p>
           <hr>
-          <h6 class="font-weight-bold">Luas Kamar</h6>
+          <h6 class="font-weight-bold">Luas</h6>
           <p style="font-size: 14px">
-            {{$kamar->luas_kamar}}
+            {{$tanah->luas}}
           </p>
           <h6 class="font-weight-bold">Fasilitas Yang Didapat</h6>
           <p style="font-size: 14px">
             <div class="row">
               <div class="col-md-6">
-                {{-- Fasilitas Kamar --}}
-                @foreach ($kamar->fkamar as $fkamar)
-                  {{$fkamar->name}} <br>
+                {{-- Fasilitas Bangunan --}}
+                @foreach ($tanah->fbangunan as $fbangunan)
+                  {{$fbangunan->name}} <br>
                 @endforeach
 
                 {{-- Fasilitas Kamar Mandi --}}
-                @foreach ($kamar->kmandi as $kmandi)
+                @foreach ($tanah->kmandi as $kmandi)
                   {{$kmandi->name}} <br>
                 @endforeach
               </div>
               <div class="col-md-6">
                 {{-- Fasilitas Bersama --}}
-                @foreach ($kamar->fbersama as $fbersama)
+                @foreach ($tanah->fbersama as $fbersama)
                   {{$fbersama->name}} <br>
                 @endforeach
 
                 {{-- Fasilitas Parkir --}}
-                @foreach ($kamar->fparkir as $fparkir)
+                @foreach ($tanah->fparkir as $fparkir)
                   {{$fparkir->name}} <br>
                 @endforeach
               </div>
@@ -121,7 +120,7 @@
           <div class="d-flex justify-content-between">
             <p style="font-size: 14px">
               {{-- Fasilitas Umum --}}
-              @foreach ($kamar->area as $area)
+              @foreach ($tanah->area as $area)
                 {{$area->name}} <br>
               @endforeach
             </p>
@@ -132,16 +131,16 @@
 
     {{-- Proses --}}
     <div class="col-md-4 col-sm-12 col-12 mb-3">
-      <form action="{{route('sewa.store', $kamar->id)}}" method="post">
+      <form action="{{route('sewa.store', $tanah->id)}}" method="post">
         @csrf
         <div class="card shadow">
           <div class="card-body">
-            <p> {{rupiah($kamar->harga_kamar)}} / Bulan</p>
-            <select class="DropChange" id="hargakamar" hidden>
-              <option value="{{$kamar->harga_kamar}}" selected></option>
+            <p> {{rupiah($tanah->harga_sewa)}} / Bulan</p>
+            <select class="DropChange" id="hargasewa" hidden>
+              <option value="{{$tanah->harga_sewa}}" selected></option>
             </select>
             <div class="d-flex">
-              <input type="text" name="tgl_sewa" class="form-control datepicker mr-2" id="datepicker" placeholder="Mulai Kos"  autocomplete="off" required>
+              <input type="text" name="tgl_sewa" class="form-control datepicker mr-2" id="datepicker" placeholder="Mulai Sewa"  autocomplete="off" required>
               <select name="lama_sewa" id="lamasewa" class="form-control datepicker DropChange">
                 <option>Lama Sewa</option>
                 <option value="1">1 Bulan</option>

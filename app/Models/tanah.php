@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class kamar extends Model
+class tanah extends Model
 {
     protected $fillable = [
-        'user_id','nama_kamar','jenis_kamar','luas_kamar','stok_kamar','harga_kamar','sisa_kamar','bg_foto','ket_lain','ket_biaya','desc','kategori','book','listrik','provinsi_id'
+        'user_id','nama','luas','stok','harga_sewa','sisa','bg_foto','ket_lain','ket_biaya','desc','kategori','book','provinsi_id'
     ];
 
     public function getRouteKeyName()
@@ -20,9 +20,9 @@ class kamar extends Model
       return $this->belongsTo(User::class);
     }
 
-    public function fkamar()
+    public function fbangunan()
     {
-      return $this->hasMany(fkamar::class);
+      return $this->hasMany(fbangunan::class);
     }
 
     public function kmandi()
@@ -57,7 +57,7 @@ class kamar extends Model
 
     public function payment()
     {
-      return $this->hasOne('App\Models\payment','kamar_id');
+      return $this->hasOne('App\Models\payment','tanah_id');
     }
 
     public function provinsi()
@@ -67,7 +67,6 @@ class kamar extends Model
 
     public function transaksi()
     {
-      return $this->hasOne('App\Models\Transaction','kamar_id');
+      return $this->hasOne('App\Models\Transaction','tanah_id');
     }
-
 }

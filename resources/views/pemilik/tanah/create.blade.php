@@ -10,33 +10,34 @@
         </div>
         <div class="card-content">
           <div class="card-body">
-            <form action="{{route('kamar.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('tanah.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-body ">
                     <div class="row">
                         <div class="col-sm-3">
-                            <label class="col-form-label">Nama Kamar</label>
-                            <input type="text" class="form-control" name="nama_kamar" placeholder="Nama Kamar" autocomplete="off" required>
+                            <label class="col-form-label">Nama Perumahan</label>
+                            <input type="text" class="form-control" name="nama" placeholder="Nama blok atau nama perumahan" autocomplete="off" required>
                         </div>
                         <div class="col-sm-3">
-                            <label class="col-form-label">Kategori</label>
+                            <label class="col-form-label">Kategori Rumah</label>
                             <select name="kategori" class="form-control" required>
-                                <option value="">--Kategori Kamar--</option>
-                                <option value="Kost">Kost</option>
-                                <option value="Apartment">Apartment</option>
-                            </select>
+                                <option value="">--Kategori Tanah--</option>
+                                <option value="tanah kosong">tanah kosng</option>
+                                <option value="tanah dan bangunan">tanah dan bagunan</option>
+                            </select>Kamar
                         </div>
                         <div class="col-sm-3">
-                            <label class="col-form-label">Jenis Kamar</label>
-                            <select name="jenis_kamar" class="form-control" required>
-                                <option value="">--Putra/Putri--</option>
-                                <option value="Putra">Putra</option>
-                                <option value="Putri">Putri</option>
-                                <option value="Campur">Campur</option>
-                            </select>
-                        </div>
+                        <label class="col-form-label">Kecematan</label>
+                        <select name="provinsi_id" class="form-control kode" id="select2" required>
+                            <option value="">-- Pilih Kecamatan --</option>
+                                @foreach ($provinsi as $item)
+                                    <option value="{{$item->kode}}">{{$item->nama}}</option>
+                                @endforeach
+                        </select>
+                    </div>
+                    <span id="select-provinsi"></span>
                         <div class="col-sm-3">
-                            <label class="col-form-label">Background Foto Kamar</label>
+                            <label class="col-form-label">Background Rumah</label>
                             <input type="file" name="bg_foto" class="form-control" required>
                         </div>
                     </div>
@@ -53,45 +54,32 @@
                             </select>
                         </div>
                         <div class="col-sm-3">
-                            <label class="col-form-label">Luas Kamar</label>
-                            <input type="text" class="form-control" name="luas_kamar" placeholder="Contoh 3 x 4" required>
+                            <label class="col-form-label">Luas Bangunan</label>
+                            <input type="text" class="form-control" name="luas" placeholder="Contoh 3 x 4" required>
                         </div>
                         <div class="col-sm-3">
-                            <label class=" col-form-label">Stok Kamar</label>
-                            <input type="number" class="form-control" name="stok_kamar" placeholder="Kamar Tersedia" required>
+                            <label class=" col-form-label">Unit Rumah</label>
+                            <input type="number" class="form-control" name="stok" placeholder="Tanah Tersedia" required>
                         </div>
                         <div class="col-sm-3">
-                            <label class="col-form-label">Harga Kamar</label>
-                            <input type="number" class="form-control" name="harga_kamar" placeholder="Harga Kamar" required>
+                            <label class="col-form-label">Harga Sewa</label>
+                            <input type="number" class="form-control" name="harga_sewa" placeholder="Harga Sewa" required>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3">
-                        <label class="col-form-label">Biaya Listrik</label>
-                        <select name="listrik" class="form-control" required>
-                            <option value="">-- Listrik Kamar --</option>
-                            <option value="1">Termasuk Listrik</option>
-                            <option value="0">Tidak Termasuk Listrik</option>
-                        </select>
-                    </div>
+                    <!-- <div class="col-sm-3">
+                        <label class="col-form-label">Harga Rumah</label>
+                        <input type="number" class="form-control" name="harga_kamar" placeholder="Harga Kamar" required>
+                    </div> -->
 
-                    <div class="col-sm-3">
-                        <label class="col-form-label">Provinsi</label>
-                        <select name="provinsi_id" class="form-control kode" id="select2" required>
-                            <option value="">-- Pilih Provinsi --</option>
-                                @foreach ($provinsi as $item)
-                                    <option value="{{$item->kode}}">{{$item->nama}}</option>
-                                @endforeach
-                        </select>
-                    </div>
-                    <span id="select-provinsi"></span>
+                    
                 </div>
 
                 <div class="form-group ">
                     <div class="row">
                         <div class="col-sm-4">
-                            <label class="col-form-label">Keterangan Lain</label>
+                            <label class="col-form-label">Alamat</label>
                             <textarea name="ket_lain" class="form-control" rows="4" placeholder="Opsional"></textarea>
                         </div>
                         <div class="col-sm-4">
@@ -110,8 +98,8 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-5 col-xl-5 col-10">
-                            <label class="col-form-label">Fasilitas Kamar</label>
-                            <input type="text" class="form-control" name="addmore[0][name]" placeholder="Fasilitas Kamar" required>
+                            <label class="col-form-label">Fasilitas Rumah</label>
+                            <input type="text" class="form-control" name="addmore[0][name]" placeholder="Fasilitas bangunan" required>
                         </div>
                         <div class="col-2 col-lg-1 col-xl-1">
                             <label class="col-form-label">.</label>
@@ -127,7 +115,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-5 col-xl-5 col-10">
-                                    <label class="col-form-label">Fasilitas Kama Mandi</label>
+                                    <label class="col-form-label">Fasilitas Kamar Mandi</label>
                                     <input type="text" class="form-control" name="addkm[0][name]" placeholder="Fasilitas Kama Mandi" required>
                                 </div>
                                 <div class="col-2 col-lg-1 col-xl-1">
@@ -195,7 +183,7 @@
                     <div class="form-group ">
                         <div class="row">
                             <div class="col-lg-5 col-xl-5 col-10">
-                                <label class="col-form-label">Foto Kamar</label>
+                                <label class="col-form-label">Foto Rumah</label>
                                 <input type="file" class="form-control" name="addfoto[0][foto_kamar]" required>
                             </div>
                             <div class="col-2 col-lg-1 col-xl-1">
@@ -209,8 +197,8 @@
 
                 <div class="form-group row ">
                     <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Tambah Kosan</button>
-                        <a href="{{route('kamar.index')}}" class="btn btn-warning">Batal</a>
+                        <button type="submit" class="btn btn-primary">Tambah Data</button>
+                        <a href="{{route('tanah.index')}}" class="btn btn-warning">Batal</a>
                     </div>
                 </div>
             </form>

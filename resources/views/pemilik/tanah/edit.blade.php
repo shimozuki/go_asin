@@ -6,35 +6,30 @@
     <div class="col-md-12 col-12">
       <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Edit Kamar</h4>
+            <h4 class="card-title">Edit Data</h4>
         </div>
         <div class="card-content">
           <div class="card-body">
-            <form action="{{route('kamar.update', $edit->id)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('tanah.update', $edit->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-body ">
                     <div class="row">
                         <div class="col-sm-6">
-                            <label class="col-form-label">Nama Kamar</label>
-                            <input type="text" class="form-control" name="nama_kamar" value="{{$edit->nama_kamar}}" placeholder="Nama Kamar" autocomplete="off">
+                            <label class="col-form-label">Nama Perumahan</label>
+                            <input type="text" class="form-control" name="nama" value="{{$edit->nama}}" placeholder="Nama Kamar" autocomplete="off">
                         </div>
                         <div class="col-sm-3">
-                            <label class="col-form-label">Kategori</label>
+                            <label class="col-form-label">Kategori Rumah</label>
                             <select name="kategori" class="form-control">
-                                <option value="">--Kategori Kamar--</option>
-                                <option value="Kost" {{$edit->kategori == 'Kost' ? 'selected' : ''}} >Kost</option>
-                                <option value="Apartment" {{$edit->kategori == 'Apartment' ? 'selected' : ''}}>Apartment</option>
+                                <option value="">--Kategori Rumah--</option>
+                                <option value="tanah kosong" {{$edit->kategori == 'tanah kosong' ? 'selected' : ''}} >Tanah Kosng</option>
+                                <option value="tanah dan bangunan" {{$edit->kategori == 'tanah dan bangunan' ? 'selected' : ''}}>Tanah & Bangunan</option>
                             </select>
                         </div>
                         <div class="col-sm-3">
-                            <label class="col-form-label">Jenis Kamar</label>
-                            <select name="jenis_kamar" class="form-control">
-                                <option value="">--Putra/Putri--</option>
-                                <option value="Putra" {{$edit->jenis_kamar == 'Putra' ? 'selected' : ''}}>Putra</option>
-                                <option value="Putri" {{$edit->jenis_kamar == 'Putri' ? 'selected' : ''}}>Putri</option>
-                                <option value="Campur" {{$edit->jenis_kamar == 'Campur' ? 'selected' : ''}}>Campur</option>
-                            </select>
+                            <label class="col-form-label">Harga Sewa</label>
+                            <input type="number" class="form-control" name="harga_sewa" value="{{$edit->harga_sewa}}" placeholder="Harga Sewa">
                         </div>
                     </div>
                 </div>
@@ -50,35 +45,18 @@
                             </select>
                         </div>
                         <div class="col-sm-3">
-                            <label class="col-form-label">Luas Kamar</label>
-                            <input type="text" class="form-control" name="luas_kamar" value="{{$edit->luas_kamar}}" placeholder="Contoh 3 x 4">
+                            <label class="col-form-label">Luas Bangunan</label>
+                            <input type="text" class="form-control" name="luas" value="{{$edit->luas}}" placeholder="Contoh 3 x 4">
                         </div>
                         <div class="col-sm-3">
-                            <label class=" col-form-label">Stok Kamar</label>
-                            <input type="number" class="form-control" name="stok_kamar" value="{{$edit->stok_kamar}}" placeholder="Kamar Tersedia">
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Harga Kamar</label>
-                            <input type="number" class="form-control" name="harga_kamar" value="{{$edit->harga_kamar}}" placeholder="Harga Kamar">
+                            <label class=" col-form-label">Unit Rumah</label>
+                            <input type="number" class="form-control" name="stok" value="{{$edit->stok}}" placeholder="Tanah Tersedia">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3">
-                        <label class="col-form-label">Background Foto Kamar</label>
-                        <input type="file" name="bg_foto" class="form-control">
-                    </div>
-                    <div class="col-sm-3">
-                        <label class="col-form-label">Biaya Listrik</label>
-                        <select name="listrik" class="form-control">
-                            <option value="">-- Listrik Kamar --</option>
-                            <option value="1" {{$edit->listrik == '1' ? 'selected' : ''}}>Termasuk Listrik</option>
-                            <option value="0" {{$edit->listrik == '0' ? 'selected' : ''}}>Tidak Termasuk Listrik</option>
-                        </select>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <label class="col-form-label">Provinsi</label>
+                        <label class="col-form-label">Kecamatan</label>
                         <select name="provinsi_id" class="form-control" id="select2">
                             <option value="">-- Pilih Provinsi --</option>
                                 @foreach ($provinsi as $item)
@@ -86,12 +64,15 @@
                                 @endforeach
                         </select>
                     </div>
+                    <div class="col-sm-3">
+                        <label class="col-form-label">Background Foto Rumah</label>
+                        <input type="file" name="bg_foto" class="form-control">
+                    </div>
                 </div>
-
                 <div class="form-group ">
                     <div class="row">
                         <div class="col-sm-4">
-                            <label class="col-form-label">Keterangan Lain</label>
+                            <label class="col-form-label">Alamat</label>
                             <textarea name="ket_lain" class="form-control" rows="4" placeholder="Opsional">{{$edit->ket_lain}}</textarea>
                         </div>
                         <div class="col-sm-4">
@@ -109,14 +90,14 @@
                 <span id="fkamar">
                     <div class="form-group">
                         <div class="row">
-                          @foreach ($edit->fkamar as $fkamar)
+                          @foreach ($edit->fbangunan as $fbangunan)
                             <div class="col-lg-5 col-xl-5 col-10">
-                              <label class="col-form-label">Fasilitas Kamar</label>
-                              <input type="text" class="form-control" value="{{$fkamar->name}}" placeholder="Fasilitas Kamar">
+                              <label class="col-form-label">Fasilitas bangunana</label>
+                              <input type="text" class="form-control" value="{{$fbangunan->name}}" placeholder="Fasilitas bangunana">
                             </div>
                           @endforeach
                         <div class="col-2 col-lg-1 col-xl-1">
-                            <input type="button" id="addfkamar" name="addfkamar" class="form-control btn btn-success btn-sm mt-3" value="+">
+                            <input type="button" id="addfbangunana" name="addfbangunana" class="form-control btn btn-success btn-sm mt-3" value="+">
                         </div>
                         </div>
                     </div>
@@ -197,7 +178,7 @@
                 <div class="form-group row ">
                     <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary">Update</button>
-                        <a href="{{route('kamar.index')}}" class="btn btn-warning">Batal</a>
+                        <a href="{{route('tanah.index')}}" class="btn btn-warning">Batal</a>
                     </div>
                 </div>
             </form>
@@ -209,5 +190,5 @@
 </section>
 @endsection
 @section('scripts')
-  <script src="{{asset('ctrl/kamar/create.js')}}"></script>
+  <script src="{{asset('ctrl/tanah/create.js')}}"></script>
 @endsection

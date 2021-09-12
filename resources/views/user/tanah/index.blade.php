@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 @section('title')
-  Kamar Saya
+  Tanah Saya
 @endsection
 @section('content')
 <section id="basic-datatable">
@@ -21,13 +21,13 @@
           <h5 class="mt-2">Payment</h5>
           <div style="margin-left: 2px">
             <a href="{{url('user/tagihan')}}" style="font-size: 12px">Tagihan</a> <br>
-            <a href="{{url('user/myroom')}}" style="font-size: 12px">Kamar Kamu</a>
+            <a href="{{url('user/myroom')}}" style="font-size: 12px">Tanah Kamu</a>
           </div>
 
-          <h5 class="mt-2">Kamar</h5>
+          <h5 class="mt-2">Tanah</h5>
           <div style="margin-left: 2px">
-            <a href="{{url('/')}}" style="font-size: 12px">Cari Kamar</a> <br>
-            <a href="" style="font-size: 12px">Kamar Favorite</a>
+            <a href="{{url('/')}}" style="font-size: 12px">Cari tanah</a> <br>
+            <a href="" style="font-size: 12px">tanah Favorite</a>
           </div>
         </div>
       </div>

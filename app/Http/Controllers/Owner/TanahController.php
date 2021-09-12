@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{DataUser,kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,fotokamar,provinsi};
+use App\Models\{DataUser,tanah,fbangunan,fkamar_mandi,fbersama,fparkir,area,fotokamar,provinsi};
 use Auth;
 use Session;
 
-class KamarController extends Controller
+class TanahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class KamarController extends Controller
      */
     public function index()
     {
-      $kamar = kamar::where('user_id',auth::user()->id)->get();
-      return view('pemilik.kamar.index', compact('kamar'));
+      $tanah = tanah::where('user_id',auth::user()->id)->get();
+      return view('pemilik.tanah.index', compact('tanah'));
     }
 
     /**
@@ -33,7 +33,7 @@ class KamarController extends Controller
         Session::flash('error','Data Akun Belum Lengkap !');
         return redirect('/home');
       }
-      return view('pemilik.kamar.create', compact('provinsi'));
+      return view('pemilik.tanah.create', compact('provinsi'));
     }
 
     /**
@@ -50,72 +50,71 @@ class KamarController extends Controller
       $tujuan_upload = 'bg_foto';
       $foto->move($tujuan_upload,$nama_foto);
 
-      $slug = \Str::slug($request->nama_kamar) . "-" . \Str::random(6);
-      $kamar = new Kamar;
-      $kamar->id = $request->id;
-      $kamar->user_id = auth::id();
-      $kamar->slug = $slug;
-      $kamar->nama_kamar = $request->nama_kamar;
-      $kamar->jenis_kamar = $request->jenis_kamar;
-      $kamar->luas_kamar = $request->luas_kamar;
-      $kamar->stok_kamar = $request->stok_kamar;
-      $kamar->sisa_kamar = $kamar->stok_kamar;
-      $kamar->harga_kamar = $request->harga_kamar;
-      $kamar->ket_lain = $request->ket_lain;
-      $kamar->ket_biaya = $request->ket_biaya;
-      $kamar->desc = $request->desc;
-      $kamar->kategori = $request->kategori;
-      $kamar->book = $request->book;
-      $kamar->bg_foto = $nama_foto;
-      $kamar->provinsi_id = $request->provinsi_id;
-      $kamar->save();
+      $slug = \Str::slug($request->nama_tanah) . "-" . \Str::random(6);
+      $tanah = new tanah;
+      $tanah->id = $request->id;
+      $tanah->user_id = auth::id();
+      $tanah->slug = $slug;
+      $tanah->nama = $request->nama;
+      $tanah->luas= $request->luas;
+      $tanah->stok = $request->stok;
+      $tanah->sisa = $tanah->stok;
+      $tanah->harga_sewa = $request->harga_sewa;
+      $tanah->ket_lain = $request->ket_lain;
+      $tanah->ket_biaya = $request->ket_biaya;
+      $tanah->desc = $request->desc;
+      $tanah->kategori = $request->kategori;
+      $tanah->book = $request->book;
+      $tanah->bg_foto = $nama_foto;
+      $tanah->provinsi_id = $request->provinsi_id;
+      $tanah->save();
 
-      if ($kamar) {
+      if ($tanah) {
           foreach($request->addmore as $value){
-            $fkamar = new fkamar;
-            $fkamar->kamar_id = $kamar->id;
-            $fkamar->name = $value['name'];
-            $fkamar->save();
+            $fbangunan = new fbangunan;
+            $fbangunan->tanah_id = $tanah->id;
+            $fbangunan->name = $value['name'];
+            $fbangunan->save();
           }
       }
 
-      if ($kamar && $fkamar) {
+      if ($tanah && $fbangunan) {
           foreach ($request->addkm as $value) {
             $fkamar_mandi = new fkamar_mandi;
-            $fkamar_mandi->kamar_id = $kamar->id;
+            $fkamar_mandi->tanah_id = $tanah->id;
             $fkamar_mandi->name = $value['name'];
             $fkamar_mandi->save();
           }
       }
 
-      if ($kamar && $fkamar && $fkamar_mandi) {
+      if ($tanah && $fbangunan && $fkamar_mandi) {
           foreach ($request->addbersama as $value) {
             $fbersama = new fbersama;
-            $fbersama->kamar_id = $kamar->id;
+            $fbersama->tanah_id = $tanah->id;
             $fbersama->name = $value['name'];
             $fbersama->save();
           }
       }
 
-      if ($kamar && $fkamar && $fkamar_mandi && $fbersama) {
+      if ($tanah && $fbangunan && $fkamar_mandi && $fbersama) {
           foreach ($request->addparkir as $value) {
             $fparkir = new fparkir;
-            $fparkir->kamar_id = $kamar->id;
+            $fparkir->tanah_id = $tanah->id;
             $fparkir->name = $value['name'];
             $fparkir->save();
           }
       }
 
-      if ($kamar && $fkamar && $fkamar_mandi && $fbersama && $fparkir) {
+      if ($tanah && $fbangunan && $fkamar_mandi && $fbersama && $fparkir) {
           foreach ($request->addarea as $value) {
             $area = new area;
-            $area->kamar_id =  $kamar->id;
+            $area->tanah_id =  $tanah->id;
             $area->name = $value['name'];
             $area->save();
           }
       }
 
-      if ($kamar&& $fkamar&& $fkamar_mandi&& $fbersama&& $fparkir&& $area) {
+      if ($tanah&& $fbangunan&& $fkamar_mandi&& $fbersama&& $fparkir&& $area) {
           foreach($request->addfoto as $value) {
             $foto_kamar = $value['foto_kamar'];
             $nama_foto = time()."_".$foto_kamar->getClientOriginalName();
@@ -124,14 +123,14 @@ class KamarController extends Controller
             $foto_kamar->move($tujuan_upload,$nama_foto);
 
             $foto = new fotokamar;
-            $foto->kamar_id = $kamar->id;
+            $foto->tanah_id = $tanah->id;
             $foto->foto_kamar = $nama_foto;
             $foto->save();
           }
       }
 
-      Session::flash('success','Kamar berhasil ditambah');
-      return redirect('pemilik/kamar');
+      Session::flash('success','Tanah berhasil ditambah');
+      return redirect('pemilik/tanah');
     }
 
     /**
@@ -142,8 +141,8 @@ class KamarController extends Controller
      */
     public function show($slug)
     {
-      $show = kamar::where('slug', $slug)->where('user_id',auth::id())->first();
-      return view('pemilik.kamar.show', compact('show'));
+      $show = tanah::where('slug', $slug)->where('user_id',auth::id())->first();
+      return view('pemilik.tanah.show', compact('show'));
     }
 
     /**
@@ -154,10 +153,10 @@ class KamarController extends Controller
      */
     public function edit($id)
     {
-      $edit = kamar::where('id', $id)->first();
+      $edit = tanah::where('id', $id)->first();
       // dd($edit);
       $provinsi = provinsi::select('kode','nama')->get();
-      return view('pemilik.kamar.edit', compact('edit','provinsi'));
+      return view('pemilik.tanah.edit', compact('edit','provinsi'));
     }
 
     /**
@@ -169,79 +168,78 @@ class KamarController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $kamar = Kamar::findOrFail($id);
-      $kamar->user_id = auth::id();
-      $kamar->nama_kamar = $request->nama_kamar;
-      $kamar->jenis_kamar = $request->jenis_kamar;
-      $kamar->luas_kamar = $request->luas_kamar;
-      $kamar->stok_kamar = $request->stok_kamar;
-      $kamar->sisa_kamar = $kamar->stok_kamar;
-      $kamar->harga_kamar = $request->harga_kamar;
-      $kamar->ket_lain = $request->ket_lain;
-      $kamar->ket_biaya = $request->ket_biaya;
-      $kamar->desc = $request->desc;
-      $kamar->kategori = $request->kategori;
-      $kamar->book = $request->book;
-      $kamar->provinsi_id = $request->provinsi_id;
-      $kamar->save();
+      $tanah = Tanah::findOrFail($id);
+      $tanah->user_id = auth::id();
+      $tanah->nama = $request->nama;
+      $tanah->luas = $request->luas;
+      $tanah->stok = $request->stok;
+      $tanah->sisa = $tanah->stok_kamar;
+      $tanah->harga_sewa = $request->harga_sewa;
+      $tanah->ket_lain = $request->ket_lain;
+      $tanah->ket_biaya = $request->ket_biaya;
+      $tanah->desc = $request->desc;
+      $tanah->kategori = $request->kategori;
+      $tanah->book = $request->book;
+      $tanah->provinsi_id = $request->provinsi_id;
+      $tanah->save();
 
-       if ($kamar) {
+       if ($tanah) {
         if ($request->addmore) {
           foreach($request->addmore as $value){
-            $fkamar = new fkamar;
-            $fkamar->kamar_id = $id;
-            $fkamar->name = $value['name'];
-            $fkamar->save();
+            $fbangunan = new fbangunan;
+            $fbangunan->tanah_id = $id;
+            $fbangunan->name = $value['name'];
+            $fbangunan->save();
           }
         }
       }
 
-      if ($kamar ) {
+      if ($tanah ) {
         if ($request->addkm) {
           foreach ($request->addkm as $value) {
             $fkamar_mandi = new fkamar_mandi;
-            $fkamar_mandi->kamar_id = $id;
+            $fkamar_mandi->tanah_id = $id;
             $fkamar_mandi->name = $value['name'];
             $fkamar_mandi->save();
           }
         }
       }
 
-      if ($kamar ) {
+      if ($tanah ) {
         if ($request->addbersama) {
           foreach ($request->addbersama as $value) {
             $fbersama = new fbersama;
-            $fbersama->kamar_id = $id;
+            $fbersama->tanah_id = $id;
             $fbersama->name = $value['name'];
             $fbersama->save();
           }
         }
       }
 
-      if ($kamar) {
+      if ($tanah) {
         if ($request->addparkir) {
           foreach ($request->addparkir as $value) {
             $fparkir = new fparkir;
-            $fparkir->kamar_id = $id;
+            $fparkir->tanah_id = $id;
             $fparkir->name = $value['name'];
             $fparkir->save();
           }
         }
       }
 
-      if ($kamar) {
+      if ($tanah) {
         if ($request->addarea) {
           foreach ($request->addarea as $value) {
             $area = new area;
-            $area->kamar_id =  $id;
+            $area->tanah_id =  $id;
             $area->name = $value['name'];
             $area->save();
           }
         }
       }
 
-      Session::flash('success','Kamar Berhasil Di Update !');
-      return redirect('pemilik/kamar');
+      Session::flash('success','tanah Berhasil Di Update !');
+      return redirect('pemilik/tanah');
     }
 
     /**
@@ -252,7 +250,9 @@ class KamarController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $tanah=tanah::find($id);
+      $tanah->delete();
+      return redirect('pemilik/tanah')->with('success','Data deleted successfully');
     }
 
     // Cek data bank user

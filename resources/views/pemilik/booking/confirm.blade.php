@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 @section('title')
-  {{$confirm->kamar->nama_kamar}}
+  {{$confirm->tanah->nama}}
 @endsection
 @section('content')
 <div class="row">
@@ -59,7 +59,7 @@
         <hr>
         <div class="d-flex justify-content-between">
           <span>
-            {{$confirm->kamar->nama_kamar}} <br>
+            {{$confirm->tanah->nama}} <br>
             {{$confirm->lama_sewa}} Bulan Sewa
           </span>
         </div>

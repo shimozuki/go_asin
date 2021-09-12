@@ -10,7 +10,7 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-      'key','transaction_number','user_id','pemilik_id','kamar_id','lama_sewa','hari','harga_kamar','harga_total','status','tgl_sewa','end_date_sewa'
+      'key','transaction_number','user_id','pemilik_id','tanah_id','lama_sewa','hari','harga_tanah','harga_total','status','tgl_sewa','end_date_sewa'
     ];
 
     public function user()
@@ -18,9 +18,9 @@ class Transaction extends Model
       return $this->belongsTo(User::class);
     }
 
-    public function kamar()
+    public function tanah()
     {
-      return $this->belongsTo('App\Models\kamar','kamar_id');
+      return $this->belongsTo('App\Models\tanah','tanah_id');
     }
 
     public function payment()

@@ -15,11 +15,11 @@ class CreateFkamarMandisTable extends Migration
     {
         Schema::create('fkamar_mandis', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('kamar_id');
+            $table->unsignedBigInteger('tanah_id');
             $table->string('name');
             $table->timestamps();
 
-            $table->foreign('kamar_id')->references('id')->on('kamars')->onDelete('cascade');
+            $table->foreign('tanah_id')->references('id')->on('tanahs')->onDelete('cascade');
         });
     }
 

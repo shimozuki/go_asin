@@ -63,7 +63,7 @@
         <div class="container">
             <!-- Navbar Brand -->
             <a href="/" class="navbar-brand">
-                <h3>Pap!Kos</h3>
+            <img src="{{url('assets/images/gambar/Go_Asin.png')}}" style="width: 40%;" alt="">
             </a>
         </div>
     </nav>
@@ -75,7 +75,7 @@
     <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
       <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
       <h1>Create Account</h1>
-      <p class="font-italic text-muted mb-0">Cari Kost dan Apartement Makin Mudah di Pap!Kos</p>
+      <p class="font-italic text-muted mb-0">Cari dan sewa tanah dengan mudah di Goasin.com</p>
     </div>
 
     <!-- Registeration Form -->
@@ -122,8 +122,8 @@
             </div>
             <select id="role" name="role" class="form-control custom-select bg-white border-left-0 border-md @error('role') is-invalid @enderror">
               <option>Mendaftar Sebagai</option>
-              <option value="Pemilik">Pemilik Kost</option>
-              <option value="Pencari">Pencari Kost</option>
+              <option value="Pemilik">Pemilik Tanah</option>
+              <option value="Pencari">user</option>
             </select>
             @error('role')
               <span class="invalid-feedback" role="alert">

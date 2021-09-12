@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 @section('title')
-  Konfirmasi Pembayaran Kamar
+  Konfirmasi Pembayaran Sewa
 @endsection
 
 @section('content')
@@ -32,7 +32,7 @@
         <hr>
         <div class="d-flex justify-content-between">
           <span>
-            {{$transaksi->kamar->nama_kamar}} <br>
+            {{$transaksi->tanah->nama}} <br>
             {{$transaksi->lama_sewa}} Bulan Sewa
           </span>
         </div>

@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
       <div class="col-md-11 ftco-animate text-center">
-        <h1 class="mb-4">Cari Kos dan Apartment Makin Mudah di Pap!Kos </h1>
+        <h1 class="mb-4">Cari informasi penyewaan tanah dengan mudah di Go Asin </h1>
         {{-- <p><a href="#" class="btn btn-primary mr-md-4 py-3 px-4">Learn more <span class="ion-ios-arrow-forward"></span></a></p> --}}
       </div>
     </div>

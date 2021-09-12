@@ -14,15 +14,14 @@
     <p>
         <h4 style="font-weight:bold;">Detail Calon Penghuni :</h4>
         Penghuni : {{$nama_user}} <br>
-        Jenis : {{$jenis}} <br>
-        Nama Kamar : {{$nama_kamar}} <br>
+        Nama  : {{$nama}} <br>
         Nama Bank : {{$nama_bank}} <br>
         No Rek : {{$no_rek_pengirim}} <br>
-        Harga Kamar : @currency($harga_kamar) <br>
+        Harga sewa : @currency($harga_sewa) <br>
         Jumlah dibayar : @currency($jml_payment) <br>
     </p> <br> <br>
     <p>
-        Regrads, Andri Desmana
+        Regrads, Ahmad Robbiul Iman
     </p>
 </body>
 </html>

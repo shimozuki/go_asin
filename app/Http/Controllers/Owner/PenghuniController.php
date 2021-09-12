@@ -14,12 +14,12 @@ class PenghuniController extends Controller
     //Penghuni
     public function penghuni()
     {
-      if (!empty(Auth::user()->kamar->user_id)) {
-        $penghuni = Transaction::where('status','Proses')->where('pemilik_id', Auth::user()->kamar->user_id)->get();
+      if (!empty(Auth::user()->tanah->user_id)) {
+        $penghuni = Transaction::where('status','Proses')->where('pemilik_id', Auth::user()->tanah->user_id)->get();
 
         return view('pemilik.penghuni.index', compact('penghuni'));
       } else {
-        Session::flash('error','Data Kamar Masih Kosong');
+        Session::flash('error','Data tanah Masih Kosong');
         return redirect('/home');
       }
 

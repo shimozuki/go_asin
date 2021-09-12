@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Transaction,kamar,payment,User};
+use App\Models\{Transaction,tanah,payment,User};
 use Auth;
 use Str;
 use Session;
@@ -23,7 +23,7 @@ class TransactionController extends Controller
       }
     }
 
-    // Transaction Sewa Kamar
+    // Transaction Sewa tanah
     public function store(Request $request, $id)
     {
 
@@ -33,54 +33,54 @@ class TransactionController extends Controller
             'tgl_sewa'  => 'required'
           ]);
 
-          $room = kamar::where('id', $id)->first(); // Get Room by id
+          $room = tanah::where('id', $id)->first(); // Get Room by id
 
           $iduser = Auth::id(); // Get ID User
           $number = mt_rand(100, 999); // Get Random Number
           $date = date('dmy'); // Get Date Now
           $key = Str::random(9999);
 
-          $kamar = new Transaction;
-          $kamar->key                 = 'confirm-payment-' .$key;
-          $kamar->transaction_number  = 'BOOK-' .$number .$id .'-' .$date;
-          $kamar->kamar_id            = $id;
-          $kamar->user_id             = Auth::id();
-          $kamar->pemilik_id          = $room->user_id;
-          $kamar->lama_sewa           = $request->lama_sewa;
+          $tanah = new Transaction;
+          $tanah->key                 = 'confirm-payment-' .$key;
+          $tanah->transaction_number  = 'BOOK-' .$number .$id .'-' .$date;
+          $tanah->tanah_id            = $id;
+          $tanah->user_id             = Auth::id();
+          $tanah->pemilik_id          = $room->user_id;
+          $tanah->lama_sewa           = $request->lama_sewa;
           if ($request->lama_sewa == 1) {
-            $kamar->hari              = 30;
+            $tanah->hari              = 30;
           } elseif($request->lama_sewa == 3) {
-            $kamar->hari              = 90;
+            $tanah->hari              = 90;
           } elseif($request->lama_sewa == 6) {
-            $kamar->hari              = 180;
+            $tanah->hari              = 180;
           } elseif ($request->lama_sewa == 12) {
-            $kamar->hari              = 360;
+            $tanah->hari              = 360;
           }
 
           $points = calculatePointUser(Auth::id());
 
-          $kamar->harga_kamar         = $room->harga_kamar;
+          $tanah->harga_sewa         = $room->harga_sewa;
           if ($request->credit) {
-            $totalharga               = $room->harga_kamar * $request->lama_sewa + $number;
-            $kamar->harga_total       = $totalharga - $points;
+            $totalharga               = $room->harga_sewa * $request->lama_sewa + $number;
+            $tanah->harga_total       = $totalharga - $points;
           } else {
-            $kamar->harga_total       = $room->harga_kamar * $request->lama_sewa + $number;
+            $tanah->harga_total       = $room->harga_sewa * $request->lama_sewa + $number;
           }
 
-          $kamar->tgl_sewa            = Carbon::parse($request->tgl_sewa)->format('d-m-Y');
-          $kamar->end_date_sewa       = Carbon::parse($request->tgl_sewa)->addDays($kamar->hari)->format('d-m-Y');
-          $kamar->save();
+          $tanah->tgl_sewa            = Carbon::parse($request->tgl_sewa)->format('d-m-Y');
+          $tanah->end_date_sewa       = Carbon::parse($request->tgl_sewa)->addDays($tanah->hari)->format('d-m-Y');
+          $tanah->save();
 
           // jika sukses Simpan ke table payment
-          if ($kamar) {
+          if ($tanah) {
             $payment = new payment;
-            $payment->transaction_id    = $kamar->id;
+            $payment->transaction_id    = $tanah->id;
             $payment->user_id           = Auth::id();
-            $payment->kamar_id          = $id;
+            $payment->tanah_id          = $id;
             $payment->save();
           }
 
-          if ($kamar = $request->credit) {
+          if ($tanah = $request->credit) {
             $point = User::where('id', Auth::id())->firstOrFail();
             $credit = $point->credit - $point->credit;
             $point->credit = $credit;

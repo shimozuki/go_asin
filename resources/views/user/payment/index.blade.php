@@ -32,13 +32,13 @@
           <h5 class="mt-2">Payment</h5>
           <div style="margin-left: 2px">
             <a href="{{url('user/tagihan')}}" style="font-size: 12px">Tagihan</a> <br>
-            <a href="{{url('user/myroom')}}" style="font-size: 12px">Kamar Kamu</a>
+            <a href="{{url('user/myroom')}}" style="font-size: 12px">yang Kamu sewa</a>
           </div>
 
-          <h5 class="mt-2">Kamar</h5>
+          <h5 class="mt-2">Tanah dan bangunan</h5>
           <div style="margin-left: 2px">
-            <a href="{{url('/')}}" style="font-size: 12px">Cari Kamar</a> <br>
-            <a href="" style="font-size: 12px">Kamar Favorite</a>
+            <a href="{{url('/')}}" style="font-size: 12px">Cari Tanah dan bangunan</a> <br>
+            <a href="" style="font-size: 12px">Tanah dan bangunan Favorite</a>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
                     <tr>
                       <th width="1%">No</th>
                       <th class="text-nowrap">Nomor Transaksi</th>
-                      <th class="text-nowrap">Nama Kamar</th>
+                      <th class="text-nowrap">Nama</th>
                       <th class="text-nowrap">Harga</th>
                       <th class="text-nowrap">Keterangan</th>
                       <th class="text-nowrap">Status</th>
@@ -72,7 +72,7 @@
                         <tr>
                           <td>{{$no}}</td>
                           <td>{{$tagihans->transaction_number}}</td>
-                          <td>{{$tagihans->kamar->nama_kamar}}</td>
+                          <td>{{$tagihans->tanah->nama}}</td>
                           <td>{{rupiah($tagihans->harga_total)}}</td>
                           <td>{{$tagihans->lama_sewa}} Bulan</td>
                           <td>{{$tagihans->payment->status}}</td>

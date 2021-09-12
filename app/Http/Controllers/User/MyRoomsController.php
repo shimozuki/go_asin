@@ -12,7 +12,7 @@ class MyRoomsController extends Controller
     // My Room
     public function myroom()
     {
-      $kamar = Transaction::where('user_id', Auth::id())->whereNotIn('status',['Pending'])->get();
-      return view('user.kamar.index', compact('kamar'));
+      $tanah = Transaction::where('user_id', Auth::id())->whereNotIn('status',['Pending'])->get();
+      return view('user.tanah.index', compact('tanah'));
     }
 }

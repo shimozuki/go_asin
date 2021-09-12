@@ -17,16 +17,16 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->string('key');
             $table->string('transaction_number');
-            $table->unsignedBigInteger('kamar_id');
+            $table->unsignedBigInteger('tanah_id');
             $table->unsignedBigInteger('user_id');
             $table->integer('lama_sewa');
-            $table->integer('harga_kamar');
+            $table->integer('harga_sewa');
             $table->integer('harga_total');
             $table->string('tgl_sewa');
             $table->enum('status',['Pending','Proses','Done','Cancel','Reject'])->default('Pending');
             $table->timestamps();
 
-            $table->foreign('kamar_id')->references('id')->on('kamars');
+            $table->foreign('tanah_id')->references('id')->on('tanahs');
             $table->foreign('user_id')->references('id')->on('users');
 
         });

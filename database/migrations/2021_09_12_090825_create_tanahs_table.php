@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKamarsTable extends Migration
+class CreateTanahsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,19 @@ class CreateKamarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('kamars', function (Blueprint $table) {
+        Schema::create('tanahs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('slug');
-            $table->string('nama_kamar');
-            $table->enum('jenis_kamar',['Putra','Putri','Campur']);
-            $table->string('luas_kamar');
-            $table->integer('stok_kamar');
-            $table->integer('sisa_kamar');
-            $table->integer('harga_kamar');
+            $table->string('nama');
+            $table->string('luas');
+            $table->integer('stok');
+            $table->integer('sisa');
+            $table->integer('harga_sewa');
             $table->string('ket_lain')->nullable();
             $table->string('ket_biaya')->nullable();
             $table->string('desc')->nullable();
-            $table->enum('kategori',['Kost','Apartment']);
+            $table->enum('kategori',['tanah kosong','tanah dan bangunan']);
             $table->enum('book',[0,1]); // 0 no
             $table->enum('listrik',[0,1]); // 0 no
             $table->string('provinsi_id');
@@ -44,6 +43,6 @@ class CreateKamarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kamars');
+        Schema::dropIfExists('tanahs');
     }
 }

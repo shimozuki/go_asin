@@ -38,9 +38,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function kamar()
+    public function tanah()
     {
-        return $this->hasOne(kamar::class);
+        return $this->hasOne(tanah::class);
     }
 
     public function datauser()

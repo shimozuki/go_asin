@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('transaction_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('kamar_id');
+            $table->unsignedBigInteger('tanah_id');
             $table->enum('type_transfer',['Bank','E-Wallet'])->nullable();
             $table->string('nama_bank')->nullable();
             $table->string('nama_pemilik')->nullable();
@@ -28,7 +28,7 @@ class CreatePaymentsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('kamar_id')->references('id')->on('kamars')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('tanah_id')->references('id')->on('tanahs')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('transaction_id')->references('id')->on('transactions')->onUpdate('cascade')->onDelete('cascade');
 
         });

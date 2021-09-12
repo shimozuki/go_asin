@@ -1,9 +1,9 @@
-  // Tambah Fasilitas Kamar
+  // Tambah Fasilitas bangunan
   var i = 0;
   $("#addfkamar").click(function(){
       ++i;
 
-      $("#fkamar").append('<div class="form-group remove"><div class="row"><div class="col-lg-5 col-xl-5 col-10"><label class="col-form-label" style="color:red">Fasilitas Kamar</label><input type="text" class="form-control" name="addmore['+i+'][name]" placeholder="Tambah Fasilitas Kamar"></div><div class="col-2 col-lg-1 col-xl-1"> <label class="col-form-label">.</label><input type="button" class="form-control btn btn-danger btn-sm remove-fk" value="-"></div></div></div>');
+      $("#fkamar").append('<div class="form-group remove"><div class="row"><div class="col-lg-5 col-xl-5 col-10"><label class="col-form-label" style="color:red">Fasilitas rumah</label><input type="text" class="form-control" name="addmore['+i+'][name]" placeholder="Tambah Fasilitas Kamar"></div><div class="col-2 col-lg-1 col-xl-1"> <label class="col-form-label">.</label><input type="button" class="form-control btn btn-danger btn-sm remove-fk" value="-"></div></div></div>');
   });
 
   $(document).on('click', '.remove-fk', function(){

@@ -28,7 +28,7 @@
                     <tr>
                       <th width="1%">No</th>
                       <th class="text-nowrap">Nomor Transaksi</th>
-                      <th class="text-nowrap">Nama Kamar</th>
+                      <th class="text-nowrap">Nama</th>
                       <th class="text-nowrap">Nama</th>
                       <th class="text-nowrap">No Telp</th>
                       <th class="text-nowrap">Keterangan</th>
@@ -44,7 +44,7 @@
                       <tr>
                         <td>{{$no}}</td>
                         <td>{{$bookings->transaction_number}}</td>
-                        <td>{{$bookings->kamar->nama_kamar}}</td>
+                        <td>{{$bookings->tanah->nama}}</td>
                         <td>{{getNameUser($bookings->user_id)}}</td>
                         <td>{{getTlpUser($bookings->user_id == NULL ? '-' : $bookings->user_id)}}</td>
                         <td>{{$bookings->lama_sewa}} Bulan</td>

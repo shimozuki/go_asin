@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class fkamar_mandi extends Model
 {
     protected $fillable = [
-        'kamar_id','name'
+        'tanah_id','name'
     ];
 
-    public function kamars()
+    public function tanahs()
     {
-        return $this->hasMany('App\kamar','id_kamar');
+        return $this->hasMany('App\tanah','id_tanah');
     }
 }

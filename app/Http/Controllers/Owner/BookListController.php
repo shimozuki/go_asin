@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Transaction,kamar,payment,User};
+use App\Models\{Transaction,tanah,payment,User};
 use Auth;
 use Session;
 use Carbon\carbon;
@@ -14,11 +14,11 @@ class BookListController extends Controller
     //Booking List
     public function index()
     {
-      if (!empty(Auth::user()->kamar->id)) {
-        $booking = Transaction::where('kamar_id', Auth::user()->kamar->id)->get();
+      if (!empty(Auth::user()->tanah->id)) {
+        $booking = Transaction::where('tanah_id', Auth::user()->tanah->id)->get();
         return view('pemilik.booking.index', compact('booking'));
       } else {
-        Session::flash('error','Data Kamar Masih Kosong');
+        Session::flash('error','Data tanah Masih Kosong');
         return redirect('/home');
       }
 
@@ -27,7 +27,7 @@ class BookListController extends Controller
     // Konfirmasi Pembayaran from user
     public function confirm_payment()
     {
-      $confirm = Transaction::where('kamar_id', Auth::user()->kamar->id)->where('status','Pending')->first();
+      $confirm = Transaction::where('tanah_id', Auth::user()->tanah->id)->where('status','Pending')->first();
       if ($confirm) {
         return view('pemilik.booking.confirm', compact('confirm'));
       }
@@ -44,10 +44,10 @@ class BookListController extends Controller
       $confirm->save();
 
       if ($confirm) {
-        $kamar = kamar::where('id', $confirm->kamar_id)->first();
-        $kamar->sisa_kamar = $kamar->sisa_kamar - 1;
-        $kamar->save();
-        if ($kamar) {
+        $tanah = tanah::where('id', $confirm->tanah_id)->first();
+        $tanah->sisa_tanah = $tanah->sisa_tanah - 1;
+        $tanah->save();
+        if ($tanah) {
           // Add credit point
           $point = User::where('id', $confirm->user_id)->firstOrFail();
           $point->credit  = $point->credit + 2;

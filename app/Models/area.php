@@ -11,8 +11,8 @@ class area extends Model
     ];
 
 
-    public function kamars()
+    public function tanahs()
     {
-        return $this->hasMany('App\Models\kamar','id_kamar');
+        return $this->hasMany('App\Models\tanah','id_tanah');
     }
 }
