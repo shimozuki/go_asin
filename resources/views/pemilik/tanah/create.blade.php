@@ -93,6 +93,7 @@
                     </div>
                 </div>
 
+                @if (tanah()->kategori  == 'tanah dan bangunan')
                 {{-- Start Fasilitas Kamar --}}
                 <span id="fkamar">
                     <div class="form-group">
@@ -194,6 +195,7 @@
                     </div>
                 </span>
                 {{-- End Image --}}
+                @endif
 
                 <div class="form-group row ">
                     <div class="col-sm-10">

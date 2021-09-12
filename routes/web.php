@@ -31,7 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::get('profile','Owner\ProfileController@profile'); // Profile
     Route::put('payment-profile/{user_id}','Owner\ProfileController@payment_profile'); // Save Data Payment
     Route::post('testimoni','Owner\ProfileController@testimoni');
-    Route::get('/tasks/delete/{id}', 'TanahController@destroy');
 
     Route::get('booking-list','Owner\BookListController@index')->name('booking-list'); // Booking List
     Route::get('room/{key}','Owner\BookListController@confirm_payment'); // Confirm payment from user
