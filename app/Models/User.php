@@ -11,6 +11,10 @@ class User extends Authenticatable
 {
     use Notifiable,HasRoles;
 
+    public function routeNotificationForTelegram()
+    {
+        return $this->user_id;
+    }
     /**
      * The attributes that are mass assignable.
      *
