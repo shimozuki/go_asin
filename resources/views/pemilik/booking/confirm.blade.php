@@ -42,7 +42,10 @@
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <span>
-            {{rupiah($confirm->harga_total)}}
+            <h6>Nama         : {{$confirm->payment->nama_pemilik}}</h6>
+            <h6>BANK         : {{$confirm->payment->nama_bank}}</h6>
+            <h6>Tgl transfer : {{$confirm->payment->tgl_transfer}}</h6>
+            <h6>Jumlah       : {{rupiah($confirm->harga_total)}}</h6>
           </span>
           <span style="font-size: 21px">
             <i class="feather icon-credit-card"></i>
@@ -51,9 +54,7 @@
         <hr>
         <div class="d-flex justify-content-between">
           <span>
-            {{$confirm->payment->nama_pemilik}} <br>
-            {{$confirm->payment->nama_bank}} <br>
-            {{$confirm->payment->tgl_transfer}} <small><em>(Tanggal Transfer)</em></small>
+            <img src="{{asset('bukti/' .$confirm->payment->bukti)}}" width="50%" alt="">
           </span>
         </div>
         <hr>

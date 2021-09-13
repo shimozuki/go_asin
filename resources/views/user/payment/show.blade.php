@@ -46,7 +46,7 @@
         <h4 class="font-weight-bold">Lakukan Konfirmasi Pembayaran</h4>
         <h6>Silahkan lakukan konfirmasi ketika Anda sudah melakukan transfer.</h6>
         <hr>
-        <form action="{{url('user/konfirmasi-payment',$transaksi->id)}}" method="post">
+        <form action="{{url('user/konfirmasi-payment',$transaksi->id)}}" enctype="multipart/form-data" method="post">
           @csrf
           @method('PUT')
           <div class="form-group">
@@ -78,6 +78,11 @@
           <div class="form-group">
             <label for="Jumlah">Jumlah</label>
             <input type="text" value="{{rupiah($transaksi->harga_total)}}" class="form-control" placeholder="Jumlah" readonly disabled>
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label">Bukti Transfer</label>
+            <input type="file" name="bukti" class="form-control" required>
           </div>
 
           <div class="form-group">
