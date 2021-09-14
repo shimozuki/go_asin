@@ -89,7 +89,7 @@
           <p style="font-size: 14px">
             {{$tanah->luas}}
           </p>
-          @if (DB::table('tanahs()->kategori') == 'tanah dan bangunan')
+          @if($tanah->kategori == "tanah dan bangunan")
           <h6 class="font-weight-bold">Fasilitas Yang Didapat</h6>
           <p style="font-size: 14px">
             <div class="row">
