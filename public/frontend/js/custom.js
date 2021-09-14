@@ -14,18 +14,18 @@ $('#datepicker').datepicker({
 
 $(function() {
   $(".DropChange").change(function(){
-    var valone = $('#hargakamar').val();
+    var valone = $('#hargasewa').val();
     var valtwo = $('#lamasewa').val();
     var perkalian =  valone  * valtwo;
     var totalharga = 'Rp ' + perkalian.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
-    $('#sewakamar').text(totalharga);
+    $('#sewatanah').text(totalharga);
   });
 });
 
 // Total harga sewa kamar keseluruhan
 $(function() {
   $(".DropChange").change(function(){
-    var valone      = $('#hargakamar').val();
+    var valone      = $('#hargasewa').val();
     var valtwo      = $('#lamasewa').val();
     var valThree    = $('#depost').val();
     var valFour     = $('#biayadmin').val();

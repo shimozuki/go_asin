@@ -39,6 +39,8 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
+          <img src="{{url('assets/images/gambar/Go_Asin.png')}}" width="30%" alt="">
+          <img src="{{url('assets/images/gambar/logobg.png')}}" width="50%" alt="">
           <div class="content-body">
             @yield('content')
           </div>

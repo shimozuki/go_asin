@@ -85,7 +85,7 @@
                         </div>
                     </div>
                 </div>
-
+                @if($edit->kategori == "tanah dan bangunan")
                 {{-- Start Fasilitas Kamar --}}
                 <span id="fkamar">
                     <div class="form-group">
@@ -158,6 +158,7 @@
                 </span>
                 {{-- End Fasilitas Parkir --}}
                 <hr>
+                @endif
                 {{-- Start Area --}}
                 <span id="farea">
                   <div class="form-group ">

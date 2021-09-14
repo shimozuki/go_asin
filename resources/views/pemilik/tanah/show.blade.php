@@ -29,7 +29,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <span class="justify-content-start" style="margin-left:20%">
-                    {{$show->nama_kamar}}
+                    {{$show->nama}}
                   </span>
                 </div>
             </nav>

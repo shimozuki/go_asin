@@ -115,7 +115,15 @@ class TransactionController extends Controller
       $konfirmasi->status = 'Pending';
       $konfirmasi->save();
 
+
+      $bukti = $request->file('bukti');
+      $nama_bukti = time()."_".$bukti->getClientOriginalName();
+      // isi dengan nama folder tempat kemana file diupload
+      $tujuan_upload = 'bukti';
+      $bukti->move($tujuan_upload,$nama_bukti);
+      
       if ($konfirmasi) {
+
         $payment = payment::where('transaction_id',$id)->first();
         $payment->type_transfer     = 'BANK';
         $payment->nama_bank         = $request->nama_bank;
@@ -124,6 +132,7 @@ class TransactionController extends Controller
         $payment->status            = 'Success';
         $payment->jumlah_bayar      = $konfirmasi->harga_total;
         $payment->tgl_transfer      = $request->tgl_transfer;
+        $payment->bukti             = $nama_bukti;
         $payment->save();
       }
 

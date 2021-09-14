@@ -44,6 +44,9 @@
           <span style="color: black">Kos {{$tanah->jenis_kamar}}</span> <br>
         </div> -->
         <div class="pl-3">
+          <span class="badge badge-info">{{$tanah->kategori}}</span>
+        </div>
+        <div class="pl-3">
           <i class="fas fa-calendar-check mr-1" style="color: darkolivegreen"></i>
           <span style="color: black">{{getTransaksiSuccess(!empty($tanah->transaksi->user_id) ? $tanah->transaksi->user_id : '')}} Transaksi Berhasil</span> <br>
         </div>
@@ -60,6 +63,11 @@
         <div class="card-body">
           <p class="font-weight-bold" style="font-size: 20px; color:black"> {{$tanah->nama}} </p>
           <div class="mb-3">
+          <div>
+              <p style="margin-left: 81%; margin-top: -8%;">
+              <span class="badge badge-info">{{$tanah->kategori}}</span>
+              </p>
+            </div>
             <!-- <span style=" color:black">
               {{$tanah->jenis_kamar}} - {{getNameProvinsi($tanah->provinsi_id)}}
               - Tersisa {{$tanah->sisa}} Kamar
@@ -77,18 +85,11 @@
               </p>
             </div>
           </div>
-          <hr>
-          <h5 style="color: black">Fasilitas</h5>
-          <p style="font-size: 14px">
-            {{$tanah->listrik == 0 ? 'Tidak Termasuk Listrik' : 'Termasuk Listrik'}} <br>
-            Tidak Ada Minimum Pembayaran <br>
-            Diskon Jutaan
-          </p>
-          <hr>
           <h6 class="font-weight-bold">Luas</h6>
           <p style="font-size: 14px">
             {{$tanah->luas}}
           </p>
+          @if($tanah->kategori == "tanah dan bangunan")
           <h6 class="font-weight-bold">Fasilitas Yang Didapat</h6>
           <p style="font-size: 14px">
             <div class="row">
@@ -116,13 +117,28 @@
               </div>
             </div>
           </p>
-          <h6 class="font-weight-bold">Fasilitas Umum</h6>
+          @endif
+          <h6 class="font-weight-bold">Lingkungan</h6>
           <div class="d-flex justify-content-between">
             <p style="font-size: 14px">
               {{-- Fasilitas Umum --}}
               @foreach ($tanah->area as $area)
                 {{$area->name}} <br>
               @endforeach
+            </p>
+          </div>
+          <h6 class="font-weight-bold">Ditail Alamat</h6>
+          <div class="d-flex justify-content-between">
+            <p style="font-size: 14px">
+              {{-- Fasilitas Umum --}}
+                {{$tanah->ket_lain}} <br>
+            </p>
+          </div>
+          <h6 class="font-weight-bold">Keterangan Pembayaran</h6>
+          <div class="d-flex justify-content-between">
+            <p style="font-size: 14px">
+              {{-- Fasilitas Umum --}}
+                {{$tanah->ket_biaya}} <br>      
             </p>
           </div>
         </div>
@@ -149,7 +165,7 @@
                 <option value="12">1 Tahun</option>
               </select>
             </div>
-            <small>Kamu bisa mengajukan kos 2 bulan dari sekarang.</small>
+            <small>Kamu bisa mengajukan Penyewaan 2 bulan dari sekarang.</small>
           </div>
         </div>
         <div class="card shadow">
@@ -165,7 +181,7 @@
               <div>
 
                 <p style="color: black">
-                  <span id="sewakamar"></span> <br>
+                  <span id="sewatanah"></span> <br>
                   Rp. 10.000.00 <br>
                   Rp. 300.000 <br>
                   + 2 Points
