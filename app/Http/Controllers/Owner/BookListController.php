@@ -45,7 +45,7 @@ class BookListController extends Controller
 
       if ($confirm) {
         $tanah = tanah::where('id', $confirm->tanah_id)->first();
-        $tanah->sisa_tanah = $tanah->sisa_tanah - 1;
+        $tanah->sisa = $tanah->sisa - 1;
         $tanah->save();
         if ($tanah) {
           // Add credit point

@@ -35,7 +35,7 @@
     <div class="col-md-9">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Data Kamar</h4>
+            <h4 class="card-title">Data Sewa</h4>
           </div>
           <div class="card-content">
             <div class="card-body card-dashboard">
@@ -45,7 +45,7 @@
                     <tr>
                       <th width="1%">No</th>
                       <th class="text-nowrap">Nomor Transaksi</th>
-                      <th class="text-nowrap">Nama Kamar</th>
+                      <th class="text-nowrap">Nama Tanah</th>
                       <th class="text-nowrap">Harga</th>
                       <th class="text-nowrap">Keterangan</th>
                       <th class="text-nowrap">Status</th>
@@ -55,18 +55,18 @@
                     @php
                       $no = 1;
                     @endphp
-                    @foreach ($kamar as $item)
+                    @foreach ($tanah as $item)
                       <tr>
                         <td>{{$no}}</td>
                         <td>{{$item->transaction_number}}</td>
                         <td>
-                          <a href="{{url('room', $item->kamar->slug)}}" target="_blank">{{$item->kamar->nama_kamar}}</a>
+                          <a href="{{url('room', $item->tanah->slug)}}" target="_blank">{{$item->tanah->nama}}</a>
                         </td>
-                        <td>{{rupiah($item->kamar->harga_kamar)}}</td>
+                        <td>{{rupiah($item->tanah->harga_sewa)}}</td>
                         <td>{{$item->lama_sewa}} Bulan</td>
                         <td>
                           @if ($item->status == 'Proses')
-                            <span class="badge badge-primary">Kamar Aktif</span>
+                            <span class="badge badge-primary">Sewa Aktif</span>
                           @elseif($item->status == 'Done')
                             <span class="badge badge-info">Sewa Selesai</span>
                           @elseif($item->status == 'Cancel')

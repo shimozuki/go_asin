@@ -25,6 +25,7 @@ class CreatePaymentsTable extends Migration
             $table->enum('bank_tujuan',['BNI','BRI','BCA','MANDIRI'])->nullable();
             $table->integer('jumlah_bayar')->nullable();
             $table->string('tgl_transfer')->nullable(); //Image
+            $table->string('bukti');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

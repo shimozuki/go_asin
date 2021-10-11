@@ -48,10 +48,11 @@
                         <td>{{$item->kategori}}</td>
                         <td>{{$item->stok}}</td>
                         <td>{{$item->sisa}}</td>
-                        <td>{{$item->harga}}</td>
+                        <td>{{$item->harga_sewa}}</td>
                         <td class="text-center">
                           <a href="{{route('tanah.show', $item->slug)}}" class="btn btn-info btn-sm">Show</a>
                           <a href="{{route('tanah.edit', $item->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                          <a href="{{ route('pemilik.tanah', $item->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus data {{$item->nama}}?')">Delete</a>
                       </tr>
                       @php
                         $no++;
@@ -66,5 +67,4 @@
     </div>
   </div>
 </section>
-
 @endsection
