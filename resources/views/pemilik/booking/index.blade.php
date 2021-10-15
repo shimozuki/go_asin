@@ -29,7 +29,7 @@
                       <th width="1%">No</th>
                       <th class="text-nowrap">Nomor Transaksi</th>
                       <th class="text-nowrap">Nama</th>
-                      <th class="text-nowrap">Nama</th>
+                      <th class="text-nowrap">Nama penyewa</th>
                       <th class="text-nowrap">No Telp</th>
                       <th class="text-nowrap">Keterangan</th>
                       <th class="text-nowrap">Status Transaksi</th>
@@ -46,7 +46,7 @@
                         <td>{{$bookings->transaction_number}}</td>
                         <td>{{$bookings->tanah->nama}}</td>
                         <td>{{getNameUser($bookings->user_id)}}</td>
-                        <td>{{getTlpUser($bookings->user_id == NULL ? '-' : $bookings->user_id)}}</td>
+                        <td><a href="https://wa.me/{{getTlpUser($bookings->user_id)}}?text=Assalamualaikum%20{{getNameUser($bookings->user_id)}}%20saya%20pemilik%20tanah">{{getTlpUser($bookings->user_id)}}</a></td>
                         <td>{{$bookings->lama_sewa}} Bulan</td>
                         <td>{{$bookings->payment->status}}</td>
                         <td>

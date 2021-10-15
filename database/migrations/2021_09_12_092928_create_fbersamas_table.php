@@ -15,8 +15,8 @@ class CreateFbersamasTable extends Migration
     {
         Schema::create('fbersamas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('tanah_id');
-            $table->string('name');
+            $table->unsignedBigInteger('tanah_id')->nullable();
+            $table->string('name')->nullable();
             $table->timestamps();
 
             $table->foreign('tanah_id')->references('id')->on('tanahs')->onDelete('cascade');

@@ -24,3 +24,8 @@
 @section('testimoni')
   @include('frontend.partials.testimoni')
 @endsection
+
+
+@section('item_hero')
+  @include('frontend.partials.item_hero')
+@endsection

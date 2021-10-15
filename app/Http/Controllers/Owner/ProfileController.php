@@ -23,12 +23,14 @@ class ProfileController extends Controller
         'nama_bank' => 'required',
         'nama_pemilik' => 'required',
         'nomor_rekening' => 'required',
+        'tlp' => 'required',
       ]);
 
       $datauser = DataUser::where('user_id', $user_id)->first();
       $datauser->nama_bank      = $request->nama_bank;
       $datauser->nama_pemilik   = $request->nama_pemilik;
       $datauser->nomor_rekening = $request->nomor_rekening;
+      $datauser->tlp = $request->tlp;
       $datauser->save();
 
       Session::flash('success','Data Payment Berhasil Disimpan');

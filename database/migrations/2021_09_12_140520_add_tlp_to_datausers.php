@@ -14,7 +14,7 @@ class AddTlpToDatausers extends Migration
     public function up()
     {
         Schema::table('data_users', function (Blueprint $table) {
-          $table->integer('tlp')->after('nomor_ktp')->nullable();
+          $table->Text('tlp')->after('nomor_ktp')->nullable();
         });
     }
 

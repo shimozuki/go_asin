@@ -43,21 +43,15 @@
 
                 {{-- Payment --}}
                 <div role="tabpanel" class="tab-pane active" id="data-payment" aria-labelledby="payment" aria-expanded="true">
-                  <form action="{{url('pemilik/payment-profile', Auth::id())}}" method="POST">
+                  <form action="{{url('user/payment-profile', Auth::id())}}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row">
                       <div class="col-12">
                         <div class="form-group">
                           <div class="controls">
-                            <label for="Nama Bank">Nama Bank</label>
-                            <select name="nama_bank" class="form-control">
-                              <option> Pilih Bank</option>
-                              <option value="BNI" {{Auth::user()->datauser->nama_bank == 'BNI' ? 'selected' : ''}} >BNI</option>
-                              <option value="BRI" {{Auth::user()->datauser->nama_bank == 'BRI' ? 'selected' : ''}}>BRI</option>
-                              <option value="BCA" {{Auth::user()->datauser->nama_bank == 'BCA' ? 'selected' : ''}}>BCA</option>
-                              <option value="MANDIRI" {{Auth::user()->datauser->nama_bank == 'MANDIRI' ? 'selected' : ''}}>MANDIRI</option>
-                            </select>
+                            <label for="No Rekening">NIK</label>
+                            <input type="number" name="nomor_ktp" value="{{Auth::user()->datauser->nomor_ktp}}" class="form-control" placeholder="NIK">
                           </div>
                         </div>
                       </div>
@@ -65,26 +59,8 @@
                       <div class="col-12">
                         <div class="form-group">
                           <div class="controls">
-                            <label for="No Rekening">No. Rekening</label>
-                            <input type="number" name="nomor_rekening" value="{{Auth::user()->datauser->nomor_rekening}}" class="form-control" placeholder="Nomor Rekening">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-12">
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="Nama Pemilik">Nama Pemilik</label>
-                            <input type="text" name="nama_pemilik" value="{{Auth::user()->datauser->nama_pemilik}}" class="form-control" placeholder="Nama Pemilik">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-12">
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="tlp">WhatsApp</label>
-                            <input type="number" name="tlp" value="{{Auth::user()->datauser->tlp}}" class="form-control" placeholder="+62">
+                            <label for="No Rekening">WhatsApp</label>
+                            <input type="number" name="tlp" value="{{Auth::user()->datauser->tlp}}" class="form-control" placeholder="WhatsApp">
                           </div>
                         </div>
                       </div>

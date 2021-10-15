@@ -59,6 +59,7 @@
                       <th class="text-nowrap">Nama</th>
                       <th class="text-nowrap">Harga</th>
                       <th class="text-nowrap">Keterangan</th>
+                      <th class="text-nowrap">WhatsApp</th>
                       <th class="text-nowrap">Status</th>
                       <th class="text-nowrap">Action</th>
                     </tr>
@@ -75,6 +76,7 @@
                           <td>{{$tagihans->tanah->nama}}</td>
                           <td>{{rupiah($tagihans->harga_total)}}</td>
                           <td>{{$tagihans->lama_sewa}} Bulan</td>
+                          <td><a href="https://wa.me/{{getTlpUser($tagihans->user_id)}}?text=Assalamualaikum%20saya%20{{getNameUser($tagihans->user_id)}}%20mau%20nego">{{getTlpUser($tagihans->tanah->user_id)}}</a></td>
                           <td>{{$tagihans->payment->status}}</td>
                           <td>
                             @if ($tagihans->payment->status == 'Pending')

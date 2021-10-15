@@ -21,7 +21,7 @@
 
           <div class="form-group">
             <label for="Jumlah">Jumlah</label>
-            <input type="text" value="{{rupiah($confirm->harga_total)}}" class="form-control" readonly disabled>
+            <input type="text" value="{{rupiah($confirm->payment->jumlah_bayar)}}" class="form-control" readonly disabled>
           </div>
 
           <div class="form-group">
@@ -45,7 +45,7 @@
             <h6>Nama         : {{$confirm->payment->nama_pemilik}}</h6>
             <h6>BANK         : {{$confirm->payment->nama_bank}}</h6>
             <h6>Tgl transfer : {{$confirm->payment->tgl_transfer}}</h6>
-            <h6>Jumlah       : {{rupiah($confirm->harga_total)}}</h6>
+            <h6>Jumlah       : {{rupiah($confirm->payment->jumlah_bayar)}}</h6>
           </span>
           <span style="font-size: 21px">
             <i class="feather icon-credit-card"></i>
